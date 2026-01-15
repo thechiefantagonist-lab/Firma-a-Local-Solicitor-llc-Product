@@ -140,11 +140,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <div>
               <h4 className="font-display text-lg font-bold mb-4">Contact</h4>
-              <p className="text-primary-foreground/80">
+              <p className="text-primary-foreground/80 mb-4">
                 Email: hello@firma.com<br />
                 Phone: +1 (555) 123-4567<br />
                 Based in California & Mediterranean Shores
               </p>
+              <div className="pt-4 border-t border-primary-foreground/10">
+                <p className="text-xs font-bold uppercase tracking-wider text-accent mb-1">Brokerage & Contracts</p>
+                <p className="text-sm text-primary-foreground/70 mb-2">Local Solicitor LLC Partnership</p>
+                <a href="tel:7378815440" className="text-lg font-bold hover:text-accent transition-colors">
+                  (737) 881-5440
+                </a>
+              </div>
             </div>
           </div>
           <div className="border-t border-primary-foreground/10 pt-8 text-center text-sm text-primary-foreground/60">

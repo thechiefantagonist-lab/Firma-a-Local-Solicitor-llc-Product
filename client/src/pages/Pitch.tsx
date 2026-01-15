@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, CheckCircle2 } from "lucide-react";
+import { Briefcase, Calendar, CheckCircle2, Users } from "lucide-react";
 
 export default function Pitch() {
   const { toast } = useToast();
@@ -109,6 +109,27 @@ export default function Pitch() {
               <div>
                 <p className="font-bold">Staff Tasting Event</p>
                 <p className="text-sm text-muted-foreground">Educational sessions for your service team.</p>
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-accent/5 p-6 rounded-2xl border border-accent/20">
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-primary">
+              <Users className="w-5 h-5 text-accent" />
+              Strategic Partnership
+            </h3>
+            <div className="space-y-3">
+              <p className="text-sm font-medium">
+                In partnership with <span className="font-bold">Local Solicitor LLC</span>
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Contact the owner of Local Solicitor LLC for brokerage services of all olive oil purchases, contracts, products, and sales pitches.
+              </p>
+              <div className="pt-2">
+                <p className="text-sm font-bold text-primary">Brokerage Services:</p>
+                <a href="tel:7378815440" className="text-accent font-bold text-lg hover:underline transition-all">
+                  (737) 881-5440
+                </a>
               </div>
             </div>
           </section>
