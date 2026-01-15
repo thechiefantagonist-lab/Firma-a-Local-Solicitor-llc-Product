@@ -64,7 +64,7 @@ export default function Pitch() {
           Commercial Product Pitch
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Partner with FIRMA. We bring artisanal Mediterranean excellence to your business, 
+          Partner with FIRMA Olive Oils. We bring artisanal Mediterranean excellence to your business, 
           from restaurants to local markets.
         </p>
       </motion.div>

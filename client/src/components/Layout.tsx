@@ -37,8 +37,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="flex justify-between items-center">
             {/* Logo */}
             <Link href="/" className="group relative z-50">
-              <span className="font-display text-2xl md:text-4xl font-bold text-primary tracking-tighter uppercase">
-                FIRMA
+              <span className="font-display text-2xl md:text-3xl font-bold text-primary tracking-tighter uppercase">
+                FIRMA Olive Oils
+              </span>
+              <span className="block text-[10px] md:text-xs font-medium text-muted-foreground -mt-1 tracking-normal normal-case">
+                A 'Local Solicitor llc.' Product
               </span>
             </Link>
 
@@ -124,7 +127,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div>
-              <h3 className="font-display text-2xl font-bold mb-4 uppercase">FIRMA</h3>
+              <h3 className="font-display text-2xl font-bold mb-1 uppercase">FIRMA Olive Oils</h3>
+              <p className="text-xs font-medium text-primary-foreground/60 mb-4 tracking-tight">A 'Local Solicitor llc.' Product</p>
               <p className="text-primary-foreground/80 leading-relaxed max-w-sm">
                 Olive oil, with a personality. 
                 Sustainably harvested, cold-pressed, and authentically crafted for pure flavor.
@@ -165,7 +169,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="border-t border-primary-foreground/10 pt-8 text-center text-sm text-primary-foreground/60">
-            © {new Date().getFullYear()} FIRMA. All rights reserved.
+            © {new Date().getFullYear()} FIRMA Olive Oils. All rights reserved.
           </div>
         </div>
       </footer>

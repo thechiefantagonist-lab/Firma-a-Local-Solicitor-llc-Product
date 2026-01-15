@@ -34,11 +34,11 @@ export default function Home() {
             <span className="inline-block py-1 px-3 rounded-full bg-accent/90 text-accent-foreground text-sm font-bold mb-6 backdrop-blur-sm uppercase tracking-widest">
               Mediterranean Excellence
             </span>
-            <h1 className="font-display text-6xl md:text-9xl font-bold text-white mb-6 leading-tight drop-shadow-lg tracking-tighter">
-              FIRMA
+            <h1 className="font-display text-5xl md:text-8xl font-bold text-white mb-2 leading-tight drop-shadow-lg tracking-tighter uppercase">
+              FIRMA Olive Oils
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-10 leading-relaxed max-w-lg mx-auto drop-shadow-md font-medium italic">
-              Olive oil, with a personality.
+            <p className="text-lg md:text-xl text-white/80 mb-10 font-bold tracking-wide drop-shadow-md">
+              A 'Local Solicitor llc.' Product
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/shop" className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/30">
@@ -160,7 +160,7 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 md:p-16 border border-white/10 text-center max-w-4xl mx-auto">
             <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">
-              Partner with FIRMA
+              Partner with FIRMA Olive Oils
             </h2>
             <p className="text-lg text-primary-foreground/80 mb-10 max-w-2xl mx-auto">
               Are you a restaurant, local market, or boutique looking to offer premium Mediterranean products? 

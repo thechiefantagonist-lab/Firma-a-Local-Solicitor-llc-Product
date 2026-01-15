@@ -1,4 +1,4 @@
-# FIRMA - Mediterranean Olive Oil E-commerce Platform
+# FIRMA Olive Oils - A 'Local Solicitor llc.' Product
 
 ## Overview
 
