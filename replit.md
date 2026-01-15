@@ -1,8 +1,8 @@
-# OleaAuthentic - Mediterranean Olive Oil E-commerce Platform
+# FIRMA - Mediterranean Olive Oil E-commerce Platform
 
 ## Overview
 
-OleaAuthentic is a full-stack e-commerce application for selling artisanal Mediterranean olive oils and vinegars. The platform features a product catalog, shopping cart, order management, wholesale/networking inquiry system, and partner location mapping. Built with a React frontend and Express backend, it uses PostgreSQL for data persistence and Replit Auth for user authentication.
+FIRMA is a full-stack e-commerce application for selling artisanal Mediterranean olive oils and vinegars. Its slogan is "Olive oil, with a personality." The platform features a product catalog, shopping cart, order management, wholesale/networking inquiry system, and partner location mapping. Built with a React frontend and Express backend, it uses PostgreSQL for data persistence and Replit Auth for user authentication.
 
 ## User Preferences
 

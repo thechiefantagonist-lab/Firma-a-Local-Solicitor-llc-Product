@@ -24,22 +24,21 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-2xl"
+            className="max-w-4xl mx-auto"
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-accent/90 text-accent-foreground text-sm font-bold mb-6 backdrop-blur-sm">
-              Authentic Mediterranean Flavor
+            <span className="inline-block py-1 px-3 rounded-full bg-accent/90 text-accent-foreground text-sm font-bold mb-6 backdrop-blur-sm uppercase tracking-widest">
+              Mediterranean Excellence
             </span>
-            <h1 className="font-display text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-              Liquid Gold from <br/>
-              <span className="italic text-accent">Ancient Groves</span>
+            <h1 className="font-display text-6xl md:text-9xl font-bold text-white mb-6 leading-tight drop-shadow-lg tracking-tighter">
+              FIRMA
             </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed max-w-lg drop-shadow-md">
-              Hand-harvested, cold-pressed, and bottled at the source. Experience the rich heritage of artisanal olive oil, delivered directly to your kitchen.
+            <p className="text-xl md:text-2xl text-white/90 mb-10 leading-relaxed max-w-lg mx-auto drop-shadow-md font-medium italic">
+              Olive oil, with a personality.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/shop" className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/30">
@@ -161,7 +160,7 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 md:p-16 border border-white/10 text-center max-w-4xl mx-auto">
             <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">
-              Partner with OleaAuthentic
+              Partner with FIRMA
             </h2>
             <p className="text-lg text-primary-foreground/80 mb-10 max-w-2xl mx-auto">
               Are you a restaurant, local market, or boutique looking to offer premium Mediterranean products? 
