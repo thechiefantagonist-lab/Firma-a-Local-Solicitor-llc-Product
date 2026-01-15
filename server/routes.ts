@@ -82,36 +82,52 @@ async function seedDatabase() {
     console.log("Seeding products...");
     await db.insert(products).values([
       {
-        name: "Premium Extra Virgin Olive Oil",
-        description: "Cold-pressed, authentic Mediterranean olive oil. Perfect for salads and finishing dishes.",
+        name: "EV Smooth",
+        description: "Extra virgin olive oil (250 ml). A balanced and versatile smooth oil.",
         price: "24.99",
         imageUrl: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600",
         category: "oil",
         stock: 100
       },
       {
-        name: "Organic Balsamic Vinegar",
-        description: "Aged for 12 years in wooden barrels. A sweet and tangy complement to our oils.",
-        price: "19.99",
-        imageUrl: "https://images.unsplash.com/photo-1598511797337-1d674b341c2c?auto=format&fit=crop&q=80&w=600",
-        category: "vinegar",
-        stock: 50
-      },
-      {
-        name: "The Connoisseur Set",
-        description: "A gift set containing our finest EVOO and Balsamic Vinegar.",
-        price: "39.99",
-        imageUrl: "https://images.unsplash.com/photo-1620052309787-8480749a1d1e?auto=format&fit=crop&q=80&w=600",
-        category: "set",
-        stock: 25
-      },
-       {
-        name: "Herb Infused Olive Oil",
-        description: "Infused with fresh rosemary and thyme. Adds a delightful aroma to any dish.",
-        price: "29.99",
+        name: "Wild Rosemary",
+        description: "Infused with rosemary grown next to the olives in the Atlas Mountains (250 ml).",
+        price: "26.99",
         imageUrl: "https://images.unsplash.com/photo-1546552356-3fae876a61ca?auto=format&fit=crop&q=80&w=600",
         category: "oil",
-        stock: 80
+        stock: 100
+      },
+      {
+        name: "Orange Infused Olive Oil",
+        description: "Mediterranean olives pressed with fresh oranges (250 ml). Zesty and aromatic.",
+        price: "26.99",
+        imageUrl: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600",
+        category: "oil",
+        stock: 100
+      },
+      {
+        name: "Lemon Infused Olive Oil",
+        description: "Mediterranean olives pressed with fresh lemons (250 ml). Bright and citrusy.",
+        price: "26.99",
+        imageUrl: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600",
+        category: "oil",
+        stock: 100
+      },
+      {
+        name: "Green Chili Pepper Olive Oil",
+        description: "Mediterranean olives pressed with spicy green chili peppers (250 ml). Red label.",
+        price: "28.99",
+        imageUrl: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600",
+        category: "oil",
+        stock: 100
+      },
+      {
+        name: "The Flavor Flight",
+        description: "A miniature sample pack of every flavor. Perfect for discovery and aesthetic gifting.",
+        price: "45.00",
+        imageUrl: "https://images.unsplash.com/photo-1620052309787-8480749a1d1e?auto=format&fit=crop&q=80&w=600",
+        category: "set",
+        stock: 50
       }
     ]);
   }
