@@ -4,6 +4,7 @@ import { useCart } from "@/hooks/use-cart";
 import { Menu, X, ShoppingBag, User, LogOut, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
