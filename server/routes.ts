@@ -83,33 +83,33 @@ async function seedDatabase() {
     await db.insert(products).values([
       {
         name: "EV Smooth",
-        description: "Extra virgin olive oil (250 ml). A balanced and versatile smooth oil.",
+        description: "Extra virgin olive oil (250 ml). A balanced and versatile smooth oil with a sky-blue label.",
         price: "24.99",
-        imageUrl: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600",
+        imageUrl: "/images/evoo-trio.png",
         category: "oil",
         stock: 100
       },
       {
         name: "Wild Rosemary",
-        description: "Infused with rosemary grown next to the olives in the Atlas Mountains (250 ml).",
+        description: "Infused with rosemary grown next to the olives in the Atlas Mountains (250 ml). Green label.",
         price: "26.99",
-        imageUrl: "https://images.unsplash.com/photo-1546552356-3fae876a61ca?auto=format&fit=crop&q=80&w=600",
+        imageUrl: "/images/flavors-group.png",
         category: "oil",
         stock: 100
       },
       {
         name: "Orange Infused Olive Oil",
-        description: "Mediterranean olives pressed with fresh oranges (250 ml). Zesty and aromatic.",
+        description: "Mediterranean olives pressed with fresh oranges (250 ml). Zest and aromatic orange label.",
         price: "26.99",
-        imageUrl: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600",
+        imageUrl: "/images/orange-bottle.png",
         category: "oil",
         stock: 100
       },
       {
         name: "Lemon Infused Olive Oil",
-        description: "Mediterranean olives pressed with fresh lemons (250 ml). Bright and citrusy.",
+        description: "Mediterranean olives pressed with fresh lemons (250 ml). Bright and citrusy yellow label.",
         price: "26.99",
-        imageUrl: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600",
+        imageUrl: "/images/flavor-banner.png",
         category: "oil",
         stock: 100
       },
@@ -117,7 +117,7 @@ async function seedDatabase() {
         name: "Green Chili Pepper Olive Oil",
         description: "Mediterranean olives pressed with spicy green chili peppers (250 ml). Red label.",
         price: "28.99",
-        imageUrl: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600",
+        imageUrl: "/images/green-chili-holiday.png",
         category: "oil",
         stock: 100
       },
@@ -125,7 +125,7 @@ async function seedDatabase() {
         name: "The Flavor Flight",
         description: "A miniature sample pack of every flavor. Perfect for discovery and aesthetic gifting.",
         price: "45.00",
-        imageUrl: "https://images.unsplash.com/photo-1620052309787-8480749a1d1e?auto=format&fit=crop&q=80&w=600",
+        imageUrl: "/images/holiday-tree.png",
         category: "set",
         stock: 50
       }
