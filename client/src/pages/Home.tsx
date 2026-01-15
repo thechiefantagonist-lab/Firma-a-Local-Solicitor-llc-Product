@@ -46,8 +46,8 @@ export default function Home() {
                 Shop Collection
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-              <Link href="/networking" className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-lg hover:bg-white/20 transition-all">
-                Wholesale Partners
+              <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-lg hover:bg-white/20 transition-all">
+                Business Pitch
               </Link>
             </div>
           </motion.div>
@@ -167,8 +167,8 @@ export default function Home() {
               Are you a restaurant, local market, or boutique looking to offer premium Mediterranean products? 
               We offer exclusive wholesale pricing and tasting events.
             </p>
-            <Link href="/networking" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-accent text-accent-foreground font-bold text-lg hover:bg-accent/90 transition-all shadow-lg hover:-translate-y-1">
-              Book a Consultation
+            <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-accent text-accent-foreground font-bold text-lg hover:bg-accent/90 transition-all shadow-lg hover:-translate-y-1">
+              Book a Product Pitch
             </Link>
           </div>
         </div>

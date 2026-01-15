@@ -13,6 +13,7 @@ import Shop from "@/pages/Shop";
 import Networking from "@/pages/Networking";
 import Cart from "@/pages/Cart";
 import Profile from "@/pages/Profile";
+import Pitch from "@/pages/Pitch";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
         <Route path="/networking" component={Networking} />
         <Route path="/cart" component={Cart} />
         <Route path="/profile" component={Profile} />
+        <Route path="/pitch" component={Pitch} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
