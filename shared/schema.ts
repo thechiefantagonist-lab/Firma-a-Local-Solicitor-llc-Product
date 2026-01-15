@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp, decimal } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, decimal, doublePrecision } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 import { users } from "./models/auth";
@@ -47,11 +47,22 @@ export const appointments = pgTable("appointments", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// Locations Table
+export const locations = pgTable("locations", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  address: text("address").notNull(),
+  type: text("type").notNull(), // 'market', 'restaurant'
+  lat: doublePrecision("lat").notNull(),
+  lng: doublePrecision("lng").notNull(),
+});
+
 // Schemas
 export const insertProductSchema = createInsertSchema(products).omit({ id: true });
 export const insertOrderSchema = createInsertSchema(orders).omit({ id: true, createdAt: true });
 export const insertOrderItemSchema = createInsertSchema(orderItems).omit({ id: true });
 export const insertAppointmentSchema = createInsertSchema(appointments).omit({ id: true, createdAt: true, status: true });
+export const insertLocationSchema = createInsertSchema(locations).omit({ id: true });
 
 // Types
 export type Product = typeof products.$inferSelect;
@@ -60,3 +71,5 @@ export type Order = typeof orders.$inferSelect;
 export type OrderItem = typeof orderItems.$inferSelect;
 export type Appointment = typeof appointments.$inferSelect;
 export type InsertAppointment = z.infer<typeof insertAppointmentSchema>;
+export type Location = typeof locations.$inferSelect;
+export type InsertLocation = z.infer<typeof insertLocationSchema>;

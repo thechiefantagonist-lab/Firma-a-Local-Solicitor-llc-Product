@@ -1,8 +1,9 @@
 import { Link } from "wouter";
-import { ArrowRight, Star, Leaf, Users, Award } from "lucide-react";
+import { ArrowRight, Star, Leaf, Users, Award, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { useProducts } from "@/hooks/use-products";
 import { Product } from "@shared/schema";
+import { PartnerMap } from "@/components/PartnerMap";
 
 export default function Home() {
   const { data: products } = useProducts();
@@ -114,6 +115,35 @@ export default function Home() {
               View Full Collection <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Interactive Map Section */}
+      <section className="py-24 bg-card">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-16">
+            <div className="max-w-xl text-center md:text-left">
+              <h2 className="font-display text-4xl font-bold text-primary mb-4 flex items-center justify-center md:justify-start gap-2">
+                <MapPin className="w-8 h-8 text-accent" />
+                Find Us Nearby
+              </h2>
+              <p className="text-muted-foreground text-lg">
+                Discover our products at premium local markets and authentic Mediterranean restaurants across the region.
+              </p>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex items-center gap-2 px-4 py-2 bg-background border rounded-full shadow-sm">
+                <div className="w-3 h-3 rounded-full bg-blue-500" />
+                <span className="text-sm font-medium">Markets</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 bg-background border rounded-full shadow-sm">
+                <div className="w-3 h-3 rounded-full bg-green-500" />
+                <span className="text-sm font-medium">Restaurants</span>
+              </div>
+            </div>
+          </div>
+          
+          <PartnerMap />
         </div>
       </section>
 

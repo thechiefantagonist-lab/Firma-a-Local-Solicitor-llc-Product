@@ -4,7 +4,7 @@ import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import { setupAuth, registerAuthRoutes, isAuthenticated } from "./replit_integrations/auth";
-import { products } from "@shared/schema";
+import { products, locations } from "@shared/schema";
 import { db } from "./db";
 
 export async function registerRoutes(
@@ -53,6 +53,12 @@ export async function registerRoutes(
     res.json(orders);
   });
 
+  // === Locations ===
+  app.get(api.locations.list.path, async (req, res) => {
+    const locations = await storage.getLocations();
+    res.json(locations);
+  });
+
   // === Appointments ===
   app.post(api.appointments.create.path, async (req, res) => {
     try {
@@ -72,8 +78,39 @@ export async function registerRoutes(
   
   // Seed Database with Initial Products
   await seedDatabase();
+  await seedLocations();
 
   return httpServer;
+}
+
+async function seedLocations() {
+  const existingLocations = await storage.getLocations();
+  if (existingLocations.length === 0) {
+    console.log("Seeding locations...");
+    await db.insert(locations).values([
+      {
+        name: "Mediterranean Gourmet Market",
+        address: "123 Olive Grove St, San Francisco, CA",
+        type: "market",
+        lat: 37.7749,
+        lng: -122.4194
+      },
+      {
+        name: "La Piazza Italian Restaurant",
+        address: "456 Artisan Way, Los Angeles, CA",
+        type: "restaurant",
+        lat: 34.0522,
+        lng: -118.2437
+      },
+      {
+        name: "Old World Deli",
+        address: "789 Heritage Blvd, San Diego, CA",
+        type: "market",
+        lat: 32.7157,
+        lng: -117.1611
+      }
+    ]);
+  }
 }
 
 async function seedDatabase() {

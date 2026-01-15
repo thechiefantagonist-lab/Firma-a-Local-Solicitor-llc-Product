@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { insertProductSchema, products, insertAppointmentSchema, appointments, insertOrderSchema, orders } from './schema';
+import { insertProductSchema, products, insertAppointmentSchema, appointments, insertOrderSchema, orders, locations } from './schema';
 
 export const errorSchemas = {
   validation: z.object({
@@ -65,6 +65,15 @@ export const api = {
       responses: {
         200: z.array(z.custom<typeof orders.$inferSelect>()),
         401: errorSchemas.notFound,
+      },
+    },
+  },
+  locations: {
+    list: {
+      method: 'GET' as const,
+      path: '/api/locations',
+      responses: {
+        200: z.array(z.custom<typeof locations.$inferSelect>()),
       },
     },
   }

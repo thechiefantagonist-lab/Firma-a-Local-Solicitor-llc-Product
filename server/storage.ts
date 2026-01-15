@@ -1,10 +1,11 @@
 import { db } from "./db";
 import {
-  users, products, orders, orderItems, appointments,
+  users, products, orders, orderItems, appointments, locations,
   type User, type InsertUser,
   type Product, type InsertProduct,
   type Order, type OrderItem,
-  type Appointment, type InsertAppointment
+  type Appointment, type InsertAppointment,
+  type Location, type InsertLocation
 } from "@shared/schema";
 import { eq, desc } from "drizzle-orm";
 import { authStorage } from "./replit_integrations/auth/storage"; // Import auth storage
@@ -25,6 +26,9 @@ export interface IStorage {
 
   // Appointments
   createAppointment(appointment: InsertAppointment): Promise<Appointment>;
+
+  // Locations
+  getLocations(): Promise<Location[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -99,6 +103,11 @@ export class DatabaseStorage implements IStorage {
   async createAppointment(appointment: InsertAppointment): Promise<Appointment> {
     const [newAppointment] = await db.insert(appointments).values(appointment).returning();
     return newAppointment;
+  }
+
+  // Locations
+  async getLocations(): Promise<Location[]> {
+    return await db.select().from(locations);
   }
 }
 
