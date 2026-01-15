@@ -144,26 +144,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <div>
               <h4 className="font-display text-lg font-bold mb-4">Contact</h4>
-              <p className="text-primary-foreground/80 mb-4">
-                Email: hello@firma.com<br />
-                Phone: +1 (555) 123-4567<br />
-                Based in California & Mediterranean Shores
-              </p>
-              <div className="pt-4 border-t border-primary-foreground/10">
-                <p className="text-xs font-bold uppercase tracking-wider text-accent mb-1">Brokerage & Contracts</p>
-                <p className="text-sm text-primary-foreground/70 mb-2">Local Solicitor LLC Partnership</p>
-                <div className="flex flex-col gap-2">
-                  <a href="tel:7378815440" className="text-lg font-bold hover:text-accent transition-colors">
-                    (737) 881-5440
-                  </a>
-                  <a 
-                    href="https://viewmycard.io/solarcafe" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-xs font-semibold text-primary-foreground/60 hover:text-accent transition-colors underline underline-offset-4"
-                  >
-                    View Digital Business Card
-                  </a>
+              <div className="space-y-4">
+                <p className="text-primary-foreground/80">
+                  <span className="flex items-center gap-2">
+                    <span role="img" aria-label="phone">📞</span>
+                    <a href="tel:7378815440" className="hover:text-accent transition-colors font-bold tracking-tight">737.881.5440</a>
+                  </span>
+                  <span className="flex items-center gap-2 mt-1">
+                    <span role="img" aria-label="email">📧</span>
+                    <a href="mailto:Thechiefantagonist@gmail.com" className="hover:text-accent transition-colors">Thechiefantagonist@gmail.com</a>
+                  </span>
+                </p>
+                <div className="pt-2">
+                  <Link href="/pitch">
+                    <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+                      Product Questions?
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

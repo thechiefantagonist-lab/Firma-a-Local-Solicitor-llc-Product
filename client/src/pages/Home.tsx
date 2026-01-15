@@ -162,13 +162,30 @@ export default function Home() {
             <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">
               Partner with FIRMA Olive Oils
             </h2>
-            <p className="text-lg text-primary-foreground/80 mb-10 max-w-2xl mx-auto">
+            <p className="text-lg text-primary-foreground/80 mb-6 max-w-2xl mx-auto">
               Are you a restaurant, local market, or boutique looking to offer premium Mediterranean products? 
-              We offer exclusive wholesale pricing and tasting events.
+              Contact us now for product purchase and inventory opportunities as a local business.
             </p>
-            <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-accent text-accent-foreground font-bold text-lg hover:bg-accent/90 transition-all shadow-lg hover:-translate-y-1">
-              Book a Product Pitch
-            </Link>
+            
+            <div className="flex flex-col items-center gap-6 mb-10">
+              <div className="flex flex-col sm:flex-row gap-6 text-white font-bold text-xl md:text-2xl">
+                <a href="tel:7378815440" className="flex items-center justify-center gap-2 hover:text-accent transition-colors">
+                  <span role="img" aria-label="phone">📞</span> 737.881.5440
+                </a>
+                <a href="mailto:Thechiefantagonist@gmail.com" className="flex items-center justify-center gap-2 hover:text-accent transition-colors">
+                  <span role="img" aria-label="email">📧</span> Email Us
+                </a>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-accent text-accent-foreground font-bold text-lg hover:bg-accent/90 transition-all shadow-lg hover:-translate-y-1">
+                Inventory Opportunity
+              </Link>
+              <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-lg hover:bg-white/20 transition-all shadow-lg hover:-translate-y-1">
+                Product Questions?
+              </Link>
+            </div>
           </div>
         </div>
       </section>
