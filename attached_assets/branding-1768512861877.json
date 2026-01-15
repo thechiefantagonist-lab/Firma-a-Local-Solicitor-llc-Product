@@ -1,0 +1,101 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Avenir",
+      "count": 115
+    },
+    {
+      "family": "avenir next",
+      "count": 115
+    },
+    {
+      "family": "helvetica neue",
+      "count": 115
+    },
+    {
+      "family": "segoe ui",
+      "count": 115
+    },
+    {
+      "family": "Helvetica",
+      "count": 115
+    },
+    {
+      "family": "Arial",
+      "count": 115
+    },
+    {
+      "family": "sans-serif",
+      "count": 115
+    },
+    {
+      "family": "SF Regular",
+      "count": 35
+    },
+    {
+      "family": "SF Bold",
+      "count": 2
+    }
+  ],
+  "colors": {
+    "primary": "#C1E2FF",
+    "accent": "#4F5B5F",
+    "background": "#FFFFFF",
+    "textPrimary": "#000000",
+    "link": "#4F5B5F"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "SF Regular",
+      "heading": "SF Regular"
+    },
+    "fontStacks": {
+      "body": [
+        "SF Regular"
+      ],
+      "heading": [
+        "SF Regular"
+      ],
+      "paragraph": [
+        "SF Regular"
+      ]
+    },
+    "fontSizes": {
+      "h1": "50px",
+      "h2": "30px",
+      "body": "22px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "4px"
+  },
+  "components": {},
+  "images": {
+    "logo": null,
+    "favicon": "File saved at: attached_assets/favicon.jpg",
+    "ogImage": "File saved at: attached_assets/ogImage.jpg"
+  },
+  "__framework_hints": [
+    "bootstrap"
+  ],
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "LLM failed"
+    },
+    "secondary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "LLM failed"
+    },
+    "confidence": 0
+  },
+  "confidence": {
+    "buttons": 0,
+    "colors": 0,
+    "overall": 0
+  }
+}

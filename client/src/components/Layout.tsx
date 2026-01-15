@@ -148,9 +148,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="pt-4 border-t border-primary-foreground/10">
                 <p className="text-xs font-bold uppercase tracking-wider text-accent mb-1">Brokerage & Contracts</p>
                 <p className="text-sm text-primary-foreground/70 mb-2">Local Solicitor LLC Partnership</p>
-                <a href="tel:7378815440" className="text-lg font-bold hover:text-accent transition-colors">
-                  (737) 881-5440
-                </a>
+                <div className="flex flex-col gap-2">
+                  <a href="tel:7378815440" className="text-lg font-bold hover:text-accent transition-colors">
+                    (737) 881-5440
+                  </a>
+                  <a 
+                    href="https://viewmycard.io/solarcafe" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-primary-foreground/60 hover:text-accent transition-colors underline underline-offset-4"
+                  >
+                    View Digital Business Card
+                  </a>
+                </div>
               </div>
             </div>
           </div>

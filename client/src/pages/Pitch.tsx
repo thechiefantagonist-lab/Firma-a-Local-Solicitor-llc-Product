@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, CheckCircle2, Users } from "lucide-react";
+import { Briefcase, Calendar, CheckCircle2, Users, ExternalLink } from "lucide-react";
 
 export default function Pitch() {
   const { toast } = useToast();
@@ -127,9 +127,19 @@ export default function Pitch() {
               </p>
               <div className="pt-2">
                 <p className="text-sm font-bold text-primary">Brokerage Services:</p>
-                <a href="tel:7378815440" className="text-accent font-bold text-lg hover:underline transition-all">
-                  (737) 881-5440
-                </a>
+                <div className="flex flex-col gap-2">
+                  <a href="tel:7378815440" className="text-accent font-bold text-lg hover:underline transition-all">
+                    (737) 881-5440
+                  </a>
+                  <a 
+                    href="https://viewmycard.io/solarcafe" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-sm font-semibold text-primary hover:text-accent transition-colors gap-1"
+                  >
+                    View Digital Card <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </div>
           </section>
