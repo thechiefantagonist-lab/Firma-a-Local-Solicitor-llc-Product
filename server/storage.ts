@@ -14,7 +14,7 @@ export interface IStorage {
   // Auth methods (required by auth blueprint)
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>; // Added to satisfy potential legacy calls if any
-  createUser(user: InsertUser): Promise<User>; // Added to satisfy potential legacy calls if any
+  createUser(user: UpsertUser): Promise<User>; // Added to satisfy potential legacy calls if any
 
   // Products
   getProducts(): Promise<Product[]>;

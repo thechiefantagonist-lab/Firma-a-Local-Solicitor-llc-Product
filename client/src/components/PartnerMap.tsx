@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@shared/routes';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/sidebar';
+import { Location } from '@shared/schema';
 import L from 'leaflet';
 
 // Fix for default marker icons in Leaflet with Webpack/Vite
@@ -19,7 +19,7 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 export function PartnerMap() {
-  const { data: locations, isLoading } = useQuery({
+  const { data: locations, isLoading } = useQuery<Location[]>({
     queryKey: [api.locations.list.path],
   });
 
@@ -33,7 +33,7 @@ export function PartnerMap() {
     <div className="space-y-4">
       <div className="h-[500px] w-full rounded-lg overflow-hidden border shadow-sm z-0">
         <MapContainer 
-          center={locations?.[0] ? [locations[0].lat, locations[0].lng] : defaultCenter} 
+          center={locations && locations.length > 0 ? [locations[0].lat, locations[0].lng] : defaultCenter} 
           zoom={5} 
           scrollWheelZoom={false}
           style={{ height: '100%', width: '100%' }}
@@ -42,7 +42,7 @@ export function PartnerMap() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {locations?.map((location) => (
+          {Array.isArray(locations) && locations.map((location) => (
             <Marker key={location.id} position={[location.lat, location.lng]}>
               <Popup>
                 <div className="p-1">
