@@ -16,7 +16,15 @@ export default function Shop() {
   return (
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
-      <div className="bg-primary pt-24 pb-16 px-4">
+      <div className="bg-primary pt-24 pb-16 px-4 relative">
+        <div className="absolute top-20 left-4 text-[10px] text-primary-foreground/60 leading-tight">
+          <p>Official Partnered Product of Local Solicitor llc.</p>
+          <p className="mt-0.5">
+            <a href="tel:7378815440" className="hover:text-primary-foreground transition-colors">737-881-5440</a>
+            {" / "}
+            <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">@forestparker</a>
+          </p>
+        </div>
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="font-display text-4xl md:text-6xl font-bold text-primary-foreground mb-4">
             Our Collection
