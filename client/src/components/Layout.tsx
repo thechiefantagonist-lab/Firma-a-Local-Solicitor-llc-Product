@@ -131,8 +131,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <h3 className="font-display text-2xl font-bold mb-1 uppercase">FIRMA Olive Oils</h3>
               <p className="text-xs font-medium text-primary-foreground/60 mb-4 tracking-tight">A 'Local Solicitor llc.' Product</p>
               <p className="text-primary-foreground/80 leading-relaxed max-w-sm">
-                Olive oil, with a personality. 
-                Sustainably harvested, cold-pressed, and authentically crafted for pure flavor.
+                Born in 78666. Small-batch olive oils made for Central Texas tables. 
+                From our grove to your kitchen - that's the Hill Country way.
               </p>
             </div>
             <div>
@@ -168,7 +168,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="border-t border-primary-foreground/10 pt-8 text-center text-sm text-primary-foreground/60">
-            © {new Date().getFullYear()} FIRMA Olive Oils. All rights reserved.
+            <p>© {new Date().getFullYear()} FIRMA Olive Oils. All rights reserved.</p>
+            <p className="mt-1 text-xs">Proudly based in San Marcos, TX (78666) - Heart of the Hill Country</p>
           </div>
         </div>
       </footer>

@@ -26,11 +26,12 @@ export default function Shop() {
           </p>
         </div>
         <div className="max-w-7xl mx-auto text-center">
+          <p className="text-primary-foreground/60 text-sm uppercase tracking-widest mb-2">From the Heart of Texas Hill Country</p>
           <h1 className="font-display text-4xl md:text-6xl font-bold text-primary-foreground mb-4">
-            Our Collection
+            Shop Local. Taste Real.
           </h1>
-          <p className="text-primary-foreground/70 text-lg max-w-2xl mx-auto">
-            Discover the nuances of single-origin olive oils and artisanal vinegars.
+          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto">
+            Small-batch olive oils crafted for Central Texas tables. Born in 78666, bottled with care.
           </p>
         </div>
       </div>
@@ -70,37 +71,45 @@ export default function Shop() {
         )}
 
         {/* Local Partners Section */}
-        <section className="mt-24 py-16 border-t border-border">
+        <section className="mt-24 py-16 border-t-2 border-primary/20">
           <div className="text-center mb-12">
+            <p className="text-accent text-sm uppercase tracking-widest font-semibold mb-2">Keepin' It Local</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-4 flex items-center justify-center gap-3">
               <Store className="w-8 h-8 text-accent" />
               Local Partners & Local Shelves
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Find FIRMA Olive Oils at these trusted local establishments
+              We're proud to partner with folks who believe in community, quality, and keepin' it real.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <PartnerCard 
               name="African Eats & Market"
-              description="Specialty foods & international groceries"
+              location="San Marcos"
+              description="Specialty foods & international flavors for our diverse community"
             />
             <PartnerCard 
               name="Cornucopia Market"
-              location="78666"
-              description="Local grocery & organic products"
+              location="78666 - San Marcos"
+              description="Your neighborhood grocery for local & organic goods"
             />
             <PartnerCard 
               name="15+ Farmers Markets"
               location="Georgetown to San Antonio"
-              description="Fresh local produce & artisan goods"
+              description="Find us every weekend along the I-35 corridor"
             />
             <PartnerCard 
               name="San Marcos Square Boutiques"
-              location="Downtown San Marcos"
-              description="Curated local shops & gifts"
+              location="Downtown on the Square"
+              description="Shop local at the heart of our Hill Country town"
             />
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-muted-foreground italic">
+              "From our grove to your table - that's the Hill Country way."
+            </p>
           </div>
         </section>
       </div>
@@ -110,19 +119,19 @@ export default function Shop() {
 
 function PartnerCard({ name, location, description }: { name: string; location?: string; description: string }) {
   return (
-    <div className="bg-card rounded-xl p-6 border border-border/50 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+    <div className="bg-card rounded-lg p-6 border-2 border-border hover:border-primary/40 hover:shadow-lg transition-all duration-300">
       <div className="flex items-start gap-3 mb-3">
-        <div className="p-2 rounded-lg bg-primary/10">
-          <MapPin className="w-5 h-5 text-primary" />
+        <div className="p-2 rounded-md bg-accent/20">
+          <MapPin className="w-5 h-5 text-accent" />
         </div>
         <div>
-          <h3 className="font-display text-lg font-bold text-foreground">{name}</h3>
+          <h3 className="font-display text-lg font-semibold text-foreground">{name}</h3>
           {location && (
-            <p className="text-xs text-accent font-semibold">{location}</p>
+            <p className="text-xs text-primary font-bold uppercase tracking-wide">{location}</p>
           )}
         </div>
       </div>
-      <p className="text-sm text-muted-foreground">{description}</p>
+      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
     </div>
   );
 }
