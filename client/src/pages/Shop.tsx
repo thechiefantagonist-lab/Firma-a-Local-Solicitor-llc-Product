@@ -141,11 +141,20 @@ function ProductCard({ product }: { product: Product }) {
 
   const isSpecial = product.name.toLowerCase().includes('lemon') || 
                     product.name.toLowerCase().includes('chili');
+  const isFlight = product.name.toLowerCase().includes('flight');
   
   const standardPrice = 16.29;
-  const discountedPrice = isSpecial 
-    ? (Number(product.price) - 8.70) 
-    : standardPrice;
+  const flightPrice = 29.99;
+  const flightBulkPrice = 24.99;
+  
+  const discountedPrice = isFlight 
+    ? flightPrice
+    : isSpecial 
+      ? (Number(product.price) - 8.70) 
+      : standardPrice;
+  
+  const casePrice = standardPrice - 3.55;
+  const bulkCasePrice = standardPrice - 5.55;
 
   const handleAddToCart = () => {
     addItem(product);
@@ -182,36 +191,55 @@ function ProductCard({ product }: { product: Product }) {
           </p>
         </div>
         
-        <div className="mt-auto flex items-center justify-between pt-4 border-t border-border/50">
-          <div className="flex flex-col">
-            <span className="text-sm text-muted-foreground line-through">
-              ${Number(product.price).toFixed(2)}
-            </span>
-            <span className="text-xl font-bold text-primary">
-              ${discountedPrice.toFixed(2)}
-            </span>
+        <div className="mt-auto pt-4 border-t border-border/50 space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col">
+              <span className="text-sm text-muted-foreground line-through">
+                ${Number(product.price).toFixed(2)}
+              </span>
+              <span className="text-xl font-bold text-primary">
+                ${discountedPrice.toFixed(2)}
+              </span>
+              {isFlight && (
+                <span className="text-xs text-accent font-semibold mt-1">
+                  3+ flights: ${flightBulkPrice.toFixed(2)} each
+                </span>
+              )}
+            </div>
+          
+            <button
+              onClick={handleAddToCart}
+              disabled={isAdded}
+              className={cn(
+                "flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200",
+                isAdded 
+                  ? "bg-green-600 text-white cursor-default" 
+                  : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md shadow-primary/20"
+              )}
+            >
+              {isAdded ? (
+                <>
+                  <Check className="w-4 h-4" /> Added
+                </>
+              ) : (
+                <>
+                  <Plus className="w-4 h-4" /> Add to Cart
+                </>
+              )}
+            </button>
           </div>
           
-          <button
-            onClick={handleAddToCart}
-            disabled={isAdded}
-            className={cn(
-              "flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200",
-              isAdded 
-                ? "bg-green-600 text-white cursor-default" 
-                : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md shadow-primary/20"
-            )}
-          >
-            {isAdded ? (
-              <>
-                <Check className="w-4 h-4" /> Added
-              </>
-            ) : (
-              <>
-                <Plus className="w-4 h-4" /> Add to Cart
-              </>
-            )}
-          </button>
+          {!isFlight && !isSpecial && (
+            <div className="bg-secondary/50 rounded-lg p-3 text-xs">
+              <p className="font-semibold text-foreground mb-1">Case Pricing (12 units)</p>
+              <p className="text-muted-foreground">
+                Per unit: <span className="font-bold text-primary">${casePrice.toFixed(2)}</span>
+              </p>
+              <p className="text-muted-foreground">
+                3+ cases: <span className="font-bold text-accent">${bulkCasePrice.toFixed(2)}/unit</span>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
