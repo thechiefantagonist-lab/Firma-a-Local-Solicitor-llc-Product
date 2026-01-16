@@ -139,6 +139,14 @@ function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [isAdded, setIsAdded] = useState(false);
 
+  const isSpecial = product.name.toLowerCase().includes('lemon') || 
+                    product.name.toLowerCase().includes('chili');
+  
+  const standardPrice = 16.29;
+  const discountedPrice = isSpecial 
+    ? (Number(product.price) - 8.70) 
+    : standardPrice;
+
   const handleAddToCart = () => {
     addItem(product);
     setIsAdded(true);
@@ -146,7 +154,12 @@ function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <div className="bg-card group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border/50 flex flex-col h-full">
+    <div className="bg-card group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border/50 flex flex-col h-full relative">
+      {isSpecial && (
+        <div className="absolute top-4 left-4 z-10 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md">
+          Special
+        </div>
+      )}
       <div className="relative aspect-square overflow-hidden bg-gray-50">
         <img 
           src={product.imageUrl} 
@@ -159,7 +172,7 @@ function ProductCard({ product }: { product: Product }) {
       <div className="p-6 flex flex-col flex-grow">
         <div className="mb-4">
           <span className="text-xs font-bold tracking-wider text-accent uppercase mb-1 block">
-            {product.category}
+            {isSpecial ? 'Special' : product.category}
           </span>
           <h3 className="font-display text-2xl font-bold text-foreground mb-2">
             {product.name}
@@ -175,7 +188,7 @@ function ProductCard({ product }: { product: Product }) {
               ${Number(product.price).toFixed(2)}
             </span>
             <span className="text-xl font-bold text-primary">
-              ${(Number(product.price) - 8.70).toFixed(2)}
+              ${discountedPrice.toFixed(2)}
             </span>
           </div>
           
