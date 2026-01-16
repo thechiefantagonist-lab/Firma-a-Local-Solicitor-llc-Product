@@ -139,22 +139,34 @@ function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [isAdded, setIsAdded] = useState(false);
 
-  const isSpecial = product.name.toLowerCase().includes('lemon') || 
-                    product.name.toLowerCase().includes('chili');
+  const isLemon = product.name.toLowerCase().includes('lemon');
+  const isChili = product.name.toLowerCase().includes('chili');
+  const isSpecial = isLemon || isChili;
   const isFlight = product.name.toLowerCase().includes('flight');
+  const isOrange = product.name.toLowerCase().includes('orange');
+  const isRosemary = product.name.toLowerCase().includes('rosemary');
   
-  const standardPrice = 16.29;
-  const flightPrice = 29.99;
-  const flightBulkPrice = 24.99;
+  const flightBulkPrice = 22.50;
   
-  const discountedPrice = isFlight 
-    ? flightPrice
-    : isSpecial 
-      ? (Number(product.price) - 8.70) 
-      : standardPrice;
+  let originalPrice: number;
+  let discountedPrice: number;
   
-  const casePrice = standardPrice - 3.55;
-  const bulkCasePrice = standardPrice - 5.55;
+  if (isFlight) {
+    originalPrice = 36.89;
+    discountedPrice = 26.99;
+  } else if (isLemon || isChili) {
+    originalPrice = 27.89;
+    discountedPrice = 18.00;
+  } else if (isOrange) {
+    originalPrice = 24.89;
+    discountedPrice = 19.00;
+  } else if (isRosemary) {
+    originalPrice = 24.89;
+    discountedPrice = 21.00;
+  } else {
+    originalPrice = 21.89;
+    discountedPrice = 16.00;
+  }
 
   const handleAddToCart = () => {
     addItem(product);
@@ -195,7 +207,7 @@ function ProductCard({ product }: { product: Product }) {
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
               <span className="text-sm text-muted-foreground line-through">
-                ${(Number(product.price) + 5).toFixed(2)}
+                ${originalPrice.toFixed(2)}
               </span>
               <span className="text-xl font-bold text-primary">
                 ${discountedPrice.toFixed(2)}
@@ -231,12 +243,13 @@ function ProductCard({ product }: { product: Product }) {
           
           {!isFlight && !isSpecial && (
             <div className="bg-secondary/50 rounded-lg p-3 text-xs">
-              <p className="font-semibold text-foreground mb-1">Case Pricing (12 units)</p>
+              <p className="font-semibold text-foreground mb-1">Business Owner Pricing</p>
+              <p className="text-muted-foreground italic mb-1">Upon direct request & vetting</p>
               <p className="text-muted-foreground">
-                Per unit: <span className="font-bold text-primary">${casePrice.toFixed(2)}</span>
+                1-2 cases: <span className="font-bold text-primary">TBD</span>
               </p>
               <p className="text-muted-foreground">
-                3+ cases: <span className="font-bold text-accent">${bulkCasePrice.toFixed(2)}/unit</span>
+                3+ cases: <span className="font-bold text-accent">TBD</span>
               </p>
             </div>
           )}
