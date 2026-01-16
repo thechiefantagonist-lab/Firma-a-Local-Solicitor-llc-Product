@@ -175,7 +175,7 @@ function ProductCard({ product }: { product: Product }) {
               ${Number(product.price).toFixed(2)}
             </span>
             <span className="text-xl font-bold text-primary">
-              ${(Number(product.price) - 6.45).toFixed(2)}
+              ${(Number(product.price) - 8).toFixed(2)}
             </span>
           </div>
           
