@@ -48,8 +48,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center space-x-8">
-              <NavLink href="/">Home</NavLink>
-              <NavLink href="/shop">Shop Oils</NavLink>
+              <NavLink href="/">Shop</NavLink>
+              <NavLink href="/about">About</NavLink>
               <NavLink href="/networking">Wholesale & Partners</NavLink>
               
               <div className="h-6 w-px bg-border mx-2" />
@@ -99,8 +99,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {isMobileMenuOpen && (
           <div className="fixed inset-0 bg-background z-40 flex flex-col pt-24 px-6 md:hidden animate-in slide-in-from-top-10 fade-in duration-200">
             <div className="flex flex-col space-y-6 text-lg font-display font-medium">
-              <MobileLink href="/">Home</MobileLink>
-              <MobileLink href="/shop">Shop Collection</MobileLink>
+              <MobileLink href="/">Shop</MobileLink>
+              <MobileLink href="/about">About</MobileLink>
               <MobileLink href="/networking">Wholesale & Partners</MobileLink>
               <MobileLink href="/cart">Cart ({itemCount})</MobileLink>
               {user ? (
@@ -138,7 +138,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="font-display text-lg font-bold mb-4">Quick Links</h4>
               <ul className="space-y-2">
-                <li><Link href="/shop" className="hover:text-accent transition-colors">Shop Oils</Link></li>
+                <li><Link href="/" className="hover:text-accent transition-colors">Shop Oils</Link></li>
+                <li><Link href="/about" className="hover:text-accent transition-colors">About Us</Link></li>
                 <li><Link href="/networking" className="hover:text-accent transition-colors">Wholesale Partners</Link></li>
                 <li><Link href="/profile" className="hover:text-accent transition-colors">My Account</Link></li>
               </ul>

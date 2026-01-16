@@ -4,6 +4,11 @@
 
 FIRMA is a full-stack e-commerce application for selling artisanal Mediterranean olive oils and vinegars. Its slogan is "Olive oil, with a personality." The platform features a product catalog, shopping cart, order management, wholesale/networking inquiry system, and partner location mapping. Built with a React frontend and Express backend, it uses PostgreSQL for data persistence and Replit Auth for user authentication.
 
+## Recent Changes
+- **Landing Page**: Shop page is now the landing page ("/"). The original home/story page is accessible at "/about".
+- **Contact Info**: Added phone (737.881.5440) and email (Thechiefantagonist@gmail.com) to footer and B2B section.
+- **Branding**: Updated name to "FIRMA Olive Oils - A 'Local Solicitor llc.' Product" across all pages.
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.

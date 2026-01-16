@@ -41,7 +41,7 @@ export default function Home() {
               A 'Local Solicitor llc.' Product
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/shop" className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/30">
+              <Link href="/" className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/30">
                 Shop Collection
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
@@ -91,7 +91,7 @@ export default function Home() {
               <h2 className="font-display text-4xl font-bold text-primary mb-2">Curated Selection</h2>
               <p className="text-muted-foreground">Our most loved bottles this season.</p>
             </div>
-            <Link href="/shop" className="hidden sm:flex items-center text-primary font-semibold hover:text-accent transition-colors">
+            <Link href="/" className="hidden sm:flex items-center text-primary font-semibold hover:text-accent transition-colors">
               View All <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </div>
@@ -110,7 +110,7 @@ export default function Home() {
           </div>
           
           <div className="mt-12 text-center sm:hidden">
-            <Link href="/shop" className="inline-flex items-center text-primary font-semibold">
+            <Link href="/" className="inline-flex items-center text-primary font-semibold">
               View Full Collection <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </div>
@@ -207,7 +207,7 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode, titl
 
 function ProductCardPreview({ product }: { product: Product }) {
   return (
-    <Link href="/shop" className="group block">
+    <Link href="/" className="group block">
       <div className="bg-card rounded-2xl overflow-hidden border border-border/50 hover:shadow-xl hover:border-primary/30 transition-all duration-500 h-full flex flex-col">
         <div className="aspect-[4/5] overflow-hidden relative bg-gray-100">
           <img 
