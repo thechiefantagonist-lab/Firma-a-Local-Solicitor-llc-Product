@@ -195,7 +195,7 @@ function ProductCard({ product }: { product: Product }) {
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
               <span className="text-sm text-muted-foreground line-through">
-                ${Number(product.price).toFixed(2)}
+                ${(Number(product.price) + 5).toFixed(2)}
               </span>
               <span className="text-xl font-bold text-primary">
                 ${discountedPrice.toFixed(2)}
