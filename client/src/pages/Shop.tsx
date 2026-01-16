@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 import { Product } from "@shared/schema";
-import { Plus, Check, Loader2, ShoppingCart } from "lucide-react";
+import { Plus, Check, Loader2, ShoppingCart, Store, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function Shop() {
@@ -68,7 +68,61 @@ export default function Shop() {
             ))}
           </div>
         )}
+
+        {/* Local Partners Section */}
+        <section className="mt-24 py-16 border-t border-border">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-4 flex items-center justify-center gap-3">
+              <Store className="w-8 h-8 text-accent" />
+              Local Partners & Local Shelves
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Find FIRMA Olive Oils at these trusted local establishments
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <PartnerCard 
+              name="African Eats & Market"
+              description="Specialty foods & international groceries"
+            />
+            <PartnerCard 
+              name="Cornucopia Market"
+              location="78666"
+              description="Local grocery & organic products"
+            />
+            <PartnerCard 
+              name="15+ Farmers Markets"
+              location="Georgetown to San Antonio"
+              description="Fresh local produce & artisan goods"
+            />
+            <PartnerCard 
+              name="San Marcos Square Boutiques"
+              location="Downtown San Marcos"
+              description="Curated local shops & gifts"
+            />
+          </div>
+        </section>
       </div>
+    </div>
+  );
+}
+
+function PartnerCard({ name, location, description }: { name: string; location?: string; description: string }) {
+  return (
+    <div className="bg-card rounded-xl p-6 border border-border/50 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+      <div className="flex items-start gap-3 mb-3">
+        <div className="p-2 rounded-lg bg-primary/10">
+          <MapPin className="w-5 h-5 text-primary" />
+        </div>
+        <div>
+          <h3 className="font-display text-lg font-bold text-foreground">{name}</h3>
+          {location && (
+            <p className="text-xs text-accent font-semibold">{location}</p>
+          )}
+        </div>
+      </div>
+      <p className="text-sm text-muted-foreground">{description}</p>
     </div>
   );
 }
