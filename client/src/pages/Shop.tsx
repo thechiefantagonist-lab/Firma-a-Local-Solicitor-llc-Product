@@ -143,8 +143,6 @@ function ProductCard({ product }: { product: Product }) {
   const isChili = product.name.toLowerCase().includes('chili');
   const isSpecial = isLemon || isChili;
   const isFlight = product.name.toLowerCase().includes('flight');
-  const isOrange = product.name.toLowerCase().includes('orange');
-  const isRosemary = product.name.toLowerCase().includes('rosemary');
   
   const flightBulkPrice = 22.50;
   
@@ -157,13 +155,8 @@ function ProductCard({ product }: { product: Product }) {
   } else if (isLemon || isChili) {
     originalPrice = 27.89;
     discountedPrice = 18.00;
-  } else if (isOrange) {
-    originalPrice = 24.89;
-    discountedPrice = 19.00;
-  } else if (isRosemary) {
-    originalPrice = 24.89;
-    discountedPrice = 21.00;
   } else {
+    // Standard pricing: EV Smooth, Orange, Rosemary all share same pricing
     originalPrice = 21.89;
     discountedPrice = 16.00;
   }
