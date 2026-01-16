@@ -18,8 +18,7 @@ export default function Shop() {
       {/* Header */}
       <div className="bg-primary pt-24 pb-16 px-4 relative">
         <div className="absolute top-20 left-4 text-[10px] text-primary-foreground/60 leading-tight">
-          <p>Official Partnered Product of Local Solicitor llc.</p>
-          <p className="mt-0.5">
+          <p>
             <a href="tel:7378815440" className="hover:text-primary-foreground transition-colors">737-881-5440</a>
             {" / "}
             <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">@forestparker</a>
@@ -171,9 +170,14 @@ function ProductCard({ product }: { product: Product }) {
         </div>
         
         <div className="mt-auto flex items-center justify-between pt-4 border-t border-border/50">
-          <span className="text-xl font-bold text-primary">
-            ${Number(product.price).toFixed(2)}
-          </span>
+          <div className="flex flex-col">
+            <span className="text-sm text-muted-foreground line-through">
+              ${(Number(product.price) + 6.45).toFixed(2)}
+            </span>
+            <span className="text-xl font-bold text-primary">
+              ${Number(product.price).toFixed(2)}
+            </span>
+          </div>
           
           <button
             onClick={handleAddToCart}
