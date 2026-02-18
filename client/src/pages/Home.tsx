@@ -1,9 +1,10 @@
 import { Link } from "wouter";
-import { ArrowRight, Star, Leaf, Users, Award, MapPin } from "lucide-react";
+import { ArrowRight, Star, Leaf, Users, Award, MapPin, Phone, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { useProducts } from "@/hooks/use-products";
 import { Product } from "@shared/schema";
 import { PartnerMap } from "@/components/PartnerMap";
+import firmaLogo from "@assets/IMG_4945_1768512208048.jpeg";
 
 export default function Home() {
   const { data: products } = useProducts();
@@ -31,21 +32,23 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-4xl mx-auto"
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-accent/90 text-accent-foreground text-sm font-bold mb-6 backdrop-blur-sm uppercase tracking-widest">
-              Mediterranean Excellence
-            </span>
-            <h1 className="font-display text-5xl md:text-8xl font-bold text-white mb-2 leading-tight drop-shadow-lg tracking-tighter uppercase">
+            <img 
+              src={firmaLogo} 
+              alt="FIRMA Olive Oils" 
+              className="w-32 h-32 md:w-40 md:h-40 rounded-2xl mx-auto mb-6 shadow-2xl object-cover"
+            />
+            <h1 className="font-display text-4xl md:text-7xl font-bold text-white mb-2 leading-tight drop-shadow-lg tracking-tighter uppercase">
               FIRMA Olive Oils
             </h1>
-            <p className="text-lg md:text-xl text-white/80 mb-10 font-bold tracking-wide drop-shadow-md">
-              A 'Local Solicitor llc.' Product
+            <p className="text-base md:text-xl text-white/80 mb-10 font-bold tracking-wide drop-shadow-md">
+              Olive oil, with a personality.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/" className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/30">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/" className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg transition-all shadow-lg shadow-primary/30" data-testid="link-hero-shop">
                 Shop Collection
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-              <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-lg hover:bg-white/20 transition-all">
+              <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-lg transition-all" data-testid="link-hero-pitch">
                 Business Pitch
               </Link>
             </div>
@@ -168,21 +171,21 @@ export default function Home() {
             </p>
             
             <div className="flex flex-col items-center gap-6 mb-10">
-              <div className="flex flex-col sm:flex-row gap-6 text-white font-bold text-xl md:text-2xl">
-                <a href="tel:7378815440" className="flex items-center justify-center gap-2 hover:text-accent transition-colors">
-                  <span role="img" aria-label="phone">📞</span> 737.881.5440
+              <div className="flex flex-col sm:flex-row gap-6 text-white font-bold text-lg md:text-2xl">
+                <a href="tel:7378815440" className="flex items-center justify-center gap-2 hover:text-accent transition-colors" data-testid="link-b2b-phone">
+                  <Phone className="w-5 h-5 md:w-6 md:h-6" /> 737.881.5440
                 </a>
-                <a href="mailto:Thechiefantagonist@gmail.com" className="flex items-center justify-center gap-2 hover:text-accent transition-colors">
-                  <span role="img" aria-label="email">📧</span> Email Us
+                <a href="mailto:Thechiefantagonist@gmail.com" className="flex items-center justify-center gap-2 hover:text-accent transition-colors" data-testid="link-b2b-email">
+                  <Mail className="w-5 h-5 md:w-6 md:h-6" /> Email Us
                 </a>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-accent text-accent-foreground font-bold text-lg hover:bg-accent/90 transition-all shadow-lg hover:-translate-y-1">
+              <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-accent text-accent-foreground font-bold text-lg transition-all shadow-lg" data-testid="link-b2b-inventory">
                 Inventory Opportunity
               </Link>
-              <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-lg hover:bg-white/20 transition-all shadow-lg hover:-translate-y-1">
+              <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-lg transition-all shadow-lg" data-testid="link-b2b-questions">
                 Product Questions?
               </Link>
             </div>

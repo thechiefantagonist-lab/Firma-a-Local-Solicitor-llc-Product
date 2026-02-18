@@ -79,14 +79,14 @@ export default function Networking() {
             <div className="mt-12 p-8 bg-secondary/30 rounded-2xl border border-secondary">
               <h3 className="font-display text-xl font-bold text-primary mb-4">Contact Directly</h3>
               <div className="space-y-4">
-                <div className="flex items-center text-muted-foreground">
-                  <Mail className="w-5 h-5 mr-3 text-accent" />
-                  hello@oleaauthentic.com
-                </div>
-                <div className="flex items-center text-muted-foreground">
-                  <Phone className="w-5 h-5 mr-3 text-accent" />
-                  +1 (555) 123-4567
-                </div>
+                <a href="mailto:Thechiefantagonist@gmail.com" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-email">
+                  <Mail className="w-5 h-5 mr-3 text-accent flex-shrink-0" />
+                  <span className="break-all">Thechiefantagonist@gmail.com</span>
+                </a>
+                <a href="tel:7378815440" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-phone">
+                  <Phone className="w-5 h-5 mr-3 text-accent flex-shrink-0" />
+                  737.881.5440
+                </a>
               </div>
             </div>
           </div>

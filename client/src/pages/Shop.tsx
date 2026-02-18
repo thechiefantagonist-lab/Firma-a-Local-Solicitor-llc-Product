@@ -37,14 +37,15 @@ export default function Shop() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
         {/* Filters */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-card rounded-full p-1.5 shadow-lg border border-border">
+        <div className="flex justify-center mb-12 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="inline-flex bg-card rounded-full p-1.5 shadow-lg border border-border flex-nowrap">
             {['all', 'oil', 'vinegar', 'set'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
+                data-testid={`button-filter-${cat}`}
                 className={cn(
-                  "px-6 py-2 rounded-full text-sm font-semibold transition-all capitalize",
+                  "px-4 sm:px-6 py-2 rounded-full text-sm font-semibold transition-all capitalize whitespace-nowrap",
                   filter === cat 
                     ? "bg-primary text-primary-foreground shadow-md" 
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -215,11 +216,12 @@ function ProductCard({ product }: { product: Product }) {
             <button
               onClick={handleAddToCart}
               disabled={isAdded}
+              data-testid={`button-add-to-cart-${product.id}`}
               className={cn(
                 "flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200",
                 isAdded 
                   ? "bg-green-600 text-white cursor-default" 
-                  : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md shadow-primary/20"
+                  : "bg-primary text-primary-foreground shadow-md shadow-primary/20"
               )}
             >
               {isAdded ? (

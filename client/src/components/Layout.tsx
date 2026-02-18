@@ -1,10 +1,11 @@
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
 import { useCart } from "@/hooks/use-cart";
-import { Menu, X, ShoppingBag, User, LogOut, Loader2 } from "lucide-react";
+import { Menu, X, ShoppingBag, User, LogOut, Loader2, Phone, Mail } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import firmaLogo from "@assets/IMG_4945_1768512208048.jpeg";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,13 +38,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link href="/" className="group relative z-50">
-              <span className="font-display text-2xl md:text-3xl font-bold text-primary tracking-tighter uppercase">
-                FIRMA Olive Oils
-              </span>
-              <span className="block text-[10px] md:text-xs font-medium text-muted-foreground -mt-1 tracking-normal normal-case">
-                A 'Local Solicitor llc.' Product
-              </span>
+            <Link href="/" className="group relative z-50 flex items-center gap-3" data-testid="link-logo-home">
+              <img 
+                src={firmaLogo} 
+                alt="FIRMA Olive Oils" 
+                className="h-10 md:h-12 w-auto rounded-md object-cover"
+                data-testid="img-logo"
+              />
+              <div className="hidden sm:block">
+                <span className="font-display text-xl md:text-2xl font-bold text-primary tracking-tighter uppercase leading-tight block">
+                  FIRMA
+                </span>
+                <span className="block text-[9px] md:text-[10px] font-medium text-muted-foreground -mt-0.5 tracking-normal normal-case">
+                  Olive oil, with a personality.
+                </span>
+              </div>
             </Link>
 
             {/* Desktop Nav */}
@@ -57,27 +66,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex items-center space-x-4">
                 {user ? (
                   <div className="flex items-center gap-4">
-                     <Link href="/profile" className="text-sm font-medium hover:text-primary transition-colors">
+                     <Link href="/profile" className="text-sm font-medium transition-colors" data-testid="link-profile">
                       {user.firstName || 'Account'}
                     </Link>
                     <button 
                       onClick={() => logout()} 
-                      className="text-muted-foreground hover:text-destructive transition-colors"
+                      className="text-muted-foreground transition-colors"
                       title="Log out"
+                      data-testid="button-logout"
                     >
                       <LogOut className="w-5 h-5" />
                     </button>
                   </div>
                 ) : (
-                  <Link href="/api/login" className="text-sm font-semibold hover:text-primary transition-colors">
+                  <Link href="/api/login" className="text-sm font-semibold transition-colors" data-testid="link-login">
                     Login
                   </Link>
                 )}
 
-                <Link href="/cart" className="relative group p-2">
-                  <ShoppingBag className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
+                <Link href="/cart" className="relative group p-2" data-testid="link-desktop-cart">
+                  <ShoppingBag className="w-6 h-6 text-foreground transition-colors" />
                   {itemCount > 0 && (
-                    <span className="absolute top-0 right-0 bg-accent text-accent-foreground text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-sm">
+                    <span className="absolute top-0 right-0 bg-accent text-accent-foreground text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-sm" data-testid="text-cart-count">
                       {itemCount}
                     </span>
                   )}
@@ -85,13 +95,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </div>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden z-50 p-2 text-foreground"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            {/* Mobile Actions */}
+            <div className="md:hidden flex items-center gap-2 z-50">
+              <Link href="/cart" className="relative p-2" data-testid="link-mobile-cart">
+                <ShoppingBag className="w-5 h-5 text-foreground" />
+                {itemCount > 0 && (
+                  <span className="absolute top-0 right-0 bg-accent text-accent-foreground text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
+                    {itemCount}
+                  </span>
+                )}
+              </Link>
+              <button
+                className="p-2 text-foreground"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                data-testid="button-mobile-menu"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -99,19 +120,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {isMobileMenuOpen && (
           <div className="fixed inset-0 bg-background z-40 flex flex-col pt-24 px-6 md:hidden animate-in slide-in-from-top-10 fade-in duration-200">
             <div className="flex flex-col space-y-6 text-lg font-display font-medium">
-              <MobileLink href="/">Shop</MobileLink>
-              <MobileLink href="/about">About</MobileLink>
-              <MobileLink href="/networking">Wholesale & Partners</MobileLink>
-              <MobileLink href="/cart">Cart ({itemCount})</MobileLink>
+              <MobileLink href="/" testId="link-mobile-shop">Shop</MobileLink>
+              <MobileLink href="/about" testId="link-mobile-about">About</MobileLink>
+              <MobileLink href="/networking" testId="link-mobile-wholesale">Wholesale & Partners</MobileLink>
+              <MobileLink href="/cart" testId="link-mobile-cart-page">Cart ({itemCount})</MobileLink>
               {user ? (
                 <>
-                  <MobileLink href="/profile">My Profile</MobileLink>
-                  <button onClick={() => logout()} className="text-left text-destructive font-medium">
+                  <MobileLink href="/profile" testId="link-mobile-profile">My Profile</MobileLink>
+                  <button onClick={() => logout()} className="text-left text-destructive font-medium" data-testid="button-mobile-logout">
                     Log Out
                   </button>
                 </>
               ) : (
-                <a href="/api/login" className="text-primary font-bold">Login / Sign Up</a>
+                <a href="/api/login" className="text-primary font-bold" data-testid="link-mobile-login">Login / Sign Up</a>
               )}
             </div>
           </div>
@@ -128,38 +149,41 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div>
-              <h3 className="font-display text-2xl font-bold mb-1 uppercase">FIRMA Olive Oils</h3>
-              <p className="text-xs font-medium text-primary-foreground/60 mb-4 tracking-tight">A 'Local Solicitor llc.' Product</p>
-              <p className="text-primary-foreground/80 leading-relaxed max-w-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <img src={firmaLogo} alt="FIRMA" className="h-12 w-auto rounded-md" />
+                <div>
+                  <h3 className="font-display text-2xl font-bold text-primary-foreground mb-0 uppercase">FIRMA</h3>
+                  <p className="text-xs font-medium text-primary-foreground/60 tracking-tight">Olive oil, with a personality.</p>
+                </div>
+              </div>
+              <p className="text-primary-foreground/80 leading-relaxed max-w-sm text-sm">
                 Born in 78666. Small-batch olive oils made for Central Texas tables. 
                 From our grove to your kitchen - that's the Hill Country way.
               </p>
             </div>
             <div>
-              <h4 className="font-display text-lg font-bold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li><Link href="/" className="hover:text-accent transition-colors">Shop Oils</Link></li>
-                <li><Link href="/about" className="hover:text-accent transition-colors">About Us</Link></li>
-                <li><Link href="/networking" className="hover:text-accent transition-colors">Wholesale Partners</Link></li>
-                <li><Link href="/profile" className="hover:text-accent transition-colors">My Account</Link></li>
+              <h4 className="font-display text-lg font-bold text-primary-foreground mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-sm">
+                <li><Link href="/" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" data-testid="link-footer-shop">Shop Oils</Link></li>
+                <li><Link href="/about" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" data-testid="link-footer-about">About Us</Link></li>
+                <li><Link href="/networking" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" data-testid="link-footer-wholesale">Wholesale Partners</Link></li>
+                <li><Link href="/profile" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" data-testid="link-footer-account">My Account</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-display text-lg font-bold mb-4">Contact</h4>
-              <div className="space-y-4">
-                <p className="text-primary-foreground/80">
-                  <span className="flex items-center gap-2">
-                    <span role="img" aria-label="phone">📞</span>
-                    <a href="tel:7378815440" className="hover:text-accent transition-colors font-bold tracking-tight">737.881.5440</a>
-                  </span>
-                  <span className="flex items-center gap-2 mt-1">
-                    <span role="img" aria-label="email">📧</span>
-                    <a href="mailto:Thechiefantagonist@gmail.com" className="hover:text-accent transition-colors">Thechiefantagonist@gmail.com</a>
-                  </span>
-                </p>
+              <h4 className="font-display text-lg font-bold text-primary-foreground mb-4">Contact</h4>
+              <div className="space-y-3">
+                <a href="tel:7378815440" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm" data-testid="link-footer-phone">
+                  <Phone className="w-4 h-4 flex-shrink-0" />
+                  <span className="font-bold tracking-tight">737.881.5440</span>
+                </a>
+                <a href="mailto:Thechiefantagonist@gmail.com" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm" data-testid="link-footer-email">
+                  <Mail className="w-4 h-4 flex-shrink-0" />
+                  <span className="break-all">Thechiefantagonist@gmail.com</span>
+                </a>
                 <div className="pt-2">
                   <Link href="/pitch">
-                    <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+                    <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white" data-testid="button-footer-pitch">
                       Product Questions?
                     </Button>
                   </Link>
@@ -168,7 +192,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="border-t border-primary-foreground/10 pt-8 text-center text-sm text-primary-foreground/60">
-            <p>© {new Date().getFullYear()} FIRMA Olive Oils. All rights reserved.</p>
+            <p>A 'Local Solicitor llc.' Product</p>
+            <p className="mt-1">&copy; {new Date().getFullYear()} FIRMA Olive Oils. All rights reserved.</p>
             <p className="mt-1 text-xs">Proudly based in San Marcos, TX (78666) - Heart of the Hill Country</p>
           </div>
         </div>
@@ -180,12 +205,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   const [location] = useLocation();
   const isActive = location === href;
+  const testId = `link-nav-${href.replace(/\//g, '') || 'shop'}`;
   
   return (
     <Link href={href} className={cn(
-      "text-sm font-medium transition-colors relative hover:text-primary",
+      "text-sm font-medium transition-colors relative",
       isActive ? "text-primary" : "text-muted-foreground"
-    )}>
+    )} data-testid={testId}>
       {children}
       {isActive && (
         <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-accent rounded-full" />
@@ -194,9 +220,9 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
   );
 }
 
-function MobileLink({ href, children }: { href: string; children: React.ReactNode }) {
+function MobileLink({ href, children, testId }: { href: string; children: React.ReactNode; testId?: string }) {
   return (
-    <Link href={href} className="block py-2 border-b border-border/50 text-foreground hover:text-primary transition-colors">
+    <Link href={href} className="block py-2 border-b border-border/50 text-foreground transition-colors" data-testid={testId}>
       {children}
     </Link>
   );

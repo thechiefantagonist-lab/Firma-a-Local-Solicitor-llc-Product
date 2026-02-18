@@ -5,38 +5,38 @@
 @tailwind utilities;
 
 :root {
-  /* Texas Hill Country / 78666 Palette */
+  /* FIRMA Blue Palette - matching brand identity */
   
-  /* Burnt Sienna / Terracotta - Primary */
-  --primary: 18 55% 38%;
-  --primary-foreground: 35 40% 96%;
+  /* Slate Blue - Primary (from logo) */
+  --primary: 215 35% 52%;
+  --primary-foreground: 0 0% 100%;
 
-  /* Texas Sage Green - Accent */
-  --accent: 75 25% 45%;
-  --accent-foreground: 35 40% 98%;
+  /* Dark Gray-Blue - Accent (#4F5B5F) */
+  --accent: 200 8% 34%;
+  --accent-foreground: 0 0% 98%;
 
-  /* Warm Cream / Limestone - Background */
-  --background: 38 35% 95%;
-  --foreground: 25 20% 18%;
+  /* Clean White - Background */
+  --background: 210 20% 98%;
+  --foreground: 215 25% 15%;
 
-  /* Dusty Rose / Adobe - Secondary */
-  --secondary: 25 25% 90%;
-  --secondary-foreground: 18 45% 35%;
+  /* Light Blue Tint - Secondary (#C1E2FF inspired) */
+  --secondary: 210 60% 94%;
+  --secondary-foreground: 215 35% 35%;
 
-  /* Card/Surface - Warm White */
-  --card: 38 30% 98%;
-  --card-foreground: 25 20% 18%;
-  --popover: 38 30% 98%;
-  --popover-foreground: 25 20% 18%;
+  /* Card/Surface - Pure White */
+  --card: 0 0% 100%;
+  --card-foreground: 215 25% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 25% 15%;
 
-  /* Borders - Warm Gray */
-  --border: 30 15% 82%;
-  --input: 30 15% 82%;
-  --ring: 18 55% 38%;
+  /* Borders - Cool Gray */
+  --border: 210 15% 87%;
+  --input: 210 15% 87%;
+  --ring: 215 35% 52%;
 
   /* UI Status */
-  --muted: 35 15% 90%;
-  --muted-foreground: 25 10% 40%;
+  --muted: 210 15% 93%;
+  --muted-foreground: 215 10% 45%;
   --destructive: 0 60% 50%;
   --destructive-foreground: 0 0% 98%;
 
