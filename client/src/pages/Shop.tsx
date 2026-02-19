@@ -4,6 +4,19 @@ import { useCart } from "@/hooks/use-cart";
 import { Product } from "@shared/schema";
 import { Plus, Check, Loader2, ShoppingCart, Store, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ingredientOrange from "@assets/ingredient-orange.jpg";
+import ingredientLemon from "@assets/ingredient-lemon.jpg";
+import ingredientChili from "@assets/ingredient-chili.jpg";
+import ingredientRosemary from "@assets/ingredient-rosemary.jpg";
+
+function getIngredientImage(productName: string): { src: string; alt: string } | null {
+  const name = productName.toLowerCase();
+  if (name.includes('orange')) return { src: ingredientOrange, alt: 'Orange' };
+  if (name.includes('lemon')) return { src: ingredientLemon, alt: 'Lemon' };
+  if (name.includes('chili') || name.includes('pepper')) return { src: ingredientChili, alt: 'Green Chili Pepper' };
+  if (name.includes('rosemary')) return { src: ingredientRosemary, alt: 'Rosemary' };
+  return null;
+}
 
 export default function Shop() {
   const { data: products, isLoading } = useProducts();
@@ -142,6 +155,7 @@ function ProductCard({ product }: { product: Product }) {
 
   const isFlight = product.name.toLowerCase().includes('flight');
   const productPrice = Number(product.price);
+  const ingredient = getIngredientImage(product.name);
 
   const handleAddToCart = () => {
     addItem(product);
@@ -163,6 +177,11 @@ function ProductCard({ product }: { product: Product }) {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+        {ingredient && (
+          <div className="absolute bottom-3 right-3 z-10 w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white" data-testid={`img-ingredient-${product.id}`}>
+            <img src={ingredient.src} alt={ingredient.alt} className="w-full h-full object-cover" />
+          </div>
+        )}
       </div>
       
       <div className="p-6 flex flex-col flex-grow">
