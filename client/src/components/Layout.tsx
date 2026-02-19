@@ -1,7 +1,10 @@
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
 import { useCart } from "@/hooks/use-cart";
-import { Menu, X, ShoppingBag, User, LogOut, Loader2, Phone, Mail } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@shared/routes";
+import { Location } from "@shared/schema";
+import { Menu, X, ShoppingBag, User, LogOut, Loader2, Phone, Mail, MapPin } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -195,12 +198,41 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </div>
             </div>
           </div>
+          <FooterPartners />
+
           <div className="border-t border-primary-foreground/10 pt-8 text-center text-sm text-primary-foreground/60">
             <p>&copy; {new Date().getFullYear()} Firma Forest. All rights reserved.</p>
             <p className="mt-1 text-xs">Proudly based in San Marcos, TX (78666) - Heart of the Hill Country</p>
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function FooterPartners() {
+  const { data: locations } = useQuery<Location[]>({
+    queryKey: [api.locations.list.path],
+  });
+
+  if (!locations || locations.length === 0) return null;
+
+  return (
+    <div className="border-t border-primary-foreground/10 pt-8 pb-8">
+      <h4 className="font-display text-lg font-bold text-primary-foreground mb-4 flex items-center gap-2">
+        <MapPin className="w-4 h-4" />
+        Our Partners & Vendors
+      </h4>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-2">
+        {locations.map((loc) => (
+          <div key={loc.id} className="text-sm text-primary-foreground/70" data-testid={`text-footer-partner-${loc.id}`}>
+            {loc.name}
+          </div>
+        ))}
+        <div className="text-sm text-primary-foreground/70" data-testid="text-footer-partner-farmers-markets">
+          15+ Farmers Markets
+        </div>
+      </div>
     </div>
   );
 }
