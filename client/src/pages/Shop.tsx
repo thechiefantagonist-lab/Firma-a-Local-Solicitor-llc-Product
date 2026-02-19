@@ -140,27 +140,8 @@ function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [isAdded, setIsAdded] = useState(false);
 
-  const isLemon = product.name.toLowerCase().includes('lemon');
-  const isChili = product.name.toLowerCase().includes('chili');
-  const isSpecial = isLemon || isChili;
   const isFlight = product.name.toLowerCase().includes('flight');
-  
-  const flightBulkPrice = 22.50;
-  
-  let originalPrice: number;
-  let discountedPrice: number;
-  
-  if (isFlight) {
-    originalPrice = 36.89;
-    discountedPrice = 26.99;
-  } else if (isLemon || isChili) {
-    originalPrice = 27.89;
-    discountedPrice = 18.00;
-  } else {
-    // Standard pricing: EV Smooth, Orange, Rosemary all share same pricing
-    originalPrice = 21.89;
-    discountedPrice = 16.00;
-  }
+  const productPrice = Number(product.price);
 
   const handleAddToCart = () => {
     addItem(product);
@@ -170,9 +151,9 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="bg-card group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border/50 flex flex-col h-full relative">
-      {isSpecial && (
+      {isFlight && (
         <div className="absolute top-4 left-4 z-10 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md">
-          Special
+          Best Value
         </div>
       )}
       <div className="relative aspect-square overflow-hidden bg-gray-50">
@@ -187,7 +168,7 @@ function ProductCard({ product }: { product: Product }) {
       <div className="p-6 flex flex-col flex-grow">
         <div className="mb-4">
           <span className="text-xs font-bold tracking-wider text-accent uppercase mb-1 block">
-            {isSpecial ? 'Special' : product.category}
+            {product.category}
           </span>
           <h3 className="font-display text-2xl font-bold text-foreground mb-2">
             {product.name}
@@ -200,17 +181,9 @@ function ProductCard({ product }: { product: Product }) {
         <div className="mt-auto pt-4 border-t border-border/50 space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-sm text-muted-foreground line-through">
-                ${originalPrice.toFixed(2)}
+              <span className="text-xl font-bold text-primary" data-testid={`text-product-price-${product.id}`}>
+                ${productPrice.toFixed(2)}
               </span>
-              <span className="text-xl font-bold text-primary">
-                ${discountedPrice.toFixed(2)}
-              </span>
-              {isFlight && (
-                <span className="text-xs text-accent font-semibold mt-1">
-                  3+ flights: ${flightBulkPrice.toFixed(2)} each
-                </span>
-              )}
             </div>
           
             <button
@@ -236,7 +209,7 @@ function ProductCard({ product }: { product: Product }) {
             </button>
           </div>
           
-          {!isFlight && !isSpecial && (
+          {!isFlight && (
             <div className="bg-secondary/50 rounded-lg p-3 text-xs">
               <p className="font-semibold text-foreground mb-1">Business Owner Pricing</p>
               <p className="text-muted-foreground italic mb-1">Upon direct request & vetting</p>

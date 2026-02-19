@@ -58,7 +58,12 @@ export default function Cart() {
                 <div className="flex-grow text-center sm:text-left">
                   <h3 className="font-display text-xl font-bold text-foreground">{item.name}</h3>
                   <p className="text-muted-foreground text-sm mb-2">{item.category} • {item.description.substring(0, 30)}...</p>
-                  <p className="font-bold text-primary">${Number(item.price).toFixed(2)}</p>
+                  <p className="font-bold text-primary" data-testid={`text-price-${item.id}`}>${Number(item.price).toFixed(2)} each</p>
+                  {item.quantity > 1 && (
+                    <p className="text-sm text-muted-foreground" data-testid={`text-line-total-${item.id}`}>
+                      ${Number(item.price).toFixed(2)} x {item.quantity} = ${(Number(item.price) * item.quantity).toFixed(2)}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex items-center gap-4 bg-muted/50 rounded-xl p-1">
@@ -93,9 +98,16 @@ export default function Cart() {
               <h3 className="font-display text-2xl font-bold mb-6">Order Summary</h3>
               
               <div className="space-y-4 mb-8">
+                {items.map((item) => (
+                  <div key={item.id} className="flex justify-between text-sm text-muted-foreground" data-testid={`text-summary-item-${item.id}`}>
+                    <span>{item.name} x{item.quantity}</span>
+                    <span>${(Number(item.price) * item.quantity).toFixed(2)}</span>
+                  </div>
+                ))}
+                <div className="h-px bg-border my-2" />
                 <div className="flex justify-between text-muted-foreground">
                   <span>Subtotal</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span data-testid="text-subtotal">${total.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-muted-foreground">
                   <span>Shipping</span>
@@ -104,7 +116,7 @@ export default function Cart() {
                 <div className="h-px bg-border my-4" />
                 <div className="flex justify-between text-xl font-bold text-foreground">
                   <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span data-testid="text-total">${total.toFixed(2)}</span>
                 </div>
               </div>
 
