@@ -1,26 +1,13 @@
 import { useCart } from "@/hooks/use-cart";
-import { useCreateOrder } from "@/hooks/use-orders";
-import { Link } from "wouter";
-import { Trash2, Plus, Minus, ArrowRight, Loader2, ArrowLeft } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Link, useLocation } from "wouter";
+import { Trash2, Plus, Minus, ArrowLeft } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 
 export default function Cart() {
-  const { items, removeItem, updateQuantity, total, clearCart } = useCart();
-  const { mutate: createOrder, isPending } = useCreateOrder();
+  const { items, removeItem, updateQuantity, total } = useCart();
   const { user } = useAuth();
-
-  const handleCheckout = () => {
-    const orderItems = items.map(item => ({
-      productId: item.id,
-      quantity: item.quantity
-    }));
-    
-    createOrder({ items: orderItems }, {
-      onSuccess: () => clearCart()
-    });
-  };
+  const [, navigate] = useLocation();
 
   if (items.length === 0) {
     return (
@@ -121,16 +108,11 @@ export default function Cart() {
 
               {user ? (
                 <button
-                  onClick={handleCheckout}
-                  disabled={isPending}
-                  className={cn(
-                    "w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20",
-                    isPending 
-                      ? "bg-muted text-muted-foreground" 
-                      : "bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5"
-                  )}
+                  onClick={() => navigate("/checkout")}
+                  className="w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20 bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5"
+                  data-testid="button-proceed-checkout"
                 >
-                  {isPending ? <Loader2 className="w-5 h-5 animate-spin" /> : "Proceed to Checkout"}
+                  Proceed to Checkout
                 </button>
               ) : (
                 <div className="space-y-4">

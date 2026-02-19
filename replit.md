@@ -13,6 +13,7 @@ Firma Forest is a full-stack e-commerce application for selling artisanal Medite
 - **Contact Info**: Updated to real contact details (737.881.5440 / Thechiefantagonist@gmail.com) across all pages.
 - **Landing Page**: Shop page is now the landing page ("/"). The original home/story page is accessible at "/about".
 - **Partner Locations (Feb 2026)**: Added 16 real Central Texas partner locations (restaurants, wineries, markets, cafes) to the database. Added "Our Partners" grid and interactive map to Wholesale & Partners page. Includes 15+ Farmers Markets card.
+- **Square Payment Integration (Feb 2026)**: Added Square Web Payments SDK for checkout. Backend processes payments via Square Payments API. Checkout page at /checkout with card form. Orders table has paymentId field. Currently using sandbox/test mode.
 
 ## User Preferences
 
@@ -65,6 +66,7 @@ Replit Auth provides OpenID Connect authentication. The flow:
 ### Third-Party Services
 - **Replit Auth**: OpenID Connect authentication provider (configured via ISSUER_URL, REPL_ID environment variables)
 - **PostgreSQL**: Database (configured via DATABASE_URL environment variable)
+- **Square**: Payment processing (configured via SQUARE_ACCESS_TOKEN, SQUARE_APPLICATION_ID, SQUARE_LOCATION_ID, SQUARE_ENVIRONMENT)
 
 ### Key Libraries
 - **Database**: drizzle-orm, drizzle-zod, pg (node-postgres)

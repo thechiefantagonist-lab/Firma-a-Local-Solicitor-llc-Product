@@ -19,9 +19,10 @@ export const products = pgTable("products", {
 // Orders Table
 export const orders = pgTable("orders", {
   id: serial("id").primaryKey(),
-  userId: text("user_id").references(() => users.id), // Link to auth users
-  status: text("status").notNull().default("pending"), // pending, paid, shipped
+  userId: text("user_id").references(() => users.id),
+  status: text("status").notNull().default("pending"),
   total: decimal("total", { precision: 10, scale: 2 }).notNull(),
+  paymentId: text("payment_id"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

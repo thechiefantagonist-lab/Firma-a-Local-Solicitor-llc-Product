@@ -6,6 +6,8 @@ import { z } from "zod";
 import { setupAuth, registerAuthRoutes, isAuthenticated } from "./replit_integrations/auth";
 import { products, locations } from "@shared/schema";
 import { db } from "./db";
+import { SquareClient, SquareEnvironment } from "square";
+import crypto from "crypto";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -57,6 +59,82 @@ export async function registerRoutes(
   app.get(api.locations.list.path, async (req, res) => {
     const locations = await storage.getLocations();
     res.json(locations);
+  });
+
+  // === Square Payment ===
+  const squareClient = new SquareClient({
+    token: process.env.SQUARE_ACCESS_TOKEN,
+    environment: process.env.SQUARE_ENVIRONMENT === 'production' ? SquareEnvironment.Production : SquareEnvironment.Sandbox,
+  });
+
+  app.get("/api/square/config", (req, res) => {
+    res.json({
+      applicationId: process.env.SQUARE_APPLICATION_ID,
+      locationId: process.env.SQUARE_LOCATION_ID,
+    });
+  });
+
+  app.post("/api/square/payment", isAuthenticated, async (req: any, res) => {
+    try {
+      const paymentSchema = z.object({
+        sourceId: z.string().min(1),
+        items: z.array(z.object({
+          productId: z.number().int().positive(),
+          quantity: z.number().int().positive().max(100),
+        })).min(1),
+      });
+
+      const parsed = paymentSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ message: parsed.error.errors[0].message });
+      }
+
+      const { sourceId, items } = parsed.data;
+
+      let totalCents = 0;
+      const orderItemData: { productId: number; quantity: number; price: string }[] = [];
+
+      for (const item of items) {
+        const product = await storage.getProduct(item.productId);
+        if (!product) {
+          return res.status(400).json({ message: `Product ${item.productId} not found` });
+        }
+        const priceCents = Math.round(Number(product.price) * 100);
+        totalCents += priceCents * item.quantity;
+        orderItemData.push({
+          productId: item.productId,
+          quantity: item.quantity,
+          price: product.price.toString(),
+        });
+      }
+
+      if (totalCents <= 0) {
+        return res.status(400).json({ message: "Invalid order total" });
+      }
+
+      const paymentResult = await squareClient.payments.create({
+        sourceId,
+        idempotencyKey: crypto.randomUUID(),
+        amountMoney: {
+          amount: BigInt(totalCents),
+          currency: "USD",
+        },
+        locationId: process.env.SQUARE_LOCATION_ID,
+      });
+
+      const userId = req.user.claims.sub;
+      const order = await storage.createOrderWithPayment(userId, orderItemData, paymentResult.payment?.id || "");
+
+      res.json({ 
+        success: true, 
+        orderId: order.id,
+        paymentId: paymentResult.payment?.id,
+      });
+    } catch (err: any) {
+      console.error("Square payment error:", err);
+      const message = err?.body ? JSON.parse(err.body)?.errors?.[0]?.detail : err.message;
+      res.status(500).json({ message: message || "Payment failed" });
+    }
   });
 
   // === Appointments ===

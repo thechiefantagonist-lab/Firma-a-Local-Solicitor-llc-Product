@@ -22,6 +22,7 @@ export interface IStorage {
   
   // Orders
   createOrder(userId: string, items: { productId: number; quantity: number }[]): Promise<Order>;
+  createOrderWithPayment(userId: string, items: { productId: number; quantity: number; price: string }[], paymentId: string): Promise<Order>;
   getOrders(userId: string): Promise<Order[]>;
 
   // Appointments
@@ -89,6 +90,31 @@ export class DatabaseStorage implements IStorage {
         productId: item.productId,
         quantity: item.quantity,
         price: item.price
+      });
+    }
+
+    return order;
+  }
+
+  async createOrderWithPayment(userId: string, items: { productId: number; quantity: number; price: string }[], paymentId: string): Promise<Order> {
+    let total = 0;
+    for (const item of items) {
+      total += Number(item.price) * item.quantity;
+    }
+
+    const [order] = await db.insert(orders).values({
+      userId,
+      total: total.toFixed(2),
+      status: "paid",
+      paymentId,
+    }).returning();
+
+    for (const item of items) {
+      await db.insert(orderItems).values({
+        orderId: order.id,
+        productId: item.productId,
+        quantity: item.quantity,
+        price: item.price,
       });
     }
 

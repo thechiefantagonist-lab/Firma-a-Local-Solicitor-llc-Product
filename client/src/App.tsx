@@ -12,6 +12,7 @@ import Home from "@/pages/Home";
 import Shop from "@/pages/Shop";
 import Networking from "@/pages/Networking";
 import Cart from "@/pages/Cart";
+import Checkout from "@/pages/Checkout";
 import Profile from "@/pages/Profile";
 import Pitch from "@/pages/Pitch";
 
@@ -24,6 +25,7 @@ function Router() {
         <Route path="/shop" component={Shop} />
         <Route path="/networking" component={Networking} />
         <Route path="/cart" component={Cart} />
+        <Route path="/checkout" component={Checkout} />
         <Route path="/profile" component={Profile} />
         <Route path="/pitch" component={Pitch} />
         <Route component={NotFound} />
