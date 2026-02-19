@@ -1,11 +1,14 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertAppointmentSchema } from "@shared/schema";
+import { insertAppointmentSchema, Location } from "@shared/schema";
 import { useCreateAppointment } from "@/hooks/use-appointments";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@shared/routes";
 import { z } from "zod";
-import { Loader2, CalendarCheck, Phone, Mail } from "lucide-react";
+import { Loader2, CalendarCheck, Phone, Mail, MapPin, Store, Grape, Coffee, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
+import { PartnerMap } from "@/components/PartnerMap";
 
 // Make sure businessName is treated as optional string in the form
 const formSchema = insertAppointmentSchema.extend({
@@ -170,6 +173,84 @@ export default function Networking() {
             </form>
           </div>
 
+        </div>
+      </div>
+
+      {/* Current Partners Section */}
+      <div className="bg-secondary/20 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-3xl font-bold text-primary mb-3">Our Partners</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Find Firma Forest olive oils at these locations across Central Texas, plus 15+ farmers markets throughout the region.
+            </p>
+          </div>
+
+          <PartnersGrid />
+
+          <div className="mt-12">
+            <PartnerMap />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function getTypeIcon(type: string) {
+  switch (type) {
+    case 'winery': return Grape;
+    case 'cafe': return Coffee;
+    case 'market': return ShoppingBag;
+    default: return Store;
+  }
+}
+
+function PartnersGrid() {
+  const { data: locations, isLoading } = useQuery<Location[]>({
+    queryKey: [api.locations.list.path],
+  });
+
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <div key={i} className="h-24 bg-muted animate-pulse rounded-md" />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {locations?.map((loc) => {
+        const Icon = getTypeIcon(loc.type);
+        return (
+          <div
+            key={loc.id}
+            className="flex items-start gap-3 p-4 bg-card rounded-md border border-border/50"
+            data-testid={`card-partner-${loc.id}`}
+          >
+            <div className="flex-shrink-0 w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
+              <Icon className="w-4 h-4 text-primary" />
+            </div>
+            <div className="min-w-0">
+              <h4 className="font-semibold text-sm text-foreground leading-tight">{loc.name}</h4>
+              <p className="text-xs text-muted-foreground mt-1 leading-snug">{loc.address}</p>
+            </div>
+          </div>
+        );
+      })}
+      <div
+        className="flex items-start gap-3 p-4 bg-primary/5 rounded-md border border-primary/20"
+        data-testid="card-partner-farmers-markets"
+      >
+        <div className="flex-shrink-0 w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
+          <MapPin className="w-4 h-4 text-primary" />
+        </div>
+        <div className="min-w-0">
+          <h4 className="font-semibold text-sm text-foreground leading-tight">15+ Farmers Markets</h4>
+          <p className="text-xs text-muted-foreground mt-1 leading-snug">Throughout Central Texas, weekly</p>
         </div>
       </div>
     </div>

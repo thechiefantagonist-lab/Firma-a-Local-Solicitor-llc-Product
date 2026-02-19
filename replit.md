@@ -12,6 +12,7 @@ Firma Forest is a full-stack e-commerce application for selling artisanal Medite
 - **Icon Cleanup (Feb 2026)**: Replaced all emoji icons with Lucide React icons (Phone, Mail).
 - **Contact Info**: Updated to real contact details (737.881.5440 / Thechiefantagonist@gmail.com) across all pages.
 - **Landing Page**: Shop page is now the landing page ("/"). The original home/story page is accessible at "/about".
+- **Partner Locations (Feb 2026)**: Added 16 real Central Texas partner locations (restaurants, wineries, markets, cafes) to the database. Added "Our Partners" grid and interactive map to Wholesale & Partners page. Includes 15+ Farmers Markets card.
 
 ## User Preferences
 
