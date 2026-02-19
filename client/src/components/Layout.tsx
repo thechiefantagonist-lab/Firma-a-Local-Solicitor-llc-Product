@@ -46,8 +46,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 data-testid="img-logo"
               />
               <div className="hidden sm:block">
-                <span className="font-display text-xl md:text-2xl font-bold text-primary tracking-tighter uppercase leading-tight block">
-                  Firma Forest
+                <span className="font-display font-bold text-primary tracking-tighter leading-tight block">
+                  <span className="text-2xl md:text-3xl">F</span><span className="text-lg md:text-xl">IRMA</span>{" "}
+                  <span className="text-2xl md:text-3xl">F</span><span className="text-lg md:text-xl">OREST</span>
                 </span>
                 <span className="block text-[9px] md:text-[10px] font-medium text-muted-foreground -mt-0.5 tracking-normal normal-case">
                   Rooted in Tradition. Bottled for Texas.
@@ -152,7 +153,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex items-center gap-3 mb-4">
                 <img src={firmaLogo} alt="Firma Forest" className="h-16 w-auto rounded-md bg-white/10 p-1" data-testid="img-footer-logo" />
                 <div>
-                  <h3 className="font-display text-2xl font-bold text-primary-foreground mb-0 uppercase">Firma Forest</h3>
+                  <h3 className="font-display font-bold text-primary-foreground mb-0 uppercase">
+                    <span className="text-3xl">F</span><span className="text-xl">IRMA</span>{" "}
+                    <span className="text-3xl">F</span><span className="text-xl">OREST</span>
+                  </h3>
                   <p className="text-xs font-medium text-primary-foreground/60 tracking-tight">Rooted in Tradition. Bottled for Texas.</p>
                 </div>
               </div>

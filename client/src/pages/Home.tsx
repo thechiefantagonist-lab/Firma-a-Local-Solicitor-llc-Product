@@ -38,8 +38,9 @@ export default function Home() {
               className="w-36 h-36 md:w-48 md:h-48 rounded-2xl mx-auto mb-6 shadow-2xl object-contain bg-white/90 backdrop-blur-sm p-3"
               data-testid="img-hero-logo"
             />
-            <h1 className="font-display text-4xl md:text-7xl font-bold text-white mb-2 leading-tight drop-shadow-lg tracking-tighter uppercase">
-              Firma Forest
+            <h1 className="font-display font-bold text-white mb-2 leading-tight drop-shadow-lg tracking-tighter uppercase">
+              <span className="text-5xl md:text-8xl">F</span><span className="text-4xl md:text-6xl">IRMA</span>{" "}
+              <span className="text-5xl md:text-8xl">F</span><span className="text-4xl md:text-6xl">OREST</span>
             </h1>
             <p className="text-base md:text-xl text-white/80 mb-10 font-bold tracking-wide drop-shadow-md">
               Rooted in Tradition. Bottled for Texas.
@@ -169,8 +170,10 @@ export default function Home() {
               className="w-20 h-20 md:w-24 md:h-24 rounded-xl mx-auto mb-6 object-contain bg-white/90 p-2"
               data-testid="img-b2b-logo"
             />
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">
-              Partner with Firma Forest
+            <h2 className="font-display font-bold text-white mb-6">
+              <span className="text-3xl md:text-5xl">Partner with </span>
+              <span className="text-4xl md:text-6xl">F</span><span className="text-3xl md:text-4xl">IRMA</span>{" "}
+              <span className="text-4xl md:text-6xl">F</span><span className="text-3xl md:text-4xl">OREST</span>
             </h2>
             <p className="text-lg text-primary-foreground/80 mb-6 max-w-2xl mx-auto">
               Are you a restaurant, local market, or boutique looking to offer premium Mediterranean products? 
