@@ -1,4 +1,4 @@
-# FIRMA Olive Oils - Design Guidelines
+# Firma Forest - Design Guidelines
 
 ## Design Approach
 **Reference-Based: Premium E-commerce**

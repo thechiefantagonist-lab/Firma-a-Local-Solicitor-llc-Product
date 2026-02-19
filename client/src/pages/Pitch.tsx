@@ -127,10 +127,10 @@ export default function Pitch() {
             </h3>
             <div className="space-y-3">
               <p className="text-sm font-medium">
-                In partnership with <span className="font-bold">Local Solicitor LLC</span>
+                A <span className="font-bold">Firma Forest</span> partnership
               </p>
               <p className="text-sm text-muted-foreground">
-                Contact the owner of Local Solicitor LLC for brokerage services of all olive oil purchases, contracts, products, and sales pitches.
+                Contact us for brokerage services of all olive oil purchases, contracts, products, and sales pitches.
               </p>
               <div className="pt-2">
                 <p className="text-sm font-bold text-primary">Brokerage Services:</p>

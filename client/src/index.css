@@ -5,38 +5,38 @@
 @tailwind utilities;
 
 :root {
-  /* FIRMA Blue Palette - matching brand identity */
+  /* Firma Forest - Dark Forest Green & Blue Palette */
   
-  /* Slate Blue - Primary (from logo) */
-  --primary: 215 35% 52%;
-  --primary-foreground: 0 0% 100%;
+  /* Dark Forest Green - Primary */
+  --primary: 150 35% 28%;
+  --primary-foreground: 0 0% 98%;
 
-  /* Dark Gray-Blue - Accent (#4F5B5F) */
-  --accent: 200 8% 34%;
+  /* Slate Blue - Accent (from original brand) */
+  --accent: 215 35% 52%;
   --accent-foreground: 0 0% 98%;
 
   /* Clean White - Background */
-  --background: 210 20% 98%;
-  --foreground: 215 25% 15%;
+  --background: 120 10% 97%;
+  --foreground: 150 20% 12%;
 
-  /* Light Blue Tint - Secondary (#C1E2FF inspired) */
-  --secondary: 210 60% 94%;
-  --secondary-foreground: 215 35% 35%;
+  /* Light Sage - Secondary */
+  --secondary: 140 20% 92%;
+  --secondary-foreground: 150 30% 25%;
 
   /* Card/Surface - Pure White */
   --card: 0 0% 100%;
-  --card-foreground: 215 25% 15%;
+  --card-foreground: 150 20% 12%;
   --popover: 0 0% 100%;
-  --popover-foreground: 215 25% 15%;
+  --popover-foreground: 150 20% 12%;
 
-  /* Borders - Cool Gray */
-  --border: 210 15% 87%;
-  --input: 210 15% 87%;
-  --ring: 215 35% 52%;
+  /* Borders - Sage Gray */
+  --border: 140 10% 86%;
+  --input: 140 10% 86%;
+  --ring: 150 35% 28%;
 
   /* UI Status */
-  --muted: 210 15% 93%;
-  --muted-foreground: 215 10% 45%;
+  --muted: 140 10% 93%;
+  --muted-foreground: 150 10% 42%;
   --destructive: 0 60% 50%;
   --destructive-foreground: 0 0% 98%;
 

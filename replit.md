@@ -1,12 +1,13 @@
-# FIRMA Olive Oils - A 'Local Solicitor llc.' Product
+# Firma Forest
 
 ## Overview
 
-FIRMA is a full-stack e-commerce application for selling artisanal Mediterranean olive oils and vinegars. Its slogan is "Olive oil, with a personality." The platform features a product catalog, shopping cart, order management, wholesale/networking inquiry system, and partner location mapping. Built with a React frontend and Express backend, it uses PostgreSQL for data persistence and Replit Auth for user authentication.
+Firma Forest is a full-stack e-commerce application for selling artisanal Mediterranean olive oils and vinegars. Its slogan is "Rooted in Tradition. Bottled for Texas." The platform features a product catalog, shopping cart, order management, wholesale/networking inquiry system, and partner location mapping. Built with a React frontend and Express backend, it uses PostgreSQL for data persistence and Replit Auth for user authentication.
 
 ## Recent Changes
-- **Color Scheme Update (Feb 2026)**: Updated from terracotta/sage palette to blue/white scheme matching brand identity. Primary: slate blue (215 35% 52%), Accent: dark gray-blue (#4F5B5F), Background: clean white.
-- **New Logo (Feb 2026)**: Added FIRMA fez hat logo (IMG_4945) to navigation bar and footer. Tagline updated to "Olive oil, with a personality."
+- **Color Scheme Update (Feb 2026)**: Updated to dark forest green & blue palette. Primary: dark forest green (150 35% 28%), Accent: slate blue (215 35% 52%), Background: light sage white.
+- **New Logo (Feb 2026)**: Added Firma Forest Texas/olive logo (IMG_6649) across all pages. Tagline: "Rooted in Tradition. Bottled for Texas."
+- **Brand Rename (Feb 2026)**: Company renamed from "FIRMA Olive Oils" to "Firma Forest". Removed all "Local Solicitor LLC" references.
 - **Mobile Improvements (Feb 2026)**: Added mobile cart icon in navbar, scrollable filter pills, improved mobile menu with data-testid attributes.
 - **Icon Cleanup (Feb 2026)**: Replaced all emoji icons with Lucide React icons (Phone, Mail).
 - **Contact Info**: Updated to real contact details (737.881.5440 / Thechiefantagonist@gmail.com) across all pages.

@@ -47,10 +47,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               />
               <div className="hidden sm:block">
                 <span className="font-display text-xl md:text-2xl font-bold text-primary tracking-tighter uppercase leading-tight block">
-                  FIRMA
+                  Firma Forest
                 </span>
                 <span className="block text-[9px] md:text-[10px] font-medium text-muted-foreground -mt-0.5 tracking-normal normal-case">
-                  Olive oil, with a personality.
+                  Rooted in Tradition. Bottled for Texas.
                 </span>
               </div>
             </Link>
@@ -192,8 +192,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="border-t border-primary-foreground/10 pt-8 text-center text-sm text-primary-foreground/60">
-            <p>A 'Local Solicitor llc.' Product</p>
-            <p className="mt-1">&copy; {new Date().getFullYear()} FIRMA Olive Oils. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Firma Forest. All rights reserved.</p>
             <p className="mt-1 text-xs">Proudly based in San Marcos, TX (78666) - Heart of the Hill Country</p>
           </div>
         </div>
