@@ -5,7 +5,7 @@ import { Menu, X, ShoppingBag, User, LogOut, Loader2, Phone, Mail } from "lucide
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import firmaLogo from "@assets/IMG_4945_1768512208048.jpeg";
+import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,8 +41,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/" className="group relative z-50 flex items-center gap-3" data-testid="link-logo-home">
               <img 
                 src={firmaLogo} 
-                alt="FIRMA Olive Oils" 
-                className="h-10 md:h-12 w-auto rounded-md object-cover"
+                alt="Firma Forest - Olive Oils" 
+                className="h-11 md:h-14 w-auto rounded-md object-contain"
                 data-testid="img-logo"
               />
               <div className="hidden sm:block">
@@ -150,10 +150,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <img src={firmaLogo} alt="FIRMA" className="h-12 w-auto rounded-md" />
+                <img src={firmaLogo} alt="Firma Forest" className="h-16 w-auto rounded-md bg-white/10 p-1" data-testid="img-footer-logo" />
                 <div>
-                  <h3 className="font-display text-2xl font-bold text-primary-foreground mb-0 uppercase">FIRMA</h3>
-                  <p className="text-xs font-medium text-primary-foreground/60 tracking-tight">Olive oil, with a personality.</p>
+                  <h3 className="font-display text-2xl font-bold text-primary-foreground mb-0 uppercase">Firma Forest</h3>
+                  <p className="text-xs font-medium text-primary-foreground/60 tracking-tight">Rooted in Tradition. Bottled for Texas.</p>
                 </div>
               </div>
               <p className="text-primary-foreground/80 leading-relaxed max-w-sm text-sm">

@@ -5,6 +5,7 @@ import { useCreateAppointment } from "@/hooks/use-appointments";
 import { z } from "zod";
 import { Loader2, CalendarCheck, Phone, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
+import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 
 // Make sure businessName is treated as optional string in the form
 const formSchema = insertAppointmentSchema.extend({
@@ -44,6 +45,12 @@ export default function Networking() {
         />
         
         <div className="relative max-w-4xl mx-auto text-center">
+          <img 
+            src={firmaLogo} 
+            alt="Firma Forest" 
+            className="w-20 h-20 md:w-24 md:h-24 rounded-xl mx-auto mb-6 object-contain bg-white/90 p-2"
+            data-testid="img-networking-logo"
+          />
           <h1 className="font-display text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
             Wholesale & Networking
           </h1>

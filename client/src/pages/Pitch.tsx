@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Briefcase, Calendar, CheckCircle2, Users, ExternalLink } from "lucide-react";
+import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 
 export default function Pitch() {
   const { toast } = useToast();
@@ -60,11 +61,17 @@ export default function Pitch() {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-12"
       >
+        <img 
+          src={firmaLogo} 
+          alt="Firma Forest" 
+          className="w-20 h-20 md:w-24 md:h-24 rounded-xl mx-auto mb-4 object-contain"
+          data-testid="img-pitch-logo"
+        />
         <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
           Commercial Product Pitch
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Partner with FIRMA Olive Oils. We bring artisanal Mediterranean excellence to your business, 
+          Partner with Firma Forest. We bring artisanal Mediterranean excellence to your business, 
           from restaurants to local markets.
         </p>
       </motion.div>

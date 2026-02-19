@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useProducts } from "@/hooks/use-products";
 import { Product } from "@shared/schema";
 import { PartnerMap } from "@/components/PartnerMap";
-import firmaLogo from "@assets/IMG_4945_1768512208048.jpeg";
+import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 
 export default function Home() {
   const { data: products } = useProducts();
@@ -34,14 +34,15 @@ export default function Home() {
           >
             <img 
               src={firmaLogo} 
-              alt="FIRMA Olive Oils" 
-              className="w-32 h-32 md:w-40 md:h-40 rounded-2xl mx-auto mb-6 shadow-2xl object-cover"
+              alt="Firma Forest - Olive Oils" 
+              className="w-36 h-36 md:w-48 md:h-48 rounded-2xl mx-auto mb-6 shadow-2xl object-contain bg-white/90 backdrop-blur-sm p-3"
+              data-testid="img-hero-logo"
             />
             <h1 className="font-display text-4xl md:text-7xl font-bold text-white mb-2 leading-tight drop-shadow-lg tracking-tighter uppercase">
-              FIRMA Olive Oils
+              Firma Forest
             </h1>
             <p className="text-base md:text-xl text-white/80 mb-10 font-bold tracking-wide drop-shadow-md">
-              Olive oil, with a personality.
+              Rooted in Tradition. Bottled for Texas.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/" className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg transition-all shadow-lg shadow-primary/30" data-testid="link-hero-shop">
@@ -162,8 +163,14 @@ export default function Home() {
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 md:p-16 border border-white/10 text-center max-w-4xl mx-auto">
+            <img 
+              src={firmaLogo} 
+              alt="Firma Forest" 
+              className="w-20 h-20 md:w-24 md:h-24 rounded-xl mx-auto mb-6 object-contain bg-white/90 p-2"
+              data-testid="img-b2b-logo"
+            />
             <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">
-              Partner with FIRMA Olive Oils
+              Partner with Firma Forest
             </h2>
             <p className="text-lg text-primary-foreground/80 mb-6 max-w-2xl mx-auto">
               Are you a restaurant, local market, or boutique looking to offer premium Mediterranean products? 

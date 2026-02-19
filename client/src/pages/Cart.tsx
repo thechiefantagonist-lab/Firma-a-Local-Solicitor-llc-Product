@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { Trash2, Plus, Minus, ArrowRight, Loader2, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/hooks/use-auth";
+import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 
 export default function Cart() {
   const { items, removeItem, updateQuantity, total, clearCart } = useCart();
@@ -24,9 +25,7 @@ export default function Cart() {
   if (items.length === 0) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center p-4 text-center">
-        <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mb-6">
-          <Trash2 className="w-8 h-8 text-muted-foreground" />
-        </div>
+        <img src={firmaLogo} alt="Firma Forest" className="w-24 h-24 rounded-xl object-contain mb-6 opacity-30" />
         <h2 className="font-display text-3xl font-bold text-foreground mb-4">Your cart is empty</h2>
         <p className="text-muted-foreground mb-8">Looks like you haven't added any authentic oils yet.</p>
         <Link href="/shop" className="px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all">
