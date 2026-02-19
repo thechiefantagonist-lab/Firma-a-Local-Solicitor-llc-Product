@@ -46,6 +46,6 @@ expertMode = true
 [userenv]
 
 [userenv.shared]
-SQUARE_ENVIRONMENT = "sandbox"
-SQUARE_APPLICATION_ID = "sandbox-sq0idb-kUI-els3YbTPGlo4UAE4Lw"
+SQUARE_ENVIRONMENT = "production"
+SQUARE_APPLICATION_ID = "sq0idp-mToqgL_dfz5oY0M-H5_-8A"
 SQUARE_LOCATION_ID = "LXN3J821TXMCJ"
