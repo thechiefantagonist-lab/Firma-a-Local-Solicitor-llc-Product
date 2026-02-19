@@ -48,3 +48,4 @@ expertMode = true
 [userenv.shared]
 SQUARE_ENVIRONMENT = "sandbox"
 SQUARE_APPLICATION_ID = "sandbox-sq0idb-kUI-els3YbTPGlo4UAE4Lw"
+SQUARE_LOCATION_ID = "LXN3J821TXMCJ"
