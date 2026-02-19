@@ -4,6 +4,7 @@ import { useCart } from "@/hooks/use-cart";
 import { Product } from "@shared/schema";
 import { Plus, Check, Loader2, ShoppingCart, Store, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 import ingredientOrange from "@assets/ingredient-orange.jpg";
 import ingredientLemon from "@assets/ingredient-lemon.jpg";
 import ingredientChili from "@assets/ingredient-chili.jpg";
@@ -29,22 +30,18 @@ export default function Shop() {
   return (
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
-      <div className="bg-primary pt-24 pb-16 px-4 relative">
-        <div className="absolute top-20 left-4 text-[10px] text-primary-foreground/60 leading-tight">
-          <p>
-            <a href="tel:7378815440" className="hover:text-primary-foreground transition-colors">737-881-5440</a>
-            {" / "}
-            <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">@forestparker</a>
-          </p>
-        </div>
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-primary-foreground/60 text-sm uppercase tracking-widest mb-2">From the Heart of Texas Hill Country</p>
-          <h1 className="font-display text-4xl md:text-6xl font-bold text-primary-foreground mb-4">
-            Shop Local. Taste Real.
-          </h1>
-          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto">
-            Small-batch olive oils crafted for Central Texas tables. Born in 78666, bottled with care.
-          </p>
+      <div className="bg-primary pt-16 pb-12 px-4 relative">
+        <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
+          <div className="flex items-center gap-4 mb-1">
+            <img src={firmaLogo} alt="Firma Forest" className="h-20 md:h-24 w-auto rounded-md bg-white/10 p-1" data-testid="img-shop-hero-logo" />
+            <div className="text-left">
+              <h1 className="font-display font-bold text-primary-foreground uppercase leading-none">
+                <span className="text-4xl md:text-5xl">F</span><span className="text-2xl md:text-3xl">IRMA</span>{" "}
+                <span className="text-4xl md:text-5xl">F</span><span className="text-2xl md:text-3xl">OREST</span>
+              </h1>
+              <p className="text-sm md:text-base font-medium text-primary-foreground/60 tracking-tight mt-1" style={{ fontStyle: 'italic' }}>Rooted in Tradition. Bottled for Texas.</p>
+            </div>
+          </div>
         </div>
       </div>
 
