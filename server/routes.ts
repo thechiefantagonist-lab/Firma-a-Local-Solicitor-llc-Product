@@ -6,6 +6,7 @@ import { z } from "zod";
 import { setupAuth, registerAuthRoutes, isAuthenticated } from "./replit_integrations/auth";
 import { products, locations } from "@shared/schema";
 import { db } from "./db";
+import { eq } from "drizzle-orm";
 import { SquareClient, SquareEnvironment } from "square";
 import crypto from "crypto";
 
@@ -74,7 +75,7 @@ export async function registerRoutes(
     });
   });
 
-  app.post("/api/square/payment", isAuthenticated, async (req: any, res) => {
+  app.post("/api/square/payment", async (req: any, res) => {
     try {
       const paymentSchema = z.object({
         sourceId: z.string().min(1),
@@ -122,7 +123,7 @@ export async function registerRoutes(
         locationId: process.env.SQUARE_LOCATION_ID,
       });
 
-      const userId = req.user.claims.sub;
+      const userId = req.user?.claims?.sub || "guest";
       const order = await storage.createOrderWithPayment(userId, orderItemData, paymentResult.payment?.id || "");
 
       res.json({ 
@@ -192,58 +193,69 @@ async function seedLocations() {
 }
 
 async function seedDatabase() {
+  const productData = [
+    {
+      name: "EV Smooth",
+      description: "Extra virgin olive oil (250 ml). A balanced and versatile smooth oil with a sky-blue label.",
+      price: "20.00",
+      imageUrl: "/images/ev-smooth-bottle.png",
+      category: "oil",
+      stock: 100
+    },
+    {
+      name: "Wild Rosemary",
+      description: "Fused with rosemary grown next to the olives in the Atlas Mountains (250 ml). Green label.",
+      price: "20.00",
+      imageUrl: "/images/rosemary-bottle.png",
+      category: "oil",
+      stock: 100
+    },
+    {
+      name: "Orange Fused Olive Oil",
+      description: "Mediterranean olives pressed with fresh oranges (250 ml). Zest and aromatic orange label.",
+      price: "20.00",
+      imageUrl: "/images/orange-bottle.png",
+      category: "oil",
+      stock: 100
+    },
+    {
+      name: "Lemon Fused Olive Oil",
+      description: "Mediterranean olives pressed with fresh lemons (250 ml). Bright and citrusy yellow label.",
+      price: "20.00",
+      imageUrl: "/images/lemon-bottle.png",
+      category: "oil",
+      stock: 100
+    },
+    {
+      name: "Green Chili Pepper Olive Oil",
+      description: "Mediterranean olives pressed with spicy green chili peppers (250 ml). Red label.",
+      price: "20.00",
+      imageUrl: "/images/green-chili-bottle.png",
+      category: "oil",
+      stock: 100
+    },
+    {
+      name: "The Flavor Flight",
+      description: "A miniature sample pack of every flavor. Perfect for discovery and aesthetic gifting.",
+      price: "28.00",
+      imageUrl: "/images/holiday-tree.png",
+      category: "set",
+      stock: 50
+    }
+  ];
+
   const existingProducts = await storage.getProducts();
   if (existingProducts.length === 0) {
     console.log("Seeding products...");
-    await db.insert(products).values([
-      {
-        name: "EV Smooth",
-        description: "Extra virgin olive oil (250 ml). A balanced and versatile smooth oil with a sky-blue label.",
-        price: "20.00",
-        imageUrl: "/images/ev-smooth-bottle.png",
-        category: "oil",
-        stock: 100
-      },
-      {
-        name: "Wild Rosemary",
-        description: "Fused with rosemary grown next to the olives in the Atlas Mountains (250 ml). Green label.",
-        price: "20.00",
-        imageUrl: "/images/rosemary-bottle.png",
-        category: "oil",
-        stock: 100
-      },
-      {
-        name: "Orange Fused Olive Oil",
-        description: "Mediterranean olives pressed with fresh oranges (250 ml). Zest and aromatic orange label.",
-        price: "20.00",
-        imageUrl: "/images/orange-bottle.png",
-        category: "oil",
-        stock: 100
-      },
-      {
-        name: "Lemon Fused Olive Oil",
-        description: "Mediterranean olives pressed with fresh lemons (250 ml). Bright and citrusy yellow label.",
-        price: "20.00",
-        imageUrl: "/images/lemon-bottle.png",
-        category: "oil",
-        stock: 100
-      },
-      {
-        name: "Green Chili Pepper Olive Oil",
-        description: "Mediterranean olives pressed with spicy green chili peppers (250 ml). Red label.",
-        price: "20.00",
-        imageUrl: "/images/green-chili-bottle.png",
-        category: "oil",
-        stock: 100
-      },
-      {
-        name: "The Flavor Flight",
-        description: "A miniature sample pack of every flavor. Perfect for discovery and aesthetic gifting.",
-        price: "28.00",
-        imageUrl: "/images/holiday-tree.png",
-        category: "set",
-        stock: 50
+    await db.insert(products).values(productData);
+  } else {
+    for (let i = 0; i < productData.length; i++) {
+      const p = productData[i];
+      const existing = existingProducts.find(ep => ep.imageUrl === p.imageUrl);
+      if (existing && (existing.price !== p.price || existing.name !== p.name || existing.description !== p.description)) {
+        console.log(`Updating product: ${p.name} price to ${p.price}`);
+        await db.update(products).set({ name: p.name, description: p.description, price: p.price }).where(eq(products.id, existing.id));
       }
-    ]);
+    }
   }
 }

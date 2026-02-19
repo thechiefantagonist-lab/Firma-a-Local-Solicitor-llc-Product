@@ -1,12 +1,10 @@
 import { useCart } from "@/hooks/use-cart";
 import { Link, useLocation } from "wouter";
 import { Trash2, Plus, Minus, ArrowLeft } from "lucide-react";
-import { useAuth } from "@/hooks/use-auth";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 
 export default function Cart() {
   const { items, removeItem, updateQuantity, total } = useCart();
-  const { user } = useAuth();
   const [, navigate] = useLocation();
 
   if (items.length === 0) {
@@ -106,26 +104,13 @@ export default function Cart() {
                 </div>
               </div>
 
-              {user ? (
-                <button
-                  onClick={() => navigate("/checkout")}
-                  className="w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20 bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5"
-                  data-testid="button-proceed-checkout"
-                >
-                  Proceed to Checkout
-                </button>
-              ) : (
-                <div className="space-y-4">
-                  <Link href="/api/login">
-                    <button className="w-full py-4 rounded-xl font-bold text-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-lg">
-                      Log in to Checkout
-                    </button>
-                  </Link>
-                  <p className="text-xs text-center text-muted-foreground">
-                    You must be logged in to complete your purchase.
-                  </p>
-                </div>
-              )}
+              <button
+                onClick={() => navigate("/checkout")}
+                className="w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20 bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-0.5"
+                data-testid="button-proceed-checkout"
+              >
+                Proceed to Checkout
+              </button>
               
               <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useCart } from "@/hooks/use-cart";
-import { useAuth } from "@/hooks/use-auth";
 import { Link, useLocation } from "wouter";
 import { ArrowLeft, Loader2, ShieldCheck, CreditCard, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -16,7 +15,6 @@ declare global {
 
 export default function Checkout() {
   const { items, total, clearCart } = useCart();
-  const { user } = useAuth();
   const { toast } = useToast();
   const [, navigate] = useLocation();
   const cardContainerRef = useRef<HTMLDivElement>(null);
@@ -143,20 +141,6 @@ export default function Checkout() {
             </Link>
           </div>
         </div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center p-4 text-center">
-        <h2 className="font-display text-3xl font-bold text-foreground mb-4">Please Log In</h2>
-        <p className="text-muted-foreground mb-8">You need to be logged in to complete your purchase.</p>
-        <Link href="/api/login">
-          <button className="px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all" data-testid="button-login-checkout">
-            Log In
-          </button>
-        </Link>
       </div>
     );
   }
