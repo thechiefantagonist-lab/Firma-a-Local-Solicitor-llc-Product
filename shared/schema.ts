@@ -23,6 +23,13 @@ export const orders = pgTable("orders", {
   status: text("status").notNull().default("pending"),
   total: decimal("total", { precision: 10, scale: 2 }).notNull(),
   paymentId: text("payment_id"),
+  deliveryName: text("delivery_name"),
+  deliveryAddress: text("delivery_address"),
+  deliveryCity: text("delivery_city"),
+  deliveryState: text("delivery_state"),
+  deliveryZip: text("delivery_zip"),
+  deliveryPhone: text("delivery_phone"),
+  deliveryEmail: text("delivery_email"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

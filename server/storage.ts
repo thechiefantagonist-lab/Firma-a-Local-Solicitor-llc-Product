@@ -22,7 +22,7 @@ export interface IStorage {
   
   // Orders
   createOrder(userId: string, items: { productId: number; quantity: number }[]): Promise<Order>;
-  createOrderWithPayment(userId: string, items: { productId: number; quantity: number; price: string }[], paymentId: string): Promise<Order>;
+  createOrderWithPayment(userId: string, items: { productId: number; quantity: number; price: string }[], paymentId: string, delivery?: { fullName: string; address: string; city: string; state: string; zip: string; phone: string; email?: string }): Promise<Order>;
   getOrders(userId: string): Promise<Order[]>;
 
   // Appointments
@@ -96,18 +96,30 @@ export class DatabaseStorage implements IStorage {
     return order;
   }
 
-  async createOrderWithPayment(userId: string, items: { productId: number; quantity: number; price: string }[], paymentId: string): Promise<Order> {
+  async createOrderWithPayment(userId: string, items: { productId: number; quantity: number; price: string }[], paymentId: string, delivery?: { fullName: string; address: string; city: string; state: string; zip: string; phone: string; email?: string }): Promise<Order> {
     let total = 0;
     for (const item of items) {
       total += Number(item.price) * item.quantity;
     }
 
-    const [order] = await db.insert(orders).values({
+    const orderData: any = {
       userId,
       total: total.toFixed(2),
       status: "paid",
       paymentId,
-    }).returning();
+    };
+
+    if (delivery) {
+      orderData.deliveryName = delivery.fullName;
+      orderData.deliveryAddress = delivery.address;
+      orderData.deliveryCity = delivery.city;
+      orderData.deliveryState = delivery.state;
+      orderData.deliveryZip = delivery.zip;
+      orderData.deliveryPhone = delivery.phone;
+      orderData.deliveryEmail = delivery.email || null;
+    }
+
+    const [order] = await db.insert(orders).values(orderData).returning();
 
     for (const item of items) {
       await db.insert(orderItems).values({

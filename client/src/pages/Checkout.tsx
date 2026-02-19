@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useCart } from "@/hooks/use-cart";
 import { Link, useLocation } from "wouter";
-import { ArrowLeft, Loader2, ShieldCheck, CreditCard, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Loader2, ShieldCheck, CreditCard, CheckCircle2, Truck, Phone, Mail, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { useQuery } from "@tanstack/react-query";
@@ -23,6 +23,16 @@ export default function Checkout() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [orderId, setOrderId] = useState<number | null>(null);
+  const [wantsDelivery, setWantsDelivery] = useState(false);
+  const [deliveryInfo, setDeliveryInfo] = useState({
+    fullName: "",
+    address: "",
+    city: "",
+    state: "TX",
+    zip: "",
+    phone: "",
+    email: "",
+  });
 
   const { data: squareConfig } = useQuery<{ applicationId: string; locationId: string }>({
     queryKey: ["/api/square/config"],
@@ -73,8 +83,21 @@ export default function Checkout() {
     };
   }, []);
 
+  const validateDelivery = () => {
+    if (!wantsDelivery) return true;
+    const { fullName, address, city, state, zip, phone } = deliveryInfo;
+    if (!fullName.trim()) { toast({ title: "Name is required for delivery", variant: "destructive" }); return false; }
+    if (!address.trim()) { toast({ title: "Street address is required", variant: "destructive" }); return false; }
+    if (!city.trim()) { toast({ title: "City is required", variant: "destructive" }); return false; }
+    if (!state.trim()) { toast({ title: "State is required", variant: "destructive" }); return false; }
+    if (!zip.trim() || !/^\d{5}(-\d{4})?$/.test(zip.trim())) { toast({ title: "Valid ZIP code is required", variant: "destructive" }); return false; }
+    if (!phone.trim() || !/^[\d\s\-().+]{7,}$/.test(phone.trim())) { toast({ title: "Valid phone number is required", variant: "destructive" }); return false; }
+    return true;
+  };
+
   const handlePayment = async () => {
     if (!cardInstanceRef.current || isProcessing) return;
+    if (!validateDelivery()) return;
     setIsProcessing(true);
 
     try {
@@ -88,10 +111,24 @@ export default function Checkout() {
         quantity: item.quantity,
       }));
 
-      const res = await apiRequest("POST", "/api/square/payment", {
+      const payload: any = {
         sourceId: tokenResult.token,
         items: orderItems,
-      });
+      };
+
+      if (wantsDelivery) {
+        payload.delivery = {
+          fullName: deliveryInfo.fullName.trim(),
+          address: deliveryInfo.address.trim(),
+          city: deliveryInfo.city.trim(),
+          state: deliveryInfo.state.trim(),
+          zip: deliveryInfo.zip.trim(),
+          phone: deliveryInfo.phone.trim(),
+          email: deliveryInfo.email.trim() || undefined,
+        };
+      }
+
+      const res = await apiRequest("POST", "/api/square/payment", payload);
 
       const result = await res.json();
 
@@ -190,6 +227,143 @@ export default function Checkout() {
               <span data-testid="text-checkout-total">${total.toFixed(2)}</span>
             </div>
           </div>
+        </div>
+
+        <div className="bg-card rounded-3xl p-6 sm:p-8 border border-border shadow-lg mb-8">
+          <label
+            className="flex items-center gap-3 cursor-pointer select-none"
+            data-testid="label-delivery-toggle"
+          >
+            <div className="relative">
+              <input
+                type="checkbox"
+                checked={wantsDelivery}
+                onChange={(e) => setWantsDelivery(e.target.checked)}
+                className="sr-only peer"
+                data-testid="checkbox-delivery"
+              />
+              <div className="w-6 h-6 rounded-md border-2 border-muted-foreground/40 peer-checked:border-primary peer-checked:bg-primary transition-all flex items-center justify-center">
+                {wantsDelivery && (
+                  <svg className="w-4 h-4 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
+              </div>
+            </div>
+            <Truck className="w-5 h-5 text-primary" />
+            <span className="font-display text-xl font-bold">Delivery</span>
+          </label>
+
+          {wantsDelivery && (
+            <div className="mt-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">
+                  Full Name <span className="text-destructive">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={deliveryInfo.fullName}
+                  onChange={(e) => setDeliveryInfo(prev => ({ ...prev, fullName: e.target.value }))}
+                  placeholder="John Doe"
+                  className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  data-testid="input-delivery-name"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">
+                  <MapPin className="w-3.5 h-3.5 inline mr-1" />
+                  Street Address <span className="text-destructive">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={deliveryInfo.address}
+                  onChange={(e) => setDeliveryInfo(prev => ({ ...prev, address: e.target.value }))}
+                  placeholder="123 Main St, Apt 4B"
+                  className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  data-testid="input-delivery-address"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="col-span-2 sm:col-span-1">
+                  <label className="block text-sm font-medium text-foreground mb-1.5">
+                    City <span className="text-destructive">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={deliveryInfo.city}
+                    onChange={(e) => setDeliveryInfo(prev => ({ ...prev, city: e.target.value }))}
+                    placeholder="Austin"
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                    data-testid="input-delivery-city"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">
+                    State <span className="text-destructive">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={deliveryInfo.state}
+                    onChange={(e) => setDeliveryInfo(prev => ({ ...prev, state: e.target.value }))}
+                    placeholder="TX"
+                    maxLength={2}
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all uppercase"
+                    data-testid="input-delivery-state"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">
+                    ZIP <span className="text-destructive">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={deliveryInfo.zip}
+                    onChange={(e) => setDeliveryInfo(prev => ({ ...prev, zip: e.target.value }))}
+                    placeholder="78701"
+                    maxLength={10}
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                    data-testid="input-delivery-zip"
+                  />
+                </div>
+              </div>
+
+              <div className="h-px bg-border" />
+
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">
+                  <Phone className="w-3.5 h-3.5 inline mr-1" />
+                  Phone Number <span className="text-destructive">*</span>
+                </label>
+                <input
+                  type="tel"
+                  value={deliveryInfo.phone}
+                  onChange={(e) => setDeliveryInfo(prev => ({ ...prev, phone: e.target.value }))}
+                  placeholder="(512) 555-0123"
+                  className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  data-testid="input-delivery-phone"
+                />
+                <p className="text-xs text-muted-foreground mt-1">Required so we can reach you about your delivery</p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">
+                  <Mail className="w-3.5 h-3.5 inline mr-1" />
+                  Email Address <span className="text-muted-foreground text-xs">(optional)</span>
+                </label>
+                <input
+                  type="email"
+                  value={deliveryInfo.email}
+                  onChange={(e) => setDeliveryInfo(prev => ({ ...prev, email: e.target.value }))}
+                  placeholder="you@example.com"
+                  className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  data-testid="input-delivery-email"
+                />
+                <p className="text-xs text-muted-foreground mt-1">For order confirmation and tracking updates</p>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="bg-card rounded-3xl p-6 sm:p-8 border border-border shadow-lg">

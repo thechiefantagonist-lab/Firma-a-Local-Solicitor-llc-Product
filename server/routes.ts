@@ -83,6 +83,15 @@ export async function registerRoutes(
           productId: z.number().int().positive(),
           quantity: z.number().int().positive().max(100),
         })).min(1),
+        delivery: z.object({
+          fullName: z.string().min(1),
+          address: z.string().min(1),
+          city: z.string().min(1),
+          state: z.string().min(1).max(2),
+          zip: z.string().regex(/^\d{5}(-\d{4})?$/),
+          phone: z.string().min(7),
+          email: z.string().email().optional(),
+        }).optional(),
       });
 
       const parsed = paymentSchema.safeParse(req.body);
@@ -90,7 +99,7 @@ export async function registerRoutes(
         return res.status(400).json({ message: parsed.error.errors[0].message });
       }
 
-      const { sourceId, items } = parsed.data;
+      const { sourceId, items, delivery } = parsed.data;
 
       let totalCents = 0;
       const orderItemData: { productId: number; quantity: number; price: string }[] = [];
@@ -124,7 +133,7 @@ export async function registerRoutes(
       });
 
       const userId = req.user?.claims?.sub || "guest";
-      const order = await storage.createOrderWithPayment(userId, orderItemData, paymentResult.payment?.id || "");
+      const order = await storage.createOrderWithPayment(userId, orderItemData, paymentResult.payment?.id || "", delivery);
 
       res.json({ 
         success: true, 
