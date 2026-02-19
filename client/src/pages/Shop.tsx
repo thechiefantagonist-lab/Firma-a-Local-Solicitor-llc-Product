@@ -10,6 +10,35 @@ import ingredientLemon from "@assets/ingredient-lemon.jpg";
 import ingredientChili from "@assets/ingredient-chili.jpg";
 import ingredientRosemary from "@assets/ingredient-rosemary.jpg";
 
+const FUSED_LINK = "https://olivefreshoils.com/fused-vs-infused/";
+
+function renderWithFused(text: string) {
+  const fusedRegex = /\bFused\b/gi;
+  if (!fusedRegex.test(text)) return <>{text}</>;
+  
+  const parts = text.split(/\b(Fused)\b/gi);
+  return (
+    <>
+      {parts.map((part, i) =>
+        part.toLowerCase() === 'fused' ? (
+          <a
+            key={i}
+            href={FUSED_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-black text-[1.15em] text-primary underline decoration-primary/30 underline-offset-2 hover:decoration-primary transition-colors"
+            data-testid="link-fused-definition"
+          >
+            FUSED
+          </a>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </>
+  );
+}
+
 function getIngredientImage(productName: string): { src: string; alt: string } | null {
   const name = productName.toLowerCase();
   if (name.includes('orange')) return { src: ingredientOrange, alt: 'Orange' };
@@ -187,10 +216,10 @@ function ProductCard({ product }: { product: Product }) {
             {product.category}
           </span>
           <h3 className="font-display text-2xl font-bold text-foreground mb-2">
-            {product.name}
+            {renderWithFused(product.name)}
           </h3>
           <p className="text-muted-foreground text-sm line-clamp-2">
-            {product.description}
+            {renderWithFused(product.description)}
           </p>
         </div>
         

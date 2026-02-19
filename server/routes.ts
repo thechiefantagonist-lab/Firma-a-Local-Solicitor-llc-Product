@@ -128,14 +128,14 @@ async function seedDatabase() {
       },
       {
         name: "Wild Rosemary",
-        description: "Infused with rosemary grown next to the olives in the Atlas Mountains (250 ml). Green label.",
+        description: "Fused with rosemary grown next to the olives in the Atlas Mountains (250 ml). Green label.",
         price: "26.99",
         imageUrl: "/images/rosemary-bottle.png",
         category: "oil",
         stock: 100
       },
       {
-        name: "Orange Infused Olive Oil",
+        name: "Orange Fused Olive Oil",
         description: "Mediterranean olives pressed with fresh oranges (250 ml). Zest and aromatic orange label.",
         price: "26.99",
         imageUrl: "/images/orange-bottle.png",
@@ -143,7 +143,7 @@ async function seedDatabase() {
         stock: 100
       },
       {
-        name: "Lemon Infused Olive Oil",
+        name: "Lemon Fused Olive Oil",
         description: "Mediterranean olives pressed with fresh lemons (250 ml). Bright and citrusy yellow label.",
         price: "26.99",
         imageUrl: "/images/lemon-bottle.png",
