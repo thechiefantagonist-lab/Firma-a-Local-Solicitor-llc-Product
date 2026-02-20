@@ -23,7 +23,7 @@ export default function Checkout() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [orderId, setOrderId] = useState<number | null>(null);
-  const [wantsDelivery, setWantsDelivery] = useState(true);
+  const [wantsDelivery, setWantsDelivery] = useState(false);
   const [deliveryInfo, setDeliveryInfo] = useState({
     fullName: "",
     address: "",
