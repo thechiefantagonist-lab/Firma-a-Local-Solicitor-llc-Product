@@ -83,8 +83,10 @@ export default function Checkout() {
     };
   }, []);
 
+  const totalBottles = items.reduce((sum, item) => sum + item.quantity, 0);
+
   const validateDelivery = () => {
-    if (!wantsDelivery) return true;
+    if (!wantsDelivery || totalBottles < 3) return true;
     const { fullName, address, city, state, zip, phone } = deliveryInfo;
     if (!fullName.trim()) { toast({ title: "Name is required for delivery", variant: "destructive" }); return false; }
     if (!address.trim()) { toast({ title: "Street address is required", variant: "destructive" }); return false; }
@@ -229,6 +231,7 @@ export default function Checkout() {
           </div>
         </div>
 
+        {totalBottles >= 3 && (
         <div className="bg-card rounded-3xl p-6 sm:p-8 border border-border shadow-lg mb-8">
           <label
             className="flex items-center gap-3 cursor-pointer select-none"
@@ -365,6 +368,7 @@ export default function Checkout() {
             </div>
           )}
         </div>
+        )}
 
         <div className="bg-card rounded-3xl p-6 sm:p-8 border border-border shadow-lg">
           <div className="flex items-center gap-2 mb-6">
