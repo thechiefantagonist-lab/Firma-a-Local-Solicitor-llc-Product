@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { ArrowRight, Star, Leaf, Users, Award, MapPin, Phone, Mail } from "lucide-react";
+import { SiInstagram } from "react-icons/si";
 import { motion } from "framer-motion";
 import { useProducts } from "@/hooks/use-products";
 import { Product } from "@shared/schema";
@@ -187,6 +188,9 @@ export default function Home() {
                 </a>
                 <a href="mailto:Thechiefantagonist@gmail.com" className="flex items-center justify-center gap-2 hover:text-accent transition-colors" data-testid="link-b2b-email">
                   <Mail className="w-5 h-5 md:w-6 md:h-6" /> Email Us
+                </a>
+                <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 hover:text-accent transition-colors" data-testid="link-b2b-instagram">
+                  <SiInstagram className="w-5 h-5 md:w-6 md:h-6" /> @forestparker
                 </a>
               </div>
             </div>

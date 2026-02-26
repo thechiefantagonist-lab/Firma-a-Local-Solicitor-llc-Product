@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@shared/routes";
 import { Location } from "@shared/schema";
 import { Menu, X, ShoppingBag, User, LogOut, Loader2, Phone, Mail, MapPin } from "lucide-react";
+import { SiInstagram } from "react-icons/si";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -187,6 +188,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <a href="mailto:Thechiefantagonist@gmail.com" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm" data-testid="link-footer-email">
                   <Mail className="w-4 h-4 flex-shrink-0" />
                   <span className="break-all">Thechiefantagonist@gmail.com</span>
+                </a>
+                <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm" data-testid="link-footer-instagram">
+                  <SiInstagram className="w-4 h-4 flex-shrink-0" />
+                  <span>@forestparker</span>
                 </a>
                 <div className="pt-2">
                   <Link href="/pitch">

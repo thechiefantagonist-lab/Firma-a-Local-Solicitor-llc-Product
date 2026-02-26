@@ -3,6 +3,7 @@ import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 import { Product } from "@shared/schema";
 import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck } from "lucide-react";
+import { SiInstagram } from "react-icons/si";
 import { cn } from "@/lib/utils";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 import ingredientOrange from "@assets/ingredient-orange.jpg";
@@ -103,6 +104,9 @@ export default function Shop() {
           <p className="text-sm text-red-600/80 mt-1">
             Limited-time pricing for our Central Texas neighbors. Grab a bottle (or three) before it's gone.
           </p>
+          <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-2 text-sm font-semibold text-red-700 hover:text-red-900 transition-colors" data-testid="link-shop-instagram">
+            <SiInstagram className="w-4 h-4" /> Follow @forestparker for drops & deals
+          </a>
         </div>
 
         {/* Product Grid */}

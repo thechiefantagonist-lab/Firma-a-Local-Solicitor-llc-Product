@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import { Loader2, CalendarCheck, Phone, Mail, MapPin, Store, Grape, Coffee, ShoppingBag } from "lucide-react";
+import { SiInstagram } from "react-icons/si";
 import { cn } from "@/lib/utils";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 import { PartnerMap } from "@/components/PartnerMap";
@@ -96,6 +97,10 @@ export default function Networking() {
                 <a href="tel:7378815440" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-phone">
                   <Phone className="w-5 h-5 mr-3 text-accent flex-shrink-0" />
                   737.881.5440
+                </a>
+                <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-instagram">
+                  <SiInstagram className="w-5 h-5 mr-3 text-accent flex-shrink-0" />
+                  @forestparker
                 </a>
               </div>
             </div>
