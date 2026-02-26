@@ -182,6 +182,8 @@ function ProductCard({ product }: { product: Product }) {
   const isFlight = product.name.toLowerCase().includes('flight');
   const productPrice = Number(product.price);
   const ingredient = getIngredientImage(product.name);
+  const originalPrice = isFlight ? null : 24.99;
+  const savings = originalPrice ? ((1 - productPrice / originalPrice) * 100).toFixed(0) : null;
 
   const handleAddToCart = () => {
     addItem(product);
@@ -191,11 +193,15 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="bg-card group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border/50 flex flex-col h-full relative">
-      {isFlight && (
+      {isFlight ? (
         <div className="absolute top-4 left-4 z-10 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md">
           Best Value
         </div>
-      )}
+      ) : savings ? (
+        <div className="absolute top-4 left-4 z-10 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md animate-pulse">
+          {savings}% OFF
+        </div>
+      ) : null}
       <div className="relative aspect-square overflow-hidden bg-gray-50">
         <img 
           src={product.imageUrl} 
@@ -226,9 +232,19 @@ function ProductCard({ product }: { product: Product }) {
         <div className="mt-auto pt-4 border-t border-border/50 space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
+              {originalPrice && (
+                <span className="text-sm text-muted-foreground line-through" data-testid={`text-product-original-price-${product.id}`}>
+                  ${originalPrice.toFixed(2)}
+                </span>
+              )}
               <span className="text-xl font-bold text-primary" data-testid={`text-product-price-${product.id}`}>
                 ${productPrice.toFixed(2)}
               </span>
+              {originalPrice && (
+                <span className="text-xs font-bold text-red-600" data-testid={`text-product-savings-${product.id}`}>
+                  You save ${(originalPrice - productPrice).toFixed(2)}!
+                </span>
+              )}
             </div>
           
             <button
