@@ -217,6 +217,23 @@ export default function Home() {
               No heat. No rush. Just the real thing.
             </p>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="mt-12 max-w-3xl mx-auto bg-amber-50 border-2 border-amber-300/50 rounded-2xl p-6 sm:p-8 text-center"
+            data-testid="banner-about-bottled-local"
+          >
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <MapPin className="w-6 h-6 text-amber-600" />
+              <h4 className="font-display text-xl font-bold text-foreground">Bottled in South Texas by a San Martian</h4>
+            </div>
+            <p className="text-muted-foreground leading-relaxed">
+              Every single bottle is processed and bottled right here in South Texas — not in some warehouse overseas. Firma Forest is the one and only U.S. distributor of these Tunisian oils, and the person behind it all is a proud local from San Marcos. From the groves of Tunisia to your table in Texas, this operation is as real and as local as it gets.
+            </p>
+          </motion.div>
         </div>
       </section>
 

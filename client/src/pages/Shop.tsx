@@ -123,15 +123,29 @@ export default function Shop() {
           </div>
         )}
 
-        <div className="mt-16 bg-card border border-border rounded-2xl p-6 sm:p-8 flex items-start gap-4 sm:gap-6 shadow-sm" data-testid="banner-halal-certified">
-          <div className="p-3 rounded-xl bg-primary/10 shrink-0">
-            <ShieldCheck className="w-8 h-8 text-primary" />
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 flex items-start gap-4 sm:gap-6 shadow-sm" data-testid="banner-halal-certified">
+            <div className="p-3 rounded-xl bg-primary/10 shrink-0">
+              <ShieldCheck className="w-8 h-8 text-primary" />
+            </div>
+            <div>
+              <h3 className="font-display text-lg font-bold text-foreground mb-1">Halal Verified & Fully Documented</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Every Firma Forest product is backed by complete Halal certification paperwork, verified from grove to bottle. Our Tunisian olive oils meet the highest standards of Islamic dietary compliance — because trust isn't optional, it's the whole point.
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 className="font-display text-lg font-bold text-foreground mb-1">Halal Verified & Fully Documented</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Every Firma Forest product is backed by complete Halal certification paperwork, verified from grove to bottle. Our Tunisian olive oils meet the highest standards of Islamic dietary compliance — because trust isn't optional, it's the whole point.
-            </p>
+
+          <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 flex items-start gap-4 sm:gap-6 shadow-sm" data-testid="banner-bottled-local">
+            <div className="p-3 rounded-xl bg-amber-500/10 shrink-0">
+              <MapPin className="w-8 h-8 text-amber-600" />
+            </div>
+            <div>
+              <h3 className="font-display text-lg font-bold text-foreground mb-1">Processed & Bottled Right Here in South Texas</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                ALL processing and bottling happens right here in South Texas — not overseas, not out of state. Firma Forest is the sole U.S. distributor of these Tunisian oils, and the man behind every bottle is a proud San Martian. From grove to your kitchen, this is as local as imported olive oil gets.
+              </p>
+            </div>
           </div>
         </div>
 
