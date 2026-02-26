@@ -12,6 +12,9 @@ import aboutUsSection from "@assets/Image_2-25-26_at_10.36_AM_1772128718182.jpeg
 import groveLife from "@assets/Image_2-25-26_at_10.37_AM_(1)_1772128718182.jpeg";
 import sustainSection from "@assets/Image_2-25-26_at_10.37_AM_(2)_1772128718182.jpeg";
 import pressSection from "@assets/Image_2-25-26_at_10.37_AM_1772128718182.jpeg";
+import singleOriginBottles from "@assets/Image_2-25-26_at_11.03_AM_(1)_1772128878387.jpeg";
+import infusedVsFused from "@assets/Image_2-25-26_at_11.04_AM_(1)_1772128878387.jpeg";
+import firmaSignatureGrove from "@assets/Image_2-25-26_at_11.07_AM_(1)_1772128878387.jpeg";
 
 export default function Home() {
   const { data: products } = useProducts();
@@ -225,6 +228,198 @@ export default function Home() {
             <p className="text-center font-semibold text-accent italic text-lg">
               The land gives. We give back.
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Olive Oil Education — Single Origin vs. Blended */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block bg-accent/10 text-accent px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-4" data-testid="badge-olive-oil-101">
+              Olive Oil 101
+            </span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-primary mb-4" data-testid="heading-oil-education">
+              Not All Olive Oil Is Created Equal
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              If you think olive oil is just olive oil, buckle up. What's sitting in most Texas pantries right now might as well be motor oil compared to the real thing.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <img
+              src={singleOriginBottles}
+              alt="FIRMA Single Origin — No Blends, No Shortcuts"
+              className="w-full max-w-2xl mx-auto rounded-2xl shadow-xl"
+              data-testid="img-single-origin-bottles"
+            />
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-red-50 border-2 border-red-200 rounded-2xl p-8"
+            >
+              <h3 className="font-display text-2xl font-bold text-red-700 mb-4">
+                Blended Oils: The Grocery Store Gamble
+              </h3>
+              <div className="space-y-3 text-muted-foreground leading-relaxed">
+                <p>
+                  That bottle marked "Imported from Italy" on the shelf at H-E-B? There's a good chance it's a cocktail of oils from Spain, Greece, Tunisia, and who-knows-where-else, blended together in a warehouse to taste the same every year.
+                </p>
+                <p>
+                  Blending smooths everything out — the terroir, the character, the soul. You get consistency, sure. But you lose the story. You lose the <span className="font-bold text-red-700">flavor that tells you exactly where it came from</span>.
+                </p>
+                <p className="text-sm italic">
+                  It's like comparing Buc-ee's brisket to your neighbor's smoker. One's fine. The other one changes your life.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-primary/5 border-2 border-primary/20 rounded-2xl p-8"
+            >
+              <h3 className="font-display text-2xl font-bold text-primary mb-4">
+                Single Origin: One Grove. One Story. One Taste.
+              </h3>
+              <div className="space-y-3 text-muted-foreground leading-relaxed">
+                <p>
+                  Single-origin means every olive in that bottle came from one specific region — one grove, one harvest, one family's hands. The soil, the rain, the Tunisian sun — you can taste all of it.
+                </p>
+                <p>
+                  The robust <span className="font-bold text-primary">Chetoui</span> olive hits with bold fruitiness and a peppery kick that wakes up your brisket. The smoother <span className="font-bold text-primary">Chemlali</span> is silky enough to drizzle on warm bread and make a grown man weep.
+                </p>
+                <p className="font-semibold text-primary italic">
+                  Every drop is traceable, meaningful, and unmistakably Tunisian.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-16"
+          >
+            <div className="rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src={infusedVsFused}
+                alt="Infused vs. FUSED olive oils — the difference matters"
+                className="w-full h-auto object-cover"
+                data-testid="img-infused-vs-fused"
+              />
+            </div>
+            <div>
+              <span className="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+                Know the Difference
+              </span>
+              <h3 className="font-display text-3xl font-bold text-primary mb-4">
+                "Infused" Is Lazy. <a href="https://olivefreshoils.com/fused-vs-infused/" target="_blank" rel="noopener noreferrer" className="underline decoration-accent/40 hover:decoration-accent">FUSED</a> Is the Real Deal.
+              </h3>
+              <div className="space-y-3 text-muted-foreground leading-relaxed">
+                <p>
+                  Most flavored oils you've tried? They take a generic oil and dump in some extract after the fact. That's <span className="font-bold">infusion</span> — flavor sprayed on like cologne at a department store.
+                </p>
+                <p>
+                  <span className="font-bold text-primary">FUSED</span> oils are different. The fruit — real orange, lemon, rosemary, chili — is <span className="italic">crushed together with the olives</span> at the mill. The flavor is born in the press, not added in a factory. It's married at the molecular level.
+                </p>
+                <p className="font-semibold text-accent">
+                  Once you taste FUSED, infused just feels like a lie.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-[#f5f0e8] rounded-3xl p-8 md:p-12"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+              <div>
+                <span className="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+                  Beyond the Kitchen
+                </span>
+                <h3 className="font-display text-3xl font-bold text-primary mb-4">
+                  5 Ways to Use It (That'll Make You Ditch Butter)
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">1</span>
+                    <div>
+                      <p className="font-bold text-foreground">Finish Your Steak</p>
+                      <p className="text-sm text-muted-foreground">Drizzle our Rosemary FUSED oil over a hot-off-the-grill ribeye. Thank us later.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">2</span>
+                    <div>
+                      <p className="font-bold text-foreground">Bread Dip, Reimagined</p>
+                      <p className="text-sm text-muted-foreground">EV Smooth + sea salt + warm sourdough. That's it. That's the recipe.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">3</span>
+                    <div>
+                      <p className="font-bold text-foreground">Pasta Without the Guilt</p>
+                      <p className="text-sm text-muted-foreground">Skip the butter. A drizzle of Lemon FUSED on warm pasta with herbs and parmesan? Chef's kiss.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">4</span>
+                    <div>
+                      <p className="font-bold text-foreground">Dressings & Spreads</p>
+                      <p className="text-sm text-muted-foreground">Whisk with vinegar for a dressing that puts ranch to shame. Or blend into hummus for richness that mayo can only dream about.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">5</span>
+                    <div>
+                      <p className="font-bold text-foreground">Grill Everything</p>
+                      <p className="text-sm text-muted-foreground">Brush Green Chili Pepper oil on veggies or chicken before grilling. Locks in moisture, crisps the edges, and adds heat that sneaks up on you.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img
+                  src={firmaSignatureGrove}
+                  alt="Taste the Difference of True Origin — Firma Organic Signature"
+                  className="w-full h-auto object-cover"
+                  data-testid="img-firma-signature"
+                />
+              </div>
+            </div>
+
+            <div className="mt-8 text-center">
+              <p className="text-lg text-muted-foreground mb-2">
+                Nutrition experts say olive oil is loaded with monounsaturated fats and antioxidants that support heart health. But here's the kicker —
+              </p>
+              <p className="text-xl font-bold text-primary">
+                single-origin oils have <span className="text-accent">higher concentrations</span> of polyphenols than blends. More flavor. More health. No compromise.
+              </p>
+              <p className="mt-4 italic text-accent font-semibold text-lg">
+                Stop cooking with mystery oil. Start cooking with a story.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
