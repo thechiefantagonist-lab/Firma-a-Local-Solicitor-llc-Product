@@ -5,6 +5,7 @@
 Firma Forest is a full-stack e-commerce application for selling artisanal Mediterranean olive oils and vinegars. Its slogan is "Rooted in Tradition. Bottled for Texas." The platform features a product catalog, shopping cart, order management, wholesale/networking inquiry system, and partner location mapping. Built with a React frontend and Express backend, it uses PostgreSQL for data persistence and Replit Auth for user authentication.
 
 ## Recent Changes
+- **Vibrant Header & Footer (Feb 2026)**: Redesigned Layout.tsx with warm amber/orange marquee banner (rotating community phrases), sticky nav with amber accents, and a scrollable lifestyle photo collage carousel ("Life's Better with Good Oil") between content and footer. Footer redesigned with warm forest-green gradient, amber accent headings, Instagram CTA button, and "Come Say Howdy" contact section. 11 product/lifestyle photos used in carousel from attached_assets.
 - **Color Scheme Update (Feb 2026)**: Updated to dark forest green & blue palette. Primary: dark forest green (150 35% 28%), Accent: slate blue (215 35% 52%), Background: light sage white.
 - **New Logo (Feb 2026)**: Added Firma Forest Texas/olive logo (IMG_6649) across all pages. Tagline: "Rooted in Tradition. Bottled for Texas."
 - **Brand Rename (Feb 2026)**: Company renamed from "FIRMA Olive Oils" to "Firma Forest". Removed all "Local Solicitor LLC" references.
