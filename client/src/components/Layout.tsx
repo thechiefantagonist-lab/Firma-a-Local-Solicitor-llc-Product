@@ -185,9 +185,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <Phone className="w-4 h-4 flex-shrink-0" />
                   <span className="font-bold tracking-tight">737.881.5440</span>
                 </a>
-                <a href="mailto:Thechiefantagonist@gmail.com" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm" data-testid="link-footer-email">
+                <a href="mailto:Sales@firmaforest.com" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm" data-testid="link-footer-email-sales">
                   <Mail className="w-4 h-4 flex-shrink-0" />
-                  <span className="break-all">Thechiefantagonist@gmail.com</span>
+                  <span className="break-all">Sales@firmaforest.com</span>
+                </a>
+                <a href="mailto:Forest@localsolicitor.net" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm" data-testid="link-footer-email-forest">
+                  <Mail className="w-4 h-4 flex-shrink-0" />
+                  <span className="break-all">Forest@localsolicitor.net</span>
                 </a>
                 <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm" data-testid="link-footer-instagram">
                   <SiInstagram className="w-4 h-4 flex-shrink-0" />

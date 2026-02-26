@@ -90,13 +90,17 @@ export default function Networking() {
             <div className="mt-12 p-8 bg-secondary/30 rounded-2xl border border-secondary">
               <h3 className="font-display text-xl font-bold text-primary mb-4">Contact Directly</h3>
               <div className="space-y-4">
-                <a href="mailto:Thechiefantagonist@gmail.com" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-email">
-                  <Mail className="w-5 h-5 mr-3 text-accent flex-shrink-0" />
-                  <span className="break-all">Thechiefantagonist@gmail.com</span>
-                </a>
                 <a href="tel:7378815440" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-phone">
                   <Phone className="w-5 h-5 mr-3 text-accent flex-shrink-0" />
                   737.881.5440
+                </a>
+                <a href="mailto:Sales@firmaforest.com" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-email-sales">
+                  <Mail className="w-5 h-5 mr-3 text-accent flex-shrink-0" />
+                  <span className="break-all">Sales@firmaforest.com</span>
+                </a>
+                <a href="mailto:Forest@localsolicitor.net" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-email-forest">
+                  <Mail className="w-5 h-5 mr-3 text-accent flex-shrink-0" />
+                  <span className="break-all">Forest@localsolicitor.net</span>
                 </a>
                 <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-instagram">
                   <SiInstagram className="w-5 h-5 mr-3 text-accent flex-shrink-0" />

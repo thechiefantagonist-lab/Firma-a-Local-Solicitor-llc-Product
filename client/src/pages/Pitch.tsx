@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, CheckCircle2, Users, ExternalLink } from "lucide-react";
+import { Briefcase, Calendar, CheckCircle2, Users, ExternalLink, Phone, Mail } from "lucide-react";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 
 export default function Pitch() {
@@ -135,8 +135,14 @@ export default function Pitch() {
               <div className="pt-2">
                 <p className="text-sm font-bold text-primary">Brokerage Services:</p>
                 <div className="flex flex-col gap-2">
-                  <a href="tel:7378815440" className="text-accent font-bold text-lg hover:underline transition-all">
-                    (737) 881-5440
+                  <a href="tel:7378815440" className="flex items-center gap-2 text-accent font-bold text-lg hover:underline transition-all">
+                    <Phone className="w-4 h-4" /> (737) 881-5440
+                  </a>
+                  <a href="mailto:Sales@firmaforest.com" className="flex items-center gap-2 text-accent font-semibold hover:underline transition-all">
+                    <Mail className="w-4 h-4" /> Sales@firmaforest.com
+                  </a>
+                  <a href="mailto:Forest@localsolicitor.net" className="flex items-center gap-2 text-muted-foreground hover:text-accent font-semibold hover:underline transition-all">
+                    <Mail className="w-4 h-4" /> Forest@localsolicitor.net
                   </a>
                   <a 
                     href="https://viewmycard.io/solarcafe" 
