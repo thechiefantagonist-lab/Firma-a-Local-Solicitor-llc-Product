@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { cn } from "@/lib/utils";
 import { ArrowRight, Star, Leaf, Users, Award, MapPin, Phone, Mail, CheckCircle2, ShoppingCart } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { motion } from "framer-motion";
@@ -15,6 +16,41 @@ import pressSection from "@assets/Image_2-25-26_at_10.37_AM_1772128718182.jpeg";
 import singleOriginBottles from "@assets/Image_2-25-26_at_11.03_AM_(1)_1772128878387.jpeg";
 import infusedVsFused from "@assets/Image_2-25-26_at_11.04_AM_(1)_1772128878387.jpeg";
 import firmaSignatureGrove from "@assets/Image_2-25-26_at_11.07_AM_(1)_1772128878387.jpeg";
+
+const MANTRAS = [
+  "Our oils are born from a way of life, not an industrial plan.",
+  "Every decision we make is guided by the same care we'd give our own table.",
+  "Every bottle celebrates Tunisia's rich terroir and traditions.",
+  "Respecting the earth isn't a trend. It's our baseline.",
+  "From harvest dates to polyphenol counts, you know exactly what's in your bottle.",
+  "We pay fairly, support local growers, and empower family farms.",
+  "Naturally high in antioxidants and heart-healthy fats: let the science and flavor speak.",
+  "Every drop of water is filtered and returned to nourish the land, while the organic olive solids are repurposed to feed animals — closing the cycle and giving back to nature.",
+];
+
+function MantraBanner({ quotes, className }: { quotes: number[]; className?: string }) {
+  return (
+    <div className={cn("overflow-hidden py-6", className)}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="flex gap-6 justify-center flex-wrap max-w-6xl mx-auto px-4"
+      >
+        {quotes.map((i) => (
+          <div
+            key={i}
+            className="bg-[#c8973e] text-white rounded-2xl px-6 py-8 text-center font-light text-lg md:text-xl leading-relaxed max-w-xs shadow-md"
+            style={{ fontFamily: "'Georgia', serif" }}
+            data-testid={`mantra-card-${i}`}
+          >
+            {MANTRAS[i]}
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
 
 export default function Home() {
   const { data: products } = useProducts();
@@ -67,6 +103,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <MantraBanner quotes={[0, 1]} className="bg-background" />
 
       {/* Family Story */}
       <section className="py-16 md:py-24 bg-card">
@@ -143,6 +181,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <MantraBanner quotes={[2, 4]} className="bg-card" />
 
       {/* Picked in the Morning. Pressed by Night. */}
       <section className="py-16 md:py-24 bg-card">
@@ -231,6 +271,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <MantraBanner quotes={[3, 5]} className="bg-card" />
 
       {/* Olive Oil Education — Single Origin vs. Blended */}
       <section className="py-16 md:py-24 bg-background">
@@ -423,6 +465,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <MantraBanner quotes={[6, 7]} className="bg-background" />
 
       {/* Features Grid */}
       <section className="py-24 bg-card">
