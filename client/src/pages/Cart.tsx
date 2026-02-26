@@ -13,7 +13,7 @@ export default function Cart() {
         <img src={firmaLogo} alt="Firma Forest" className="w-24 h-24 rounded-xl object-contain mb-6 opacity-30" />
         <h2 className="font-display text-3xl font-bold text-foreground mb-4">Your cart is empty</h2>
         <p className="text-muted-foreground mb-8">Looks like you haven't added any authentic oils yet.</p>
-        <Link href="/shop" className="px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all">
+        <Link href="/" className="px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all" data-testid="link-browse-collection">
           Browse Collection
         </Link>
       </div>
@@ -24,7 +24,7 @@ export default function Cart() {
     <div className="min-h-screen bg-background py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center gap-4 mb-8">
-           <Link href="/shop" className="p-2 hover:bg-muted rounded-full transition-colors">
+           <Link href="/" className="p-2 hover:bg-muted rounded-full transition-colors" data-testid="link-back-to-shop">
              <ArrowLeft className="w-5 h-5" />
            </Link>
            <h1 className="font-display text-4xl font-bold text-primary">Your Cart</h1>

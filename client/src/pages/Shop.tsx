@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 import { Product } from "@shared/schema";
-import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck } from "lucide-react";
+import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck, Zap } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { cn } from "@/lib/utils";
+import { useLocation } from "wouter";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 import ingredientOrange from "@assets/ingredient-orange.jpg";
 import ingredientLemon from "@assets/ingredient-lemon.jpg";
@@ -202,6 +203,7 @@ function PartnerCard({ name, location, description }: { name: string; location?:
 
 function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
+  const [, navigate] = useLocation();
   const [isAdded, setIsAdded] = useState(false);
 
   const isFlight = product.name.toLowerCase().includes('flight');
@@ -214,6 +216,11 @@ function ProductCard({ product }: { product: Product }) {
     addItem(product);
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
+  };
+
+  const handleBuyNow = () => {
+    addItem(product);
+    setTimeout(() => navigate("/checkout"), 0);
   };
 
   return (
@@ -255,43 +262,52 @@ function ProductCard({ product }: { product: Product }) {
         </div>
         
         <div className="mt-auto pt-4 border-t border-border/50 space-y-3">
-          <div className="flex items-center justify-between">
-            <div className="flex flex-col">
-              {originalPrice && (
-                <span className="text-sm text-muted-foreground line-through" data-testid={`text-product-original-price-${product.id}`}>
-                  ${originalPrice.toFixed(2)}
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col">
+                {originalPrice && (
+                  <span className="text-sm text-muted-foreground line-through" data-testid={`text-product-original-price-${product.id}`}>
+                    ${originalPrice.toFixed(2)}
+                  </span>
+                )}
+                <span className="text-xl font-bold text-primary" data-testid={`text-product-price-${product.id}`}>
+                  ${productPrice.toFixed(2)}
                 </span>
-              )}
-              <span className="text-xl font-bold text-primary" data-testid={`text-product-price-${product.id}`}>
-                ${productPrice.toFixed(2)}
-              </span>
-              {originalPrice && (
-                <span className="text-xs font-bold text-red-600" data-testid={`text-product-savings-${product.id}`}>
-                  Save ${(originalPrice - productPrice).toFixed(2)} — Texas Market Deal!
-                </span>
-              )}
+                {originalPrice && (
+                  <span className="text-xs font-bold text-red-600" data-testid={`text-product-savings-${product.id}`}>
+                    Save ${(originalPrice - productPrice).toFixed(2)} — Texas Market Deal!
+                  </span>
+                )}
+              </div>
+            
+              <button
+                onClick={handleAddToCart}
+                disabled={isAdded}
+                data-testid={`button-add-to-cart-${product.id}`}
+                className={cn(
+                  "flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200",
+                  isAdded 
+                    ? "bg-green-600 text-white cursor-default" 
+                    : "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                )}
+              >
+                {isAdded ? (
+                  <>
+                    <Check className="w-4 h-4" /> Added
+                  </>
+                ) : (
+                  <>
+                    <Plus className="w-4 h-4" /> Add to Cart
+                  </>
+                )}
+              </button>
             </div>
-          
             <button
-              onClick={handleAddToCart}
-              disabled={isAdded}
-              data-testid={`button-add-to-cart-${product.id}`}
-              className={cn(
-                "flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200",
-                isAdded 
-                  ? "bg-green-600 text-white cursor-default" 
-                  : "bg-primary text-primary-foreground shadow-md shadow-primary/20"
-              )}
+              onClick={handleBuyNow}
+              data-testid={`button-buy-now-${product.id}`}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl font-semibold text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-sm"
             >
-              {isAdded ? (
-                <>
-                  <Check className="w-4 h-4" /> Added
-                </>
-              ) : (
-                <>
-                  <Plus className="w-4 h-4" /> Add to Cart
-                </>
-              )}
+              <Zap className="w-4 h-4" /> Buy Now
             </button>
           </div>
           

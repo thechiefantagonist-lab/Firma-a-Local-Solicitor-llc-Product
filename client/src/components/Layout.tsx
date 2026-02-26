@@ -197,9 +197,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         )}
       </nav>
 
-      <main className="flex-grow">
+      <main className={cn("flex-grow", itemCount > 0 && location !== "/cart" && location !== "/checkout" ? "pb-20" : "")}>
         {children}
       </main>
+
+      <FloatingCheckoutBar />
 
       <LifestyleCarousel />
 
@@ -285,6 +287,34 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function FloatingCheckoutBar() {
+  const { itemCount, total } = useCart();
+  const [location] = useLocation();
+
+  if (itemCount === 0 || location === "/cart" || location === "/checkout") return null;
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-primary text-primary-foreground shadow-[0_-4px_20px_rgba(0,0,0,0.15)] px-4 py-3 animate-in slide-in-from-bottom-4 fade-in duration-300" data-testid="floating-checkout-bar">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3 text-sm">
+          <ShoppingBag className="w-5 h-5" />
+          <span className="font-semibold" data-testid="text-floating-item-count">{itemCount} {itemCount === 1 ? 'item' : 'items'}</span>
+          <span className="text-primary-foreground/70">|</span>
+          <span className="font-bold" data-testid="text-floating-total">${total.toFixed(2)}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Link href="/cart" className="px-4 py-2 rounded-full text-sm font-semibold bg-white/20 transition-colors" data-testid="link-floating-cart">
+            View Cart
+          </Link>
+          <Link href="/checkout" className="px-5 py-2 rounded-full text-sm font-bold bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md transition-colors" data-testid="link-floating-checkout">
+            Checkout
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

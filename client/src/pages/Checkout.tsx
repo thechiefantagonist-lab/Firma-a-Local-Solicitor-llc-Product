@@ -173,7 +173,7 @@ export default function Checkout() {
                 View My Orders
               </button>
             </Link>
-            <Link href="/shop">
+            <Link href="/">
               <button className="w-full py-3 rounded-xl font-semibold bg-muted text-foreground hover:bg-muted/80 transition-all" data-testid="button-continue-shopping">
                 Continue Shopping
               </button>
@@ -190,7 +190,7 @@ export default function Checkout() {
         <img src={firmaLogo} alt="Firma Forest" className="w-24 h-24 rounded-xl object-contain mb-6 opacity-30" />
         <h2 className="font-display text-3xl font-bold text-foreground mb-4">Nothing to checkout</h2>
         <p className="text-muted-foreground mb-8">Add some items to your cart first.</p>
-        <Link href="/shop">
+        <Link href="/">
           <button className="px-8 py-3 bg-primary text-primary-foreground rounded-full font-semibold" data-testid="button-browse-checkout">
             Browse Collection
           </button>

@@ -71,7 +71,7 @@ export default function Profile() {
         ) : (
           <div className="text-center py-16 bg-card rounded-3xl border border-dashed border-border">
             <p className="text-muted-foreground mb-6">You haven't placed any orders yet.</p>
-            <Link href="/shop" className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all">
+            <Link href="/" className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all">
               Start Shopping
             </Link>
           </div>
