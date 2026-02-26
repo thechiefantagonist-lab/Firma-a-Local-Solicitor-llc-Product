@@ -10,7 +10,8 @@ Firma Forest is a full-stack e-commerce application for selling artisanal Medite
 - **Brand Rename (Feb 2026)**: Company renamed from "FIRMA Olive Oils" to "Firma Forest". Removed all "Local Solicitor LLC" references.
 - **Mobile Improvements (Feb 2026)**: Added mobile cart icon in navbar, scrollable filter pills, improved mobile menu with data-testid attributes.
 - **Icon Cleanup (Feb 2026)**: Replaced all emoji icons with Lucide React icons (Phone, Mail).
-- **Contact Info**: Updated to real contact details (737.881.5440 / Thechiefantagonist@gmail.com) across all pages.
+- **Contact Info**: Updated to real contact details (737.881.5440 / Sales@firmaforest.com / Forest@localsolicitor.net) across all pages. Instagram: @forestparker.
+- **About/Origin Page (Feb 2026)**: Rebuilt About page with Tunisian origin story, grandfather Gadour/Abdelkader heritage, family photos, sustainability practices, cold-press process, and Halal certification. Uses 6 brand images from attached_assets.
 - **Landing Page**: Shop page is now the landing page ("/"). The original home/story page is accessible at "/about".
 - **Partner Locations (Feb 2026)**: Added 16 real Central Texas partner locations (restaurants, wineries, markets, cafes) to the database. Added "Our Partners" grid and interactive map to Wholesale & Partners page. Includes 15+ Farmers Markets card.
 - **Square Payment Integration (Feb 2026)**: Added Square Web Payments SDK for checkout. Backend processes payments via Square Payments API. Checkout page at /checkout with card form. Orders table has paymentId field. Currently using sandbox/test mode.
