@@ -96,6 +96,15 @@ export default function Shop() {
           </div>
         </div>
 
+        <div className="bg-red-600/10 border-2 border-red-600/30 rounded-2xl p-4 mb-10 text-center" data-testid="banner-market-sale">
+          <p className="text-lg font-bold text-red-700">
+            Farmers Market Special — Y'all Ain't Gonna Find This Price Anywhere Else!
+          </p>
+          <p className="text-sm text-red-600/80 mt-1">
+            Limited-time pricing for our Central Texas neighbors. Grab a bottle (or three) before it's gone.
+          </p>
+        </div>
+
         {/* Product Grid */}
         {isLoading ? (
           <div className="flex justify-center py-24">
@@ -182,7 +191,7 @@ function ProductCard({ product }: { product: Product }) {
   const isFlight = product.name.toLowerCase().includes('flight');
   const productPrice = Number(product.price);
   const ingredient = getIngredientImage(product.name);
-  const originalPrice = isFlight ? null : 24.99;
+  const originalPrice = isFlight ? null : 20.00;
   const savings = originalPrice ? ((1 - productPrice / originalPrice) * 100).toFixed(0) : null;
 
   const handleAddToCart = () => {
@@ -198,8 +207,8 @@ function ProductCard({ product }: { product: Product }) {
           Best Value
         </div>
       ) : savings ? (
-        <div className="absolute top-4 left-4 z-10 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md animate-pulse">
-          {savings}% OFF
+        <div className="absolute top-4 left-4 z-10 bg-red-600 text-white px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide shadow-md animate-pulse">
+          Market Sale!
         </div>
       ) : null}
       <div className="relative aspect-square overflow-hidden bg-gray-50">
@@ -242,7 +251,7 @@ function ProductCard({ product }: { product: Product }) {
               </span>
               {originalPrice && (
                 <span className="text-xs font-bold text-red-600" data-testid={`text-product-savings-${product.id}`}>
-                  You save ${(originalPrice - productPrice).toFixed(2)}!
+                  Save ${(originalPrice - productPrice).toFixed(2)} — Texas Market Deal!
                 </span>
               )}
             </div>
