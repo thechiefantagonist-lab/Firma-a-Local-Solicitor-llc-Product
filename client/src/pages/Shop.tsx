@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 import { Product } from "@shared/schema";
-import { Plus, Check, Loader2, ShoppingCart, Store, MapPin } from "lucide-react";
+import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 import ingredientOrange from "@assets/ingredient-orange.jpg";
@@ -117,6 +117,18 @@ export default function Shop() {
             ))}
           </div>
         )}
+
+        <div className="mt-16 bg-card border border-border rounded-2xl p-6 sm:p-8 flex items-start gap-4 sm:gap-6 shadow-sm" data-testid="banner-halal-certified">
+          <div className="p-3 rounded-xl bg-primary/10 shrink-0">
+            <ShieldCheck className="w-8 h-8 text-primary" />
+          </div>
+          <div>
+            <h3 className="font-display text-lg font-bold text-foreground mb-1">Halal Verified & Fully Documented</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Every Firma Forest product is backed by complete Halal certification paperwork, verified from grove to bottle. Our Tunisian olive oils meet the highest standards of Islamic dietary compliance — because trust isn't optional, it's the whole point.
+            </p>
+          </div>
+        </div>
 
         {/* Local Partners Section */}
         <section className="mt-24 py-16 border-t-2 border-primary/20">
