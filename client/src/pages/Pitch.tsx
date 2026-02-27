@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Lock, Phone, Mail, ArrowRight, ShieldCheck, TrendingUp, Package, Handshake, ExternalLink } from "lucide-react";
+import { SiInstagram } from "react-icons/si";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 import shelfImg1 from "@assets/IMG_6987_1772173477694.jpeg";
 import shelfImg2 from "@assets/IMG_6985_1772173477694.jpeg";
@@ -77,12 +78,25 @@ export default function Pitch() {
             <span className="text-xs uppercase tracking-widest text-amber-400 font-bold">Exclusive Access</span>
           </div>
 
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            One Source. One Man.<br />
-            <span className="text-amber-400">One Opportunity.</span>
-          </h1>
+          <a
+            href="https://www.instagram.com/forestparker"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block group"
+            data-testid="link-pitch-instagram-hero"
+          >
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              Better Than the Stock Market.<br />
+              More Worth Than Pokemon.<br />
+              <span className="text-amber-400">Invest in Something Real, Something Original,<br className="hidden sm:block" /> Something New</span> — <span className="text-white/60 italic">for Now, Anyway.</span>
+            </h1>
+            <div className="inline-flex items-center gap-2 bg-amber-400/15 border border-amber-400/30 rounded-full px-5 py-2 mt-2 group-hover:bg-amber-400/25 transition-colors">
+              <SiInstagram className="w-4 h-4 text-amber-400" />
+              <span className="text-amber-400 text-sm font-bold tracking-wide">DM @forestparker to Start the Conversation</span>
+            </div>
+          </a>
 
-          <p className="text-white/70 text-lg sm:text-xl max-w-2xl mx-auto mb-4 leading-relaxed">
+          <p className="text-white/70 text-lg sm:text-xl max-w-2xl mx-auto mb-4 mt-8 leading-relaxed">
             Forest is the only person in the United States with direct access to the source — at distribution pricing. No middleman. No broker chain. No second key.
           </p>
 
