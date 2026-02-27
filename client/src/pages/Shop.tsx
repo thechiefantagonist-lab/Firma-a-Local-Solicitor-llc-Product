@@ -157,19 +157,22 @@ export default function Shop() {
           <div className="relative z-10 max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
               <TrendingUp className="w-7 h-7 text-amber-400" />
-              <p className="text-amber-400 text-sm uppercase tracking-widest font-bold">Real Results. Real Flavor.</p>
+              <p className="text-amber-400 text-sm uppercase tracking-widest font-bold">No Cap. Just Good Oil.</p>
             </div>
             <h3 className="font-display text-2xl sm:text-3xl font-bold mb-4 leading-snug" data-testid="text-food-truck-headline">
-              Over 5 Food Trucks Have Seen a Complete Turnaround
+              5+ Food Trucks Flipped the Script — And Their Customers Noticed
             </h3>
-            <p className="text-white/80 leading-relaxed mb-4">
-              Not just in profit — in customer feedback on actual taste and comfort. What was a simple miscommunication turned out to be the wrong information, or better yet, a complete lack of it. Most people had never tasted real, authentic, Tunisian-grown olive oil — no preservatives, no blends, no shortcuts.
+            <p className="text-white/80 leading-relaxed mb-3">
+              We're talkin' real feedback, y'all — folks coming back to the window saying "what'd you change? This hits different." Turns out it wasn't the recipe. It was the oil. Whole time, they'd been cooking with stuff that barely qualifies. No shade, just facts.
             </p>
-            <p className="text-white/80 leading-relaxed mb-6">
-              Now it's here. Bottled in Texas. And only one man has the coordinates to the safe.
+            <p className="text-white/80 leading-relaxed mb-3">
+              Nobody told 'em what real, authentic, Tunisian-grown olive oil tastes like — no preservatives, no mystery blends, no "imported from wherever" nonsense. That ain't their fault. The info just wasn't out there.
+            </p>
+            <p className="text-white/85 leading-relaxed mb-6 font-medium">
+              Now it's here. Processed and bottled right here in South Texas. One distributor. One source. One dude from San Marcos who's got the only set of keys to the whole operation.
             </p>
             <p className="text-xl sm:text-2xl font-display font-bold text-amber-400" data-testid="text-firma-forest-tagline">
-              FIRMA FOREST.
+              FIRMA FOREST. That's the play.
             </p>
           </div>
         </div>
