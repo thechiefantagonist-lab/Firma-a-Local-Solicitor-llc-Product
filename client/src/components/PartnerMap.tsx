@@ -27,14 +27,14 @@ export function PartnerMap() {
     return <div className="h-[400px] w-full bg-muted animate-pulse rounded-lg" />;
   }
 
-  const defaultCenter: [number, number] = [29.8833, -97.9414]; // Central Texas / San Marcos
+  const defaultCenter: [number, number] = [30.05, -97.95]; // Central point between Austin and San Antonio
 
   return (
     <div className="space-y-4">
       <div className="h-[500px] w-full rounded-lg overflow-hidden border shadow-sm z-0">
         <MapContainer 
-          center={locations && locations.length > 0 ? [locations[0].lat, locations[0].lng] : defaultCenter} 
-          zoom={10} 
+          center={defaultCenter} 
+          zoom={9} 
           scrollWheelZoom={false}
           style={{ height: '100%', width: '100%' }}
         >
