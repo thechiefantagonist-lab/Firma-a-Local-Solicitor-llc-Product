@@ -62,9 +62,9 @@ export default function Shop() {
   );
 
   return (
-    <div className="min-h-screen bg-background pb-24">
+    <div className="min-h-screen bg-background pb-16">
       {/* Header */}
-      <div className="bg-primary pt-16 pb-12 px-4 relative">
+      <div className="bg-primary pt-10 pb-8 px-4 relative">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
           <div className="flex items-center gap-4 mb-1">
             <img src={firmaLogo} alt="Firma Forest" className="h-20 md:h-24 w-auto rounded-md bg-white/10 p-1" data-testid="img-shop-hero-logo" />
@@ -81,7 +81,7 @@ export default function Shop() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
         {/* Filters */}
-        <div className="flex justify-center mb-12 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="flex justify-center mb-6 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
           <div className="inline-flex bg-card rounded-full p-1.5 shadow-lg border border-border flex-nowrap">
             {['all', 'oil', 'vinegar', 'set'].map((cat) => (
               <button
@@ -122,14 +122,14 @@ export default function Shop() {
             <Loader2 className="w-12 h-12 animate-spin text-primary" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts?.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         )}
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 flex items-start gap-4 sm:gap-6 shadow-sm" data-testid="banner-halal-certified">
             <div className="p-3 rounded-xl bg-primary/10 shrink-0">
               <ShieldCheck className="w-8 h-8 text-primary" />
@@ -155,7 +155,7 @@ export default function Shop() {
           </div>
         </div>
 
-        <div className="mt-16 bg-gradient-to-br from-primary via-[hsl(150,35%,24%)] to-[hsl(160,30%,22%)] rounded-2xl p-8 sm:p-10 text-white relative overflow-hidden shadow-lg" data-testid="banner-food-truck-impact">
+        <div className="mt-10 bg-gradient-to-br from-primary via-[hsl(150,35%,24%)] to-[hsl(160,30%,22%)] rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg" data-testid="banner-food-truck-impact">
           <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 50%)' }} />
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
             <div className="lg:col-span-2 flex flex-col items-center lg:items-start" data-testid="chart-impact-bars">
@@ -234,8 +234,8 @@ export default function Shop() {
         <ReviewSection />
 
         {/* Local Partners Section */}
-        <section className="mt-24 py-16 border-t-2 border-primary/20">
-          <div className="text-center mb-12">
+        <section className="mt-12 py-10 border-t-2 border-primary/20">
+          <div className="text-center mb-8">
             <p className="text-accent text-sm uppercase tracking-widest font-semibold mb-2">Keepin' It Local</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-4 flex items-center justify-center gap-3">
               <Store className="w-8 h-8 text-accent" />
@@ -269,7 +269,7 @@ export default function Shop() {
             />
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-8 text-center">
             <p className="text-muted-foreground italic">
               "From our grove to your table - that's the Hill Country way."
             </p>
@@ -352,8 +352,8 @@ function ReviewSection() {
     : 0;
 
   return (
-    <section className="mt-24 py-16 border-t-2 border-primary/20" data-testid="section-reviews">
-      <div className="text-center mb-12">
+    <section className="mt-12 py-10 border-t-2 border-primary/20" data-testid="section-reviews">
+      <div className="text-center mb-8">
         <p className="text-amber-600 text-sm uppercase tracking-widest font-semibold mb-2">What Folks Are Saying</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-3 flex items-center justify-center gap-3">
           <MessageSquareQuote className="w-8 h-8 text-amber-500" />
