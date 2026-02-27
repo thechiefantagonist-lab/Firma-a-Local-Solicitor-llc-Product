@@ -101,14 +101,17 @@ export default function Shop() {
           </div>
         </div>
 
-        <div className="bg-red-600/10 border-2 border-red-600/30 rounded-2xl p-4 mb-10 text-center" data-testid="banner-market-sale">
-          <p className="text-lg font-bold text-red-700">
-            Farmers Market Special — Y'all Ain't Gonna Find This Price Anywhere Else!
+        <div className="bg-red-600/10 border-2 border-red-600/30 rounded-2xl p-5 sm:p-6 mb-10 text-center" data-testid="banner-market-sale">
+          <p className="text-xl sm:text-2xl font-bold text-red-700">
+            $17 Out the Door — Online Only
           </p>
-          <p className="text-sm text-red-600/80 mt-1">
-            Limited-time pricing for our Central Texas neighbors. Grab a bottle (or three) before it's gone.
+          <p className="text-sm text-red-600/80 mt-2 max-w-xl mx-auto">
+            This weekend at the San Marcos Farmers Market, every 250 ml bottle goes back to <span className="font-bold">$20</span>. Right now, you're looking at <span className="font-bold">$3 off per bottle</span> — no code, no catch. Just the price of clicking before Saturday.
           </p>
-          <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-2 text-sm font-semibold text-red-700 hover:text-red-900 transition-colors" data-testid="link-shop-instagram">
+          <p className="text-xs text-red-500/70 mt-2 italic">
+            Limited-time online pricing. Once market season kicks in, this deal walks.
+          </p>
+          <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-red-700 hover:text-red-900 transition-colors" data-testid="link-shop-instagram">
             <SiInstagram className="w-4 h-4" /> Follow @forestparker for drops & deals
           </a>
         </div>
@@ -468,9 +471,9 @@ function ProductCard({ product }: { product: Product }) {
         <div className="absolute top-4 left-4 z-10 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md">
           Best Value
         </div>
-      ) : savings ? (
+      ) : savings && Number(savings) > 0 ? (
         <div className="absolute top-4 left-4 z-10 bg-red-600 text-white px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide shadow-md animate-pulse">
-          Market Sale!
+          $17 Online
         </div>
       ) : null}
       <div className="relative aspect-square overflow-hidden bg-gray-50">
@@ -512,9 +515,9 @@ function ProductCard({ product }: { product: Product }) {
                 <span className="text-xl font-bold text-primary" data-testid={`text-product-price-${product.id}`}>
                   ${productPrice.toFixed(2)}
                 </span>
-                {originalPrice && (
+                {originalPrice && productPrice < originalPrice && (
                   <span className="text-xs font-bold text-red-600" data-testid={`text-product-savings-${product.id}`}>
-                    Save ${(originalPrice - productPrice).toFixed(2)} — Texas Market Deal!
+                    $3 off — $20 at the market this weekend
                   </span>
                 )}
               </div>

@@ -231,7 +231,7 @@ async function seedDatabase() {
     {
       name: "EV Smooth",
       description: "Extra virgin olive oil (250 ml). A balanced and versatile smooth oil with a sky-blue label.",
-      price: "20.00",
+      price: "17.00",
       imageUrl: "/images/ev-smooth-bottle.png",
       category: "oil",
       stock: 100
@@ -239,7 +239,7 @@ async function seedDatabase() {
     {
       name: "Wild Rosemary",
       description: "Fused with rosemary grown next to the olives in the Atlas Mountains (250 ml). Green label.",
-      price: "20.00",
+      price: "17.00",
       imageUrl: "/images/rosemary-bottle.png",
       category: "oil",
       stock: 100
@@ -247,7 +247,7 @@ async function seedDatabase() {
     {
       name: "Orange Fused Olive Oil",
       description: "Mediterranean olives pressed with fresh oranges (250 ml). Zest and aromatic orange label.",
-      price: "20.00",
+      price: "17.00",
       imageUrl: "/images/orange-bottle.png",
       category: "oil",
       stock: 100
@@ -255,7 +255,7 @@ async function seedDatabase() {
     {
       name: "Lemon Fused Olive Oil",
       description: "Mediterranean olives pressed with fresh lemons (250 ml). Bright and citrusy yellow label.",
-      price: "20.00",
+      price: "17.00",
       imageUrl: "/images/lemon-bottle.png",
       category: "oil",
       stock: 100
@@ -263,7 +263,7 @@ async function seedDatabase() {
     {
       name: "Green Chili Pepper Olive Oil",
       description: "Mediterranean olives pressed with spicy green chili peppers (250 ml). Red label.",
-      price: "20.00",
+      price: "17.00",
       imageUrl: "/images/green-chili-bottle.png",
       category: "oil",
       stock: 100
