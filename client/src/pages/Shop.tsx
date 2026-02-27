@@ -159,7 +159,7 @@ export default function Shop() {
               <TrendingUp className="w-7 h-7 text-amber-400" />
               <p className="text-amber-400 text-sm uppercase tracking-widest font-bold">Proof Is in the Product</p>
             </div>
-            <h3 className="font-display text-2xl sm:text-3xl font-bold mb-4 leading-snug" data-testid="text-food-truck-headline">
+            <h3 className="font-display text-2xl sm:text-3xl font-bold mb-4 leading-snug text-amber-400" data-testid="text-food-truck-headline">
               5+ Food Trucks Switched Their Oil. Their Customers Did the Talking.
             </h3>
             <p className="text-white/80 leading-relaxed mb-3">
