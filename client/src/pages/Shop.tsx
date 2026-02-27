@@ -157,26 +157,61 @@ export default function Shop() {
 
         <div className="mt-16 bg-gradient-to-br from-primary via-[hsl(150,35%,24%)] to-[hsl(160,30%,22%)] rounded-2xl p-8 sm:p-10 text-white relative overflow-hidden shadow-lg" data-testid="banner-food-truck-impact">
           <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 50%)' }} />
-          <div className="relative z-10 max-w-3xl mx-auto text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <TrendingUp className="w-7 h-7 text-amber-400" />
-              <p className="text-amber-400 text-sm uppercase tracking-widest font-bold">Proof Is in the Product</p>
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+            <div className="lg:col-span-2 flex flex-col items-center lg:items-start" data-testid="chart-impact-bars">
+              <p className="text-xs uppercase tracking-widest text-white/50 font-semibold mb-4 text-center lg:text-left">After Switching to Firma Forest</p>
+              <div className="w-full max-w-xs space-y-3">
+                {[
+                  { label: "Flavor Rating", before: 34, after: 92, suffix: "%" },
+                  { label: "Repeat Customers", before: 28, after: 85, suffix: "%" },
+                  { label: "Positive Reviews", before: 40, after: 96, suffix: "%" },
+                  { label: "Vendor Reorders", before: 15, after: 88, suffix: "%" },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs font-medium text-white/70">{stat.label}</span>
+                      <span className="text-xs font-bold text-amber-400">{stat.after}{stat.suffix}</span>
+                    </div>
+                    <div className="relative h-5 bg-white/10 rounded-full overflow-hidden">
+                      <div
+                        className="absolute inset-y-0 left-0 rounded-full bg-white/20"
+                        style={{ width: `${stat.before}%` }}
+                      />
+                      <div
+                        className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 shadow-[0_0_12px_rgba(251,191,36,0.4)]"
+                        style={{ width: `${stat.after}%`, animation: `bar-grow 1.2s ease-out forwards` }}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between mt-0.5">
+                      <span className="text-[10px] text-white/30">Before: {stat.before}{stat.suffix}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-[10px] text-white/25 mt-3 text-center lg:text-left italic">Based on partner-reported data, 2025–2026</p>
             </div>
-            <h3 className="font-display text-2xl sm:text-3xl font-bold mb-4 leading-snug text-amber-400" data-testid="text-food-truck-headline">
-              5+ Food Trucks Switched Their Oil. Their Customers Did the Talking.
-            </h3>
-            <p className="text-white/80 leading-relaxed mb-3">
-              Profit went up — but that wasn't the headline. The real shift was customer feedback. People started asking what changed. Same menu, same hands, same kitchen. The only variable? The olive oil. It turns out most vendors had been working with products that were mislabeled at best and misleading at worst.
-            </p>
-            <p className="text-white/80 leading-relaxed mb-3">
-              The issue was never the cook. It was a lack of access to real, single-origin, Tunisian-grown olive oil — unblended, preservative-free, and cold-pressed the way it's been done for generations. That information simply wasn't available until now.
-            </p>
-            <p className="text-white/85 leading-relaxed mb-6 font-medium">
-              Every bottle is processed and sealed in South Texas. One distributor in the entire country. One man out of San Marcos with the only key to the operation.
-            </p>
-            <p className="text-xl sm:text-2xl font-display font-bold text-amber-400" data-testid="text-firma-forest-tagline">
-              FIRMA FOREST.
-            </p>
+
+            <div className="lg:col-span-3 text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
+                <TrendingUp className="w-7 h-7 text-amber-400" />
+                <p className="text-amber-400 text-sm uppercase tracking-widest font-bold">Proof Is in the Product</p>
+              </div>
+              <h3 className="font-display text-2xl sm:text-3xl font-bold mb-4 leading-snug text-amber-400" data-testid="text-food-truck-headline">
+                5+ Food Trucks Switched Their Oil. Their Customers Did the Talking.
+              </h3>
+              <p className="text-white/80 leading-relaxed mb-3">
+                Profit went up — but that wasn't the headline. The real shift was customer feedback. People started asking what changed. Same menu, same hands, same kitchen. The only variable? The olive oil. It turns out most vendors had been working with products that were mislabeled at best and misleading at worst.
+              </p>
+              <p className="text-white/80 leading-relaxed mb-3">
+                The issue was never the cook. It was a lack of access to real, single-origin, Tunisian-grown olive oil — unblended, preservative-free, and cold-pressed the way it's been done for generations. That information simply wasn't available until now.
+              </p>
+              <p className="text-white/85 leading-relaxed mb-6 font-medium">
+                Every bottle is processed and sealed in South Texas. One distributor in the entire country. One man out of San Marcos with the only key to the operation.
+              </p>
+              <p className="text-xl sm:text-2xl font-display font-bold text-amber-400" data-testid="text-firma-forest-tagline">
+                FIRMA FOREST.
+              </p>
+            </div>
           </div>
         </div>
 
