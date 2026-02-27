@@ -30,7 +30,7 @@ const MANTRAS = [
 
 function MantraBanner({ quotes, className }: { quotes: number[]; className?: string }) {
   return (
-    <div className={cn("overflow-hidden py-6", className)}>
+    <div className={cn("overflow-hidden py-4", className)}>
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -76,13 +76,13 @@ export default function Home() {
       </section>
 
       {/* About Us — Name Origin */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-10 md:py-14 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-4xl md:text-5xl font-bold text-primary text-center mb-12 uppercase tracking-tight"
+            className="font-display text-4xl md:text-5xl font-bold text-primary text-center mb-8 uppercase tracking-tight"
             data-testid="heading-about-us"
           >
             About Us
@@ -107,7 +107,7 @@ export default function Home() {
       <MantraBanner quotes={[0, 1]} className="bg-background" />
 
       {/* Family Story */}
-      <section className="py-16 md:py-24 bg-card">
+      <section className="py-10 md:py-14 bg-card">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -147,7 +147,7 @@ export default function Home() {
       </section>
 
       {/* Where Olive Oil Is a Way of Life */}
-      <section className="py-16 md:py-24 bg-[#f5f0e8]">
+      <section className="py-10 md:py-14 bg-[#f5f0e8]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -167,7 +167,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="mt-12 max-w-3xl mx-auto text-center"
+            className="mt-8 max-w-3xl mx-auto text-center"
           >
             <p className="text-lg text-muted-foreground leading-relaxed mb-4">
               Tunisia is the heart of the Mediterranean — where olive trees outnumber people nearly 8 to 1. Over 83 million trees for just 10 million souls. Here, olives aren't crops. They're culture.
@@ -185,7 +185,7 @@ export default function Home() {
       <MantraBanner quotes={[2, 4]} className="bg-card" />
 
       {/* Picked in the Morning. Pressed by Night. */}
-      <section className="py-16 md:py-24 bg-card">
+      <section className="py-10 md:py-14 bg-card">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -205,7 +205,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="mt-12 max-w-3xl mx-auto text-center"
+            className="mt-8 max-w-3xl mx-auto text-center"
           >
             <p className="text-lg text-muted-foreground leading-relaxed mb-4">
               The moment an olive leaves the branch, the clock starts ticking. That's why we harvest by hand and press within hours — never days. Every olive is carefully washed, sorted, and filtered before cold pressing.
@@ -223,7 +223,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="mt-12 max-w-3xl mx-auto bg-amber-50 border-2 border-amber-300/50 rounded-2xl p-6 sm:p-8 text-center"
+            className="mt-8 max-w-3xl mx-auto bg-amber-50 border-2 border-amber-300/50 rounded-2xl p-6 sm:p-8 text-center"
             data-testid="banner-about-bottled-local"
           >
             <div className="flex items-center justify-center gap-2 mb-3">
@@ -238,7 +238,7 @@ export default function Home() {
       </section>
 
       {/* Nothing Wasted. Everything Honored. */}
-      <section className="py-16 md:py-24 bg-[#f5f0e8]">
+      <section className="py-10 md:py-14 bg-[#f5f0e8]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -258,9 +258,9 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="mt-12 max-w-3xl mx-auto"
+            className="mt-8 max-w-3xl mx-auto"
           >
-            <div className="text-center mb-8">
+            <div className="text-center mb-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Our farmers dry-farm their olives, letting the trees drink only the rain. Between harvests, the soil rests, free from irrigation and chemicals. And when the olives are pressed? Nothing goes to waste.
               </p>
@@ -292,13 +292,13 @@ export default function Home() {
       <MantraBanner quotes={[3, 5]} className="bg-card" />
 
       {/* Olive Oil Education — Single Origin vs. Blended */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-10 md:py-14 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
             <span className="inline-block bg-accent/10 text-accent px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-4" data-testid="badge-olive-oil-101">
               Olive Oil 101
@@ -315,7 +315,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16"
+            className="mb-10"
           >
             <img
               src={singleOriginBottles}
@@ -325,7 +325,7 @@ export default function Home() {
             />
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -375,7 +375,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-16"
+            className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-10"
           >
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img
@@ -486,9 +486,9 @@ export default function Home() {
       <MantraBanner quotes={[6, 7]} className="bg-background" />
 
       {/* Features Grid */}
-      <section className="py-24 bg-card">
+      <section className="py-12 md:py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-10">
             <h2 className="font-display text-4xl font-bold text-primary mb-4">Why Firma Forest?</h2>
             <p className="text-muted-foreground text-lg">
               We connect you with small-batch producers who have tended their groves for generations, ensuring purity you can taste.
@@ -516,7 +516,7 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-24 bg-background">
+      <section className="py-12 md:py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-end mb-12">
             <div>
@@ -549,9 +549,9 @@ export default function Home() {
       </section>
 
       {/* Interactive Map Section */}
-      <section className="py-24 bg-card">
+      <section className="py-12 md:py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
             <div className="max-w-xl text-center md:text-left">
               <h2 className="font-display text-4xl font-bold text-primary mb-4 flex items-center justify-center md:justify-start gap-2">
                 <MapPin className="w-8 h-8 text-accent" />
@@ -578,7 +578,7 @@ export default function Home() {
       </section>
 
       {/* B2B CTA Section */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-12 md:py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary z-0">
           <img
             src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop"
@@ -588,7 +588,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 md:p-16 border border-white/10 text-center max-w-4xl mx-auto">
+          <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 md:p-12 border border-white/10 text-center max-w-4xl mx-auto">
             <img
               src={firmaLogo}
               alt="Firma Forest"
