@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 import { Product, Review } from "@shared/schema";
-import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck, Zap, Star, Send, MessageSquareQuote, TrendingUp } from "lucide-react";
+import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck, Zap, Star, Send, MessageSquareQuote, TrendingUp, Lock, ArrowRight } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { cn } from "@/lib/utils";
 import { useLocation } from "wouter";
@@ -208,9 +208,25 @@ export default function Shop() {
               <p className="text-white/85 leading-relaxed mb-6 font-medium">
                 Every bottle is processed and sealed in South Texas. One distributor in the entire country. One man out of San Marcos with the only key to the operation.
               </p>
-              <p className="text-xl sm:text-2xl font-display font-bold text-amber-400" data-testid="text-firma-forest-tagline">
+              <p className="text-xl sm:text-2xl font-display font-bold text-amber-400 mb-6" data-testid="text-firma-forest-tagline">
                 FIRMA FOREST.
               </p>
+              <div className="bg-white/[0.07] border border-white/10 rounded-xl p-5 text-left">
+                <div className="flex items-center gap-2 mb-2">
+                  <Lock className="w-4 h-4 text-amber-400" />
+                  <p className="text-amber-400 text-xs uppercase tracking-widest font-bold">Investor & Distributor Opportunity</p>
+                </div>
+                <p className="text-white/70 text-sm leading-relaxed mb-3">
+                  One source. One man with the only key. Demand is outpacing supply — and the right partner can help close the gap before the window does.
+                </p>
+                <a
+                  href="/pitch"
+                  className="inline-flex items-center gap-2 text-amber-400 font-bold text-sm"
+                  data-testid="link-pitch-cta"
+                >
+                  Submit Your Pitch <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -19,6 +19,7 @@ Firma Forest is a full-stack e-commerce application for selling artisanal Medite
 - **Customer Reviews (Feb 2026)**: Added reviews table (name, rating 1-5, message). Public GET/POST API at /api/reviews. Review section on Shop page with star rating form, submitted reviews list, and aggregate rating display. No login required to leave a review.
 - **Purchase Funnel (Feb 2026)**: FloatingCheckoutBar shows at bottom when cart has items (hidden on cart/checkout pages). "Buy Now" button on product cards skips cart. Fixed /shop links to /.
 - **OG Meta Tags (Feb 2026)**: Added Open Graph and Twitter meta tags with logo as preview image for shared links.
+- **Investor/Distributor Pitch Page (Feb 2026)**: Rebuilt /pitch page as exclusive-access investor opportunity page. "One Source. One Man. One Opportunity." hero with dark green gradient + subtle shelf photo overlay. 6 retail shelf photos (IMG_6981-6987) in grid. "The Position" section explaining supply bottleneck and proven sell-through. Three feature cards (Proven Sell-Through, Direct Source Pricing, Partnership Not Equity). "Submit Your Pitch" section requesting 3-6 page pitch with specific requirements. Contact info + inquiry form. Teaser CTA added to Shop page green "Proof Is in the Product" section linking to /pitch.
 
 ## User Preferences
 
