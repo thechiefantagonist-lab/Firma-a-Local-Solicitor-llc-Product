@@ -527,7 +527,7 @@ function ProductCard({ product }: { product: Product }) {
           $17 Online
         </div>
       ) : null}
-      <div className="relative aspect-square overflow-hidden bg-gray-50">
+      <div className="relative aspect-[4/3] overflow-hidden bg-gray-50">
         <img 
           src={product.imageUrl} 
           alt={product.name} 
@@ -541,8 +541,8 @@ function ProductCard({ product }: { product: Product }) {
         )}
       </div>
       
-      <div className="p-6 flex flex-col flex-grow">
-        <div className="mb-4">
+      <div className="p-5 flex flex-col flex-grow">
+        <div className="mb-3">
           <span className="text-xs font-bold tracking-wider text-accent uppercase mb-1 block">
             {product.category}
           </span>

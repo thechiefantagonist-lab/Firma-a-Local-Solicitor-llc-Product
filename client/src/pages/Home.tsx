@@ -69,7 +69,7 @@ export default function Home() {
           <img
             src={firmaBanner}
             alt="FIRMA — A Tradition of Excellence in Every Drop, Bringing the True Taste of Tunisia to Your Table."
-            className="w-full h-auto max-h-[70vh] object-contain mx-auto"
+            className="w-full h-auto max-h-[55vh] object-contain mx-auto"
             data-testid="img-hero-banner"
           />
         </motion.div>
@@ -653,7 +653,7 @@ function ProductCardPreview({ product }: { product: Product }) {
   return (
     <Link href="/" className="group block">
       <div className="bg-card rounded-2xl overflow-hidden border border-border/50 hover:shadow-xl hover:border-primary/30 transition-all duration-500 h-full flex flex-col">
-        <div className="aspect-[4/5] overflow-hidden relative bg-gray-100">
+        <div className="aspect-[4/3] overflow-hidden relative bg-gray-100">
           <img
             src={product.imageUrl}
             alt={product.name}
