@@ -14,6 +14,7 @@ import ingredientOrange from "@assets/ingredient-orange.jpg";
 import ingredientLemon from "@assets/ingredient-lemon.jpg";
 import ingredientChili from "@assets/ingredient-chili.jpg";
 import ingredientRosemary from "@assets/ingredient-rosemary.jpg";
+import flightRealPhoto from "@assets/IMG_4939_1768510547154.jpeg";
 
 const FUSED_LINK = "https://olivefreshoils.com/fused-vs-infused/";
 
@@ -527,19 +528,42 @@ function ProductCard({ product }: { product: Product }) {
           $17 Online
         </div>
       ) : null}
-      <div className="relative aspect-[5/4] overflow-hidden bg-gray-50">
-        <img 
-          src={product.imageUrl} 
-          alt={product.name} 
-          className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-        {ingredient && (
-          <div className="absolute bottom-3 right-3 z-10 w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white" data-testid={`img-ingredient-${product.id}`}>
-            <img src={ingredient.src} alt={ingredient.alt} className="w-full h-full object-cover" />
+      {isFlight ? (
+        <div className="relative overflow-hidden bg-gray-50">
+          <div className="grid grid-cols-2">
+            <div className="aspect-[3/4] overflow-hidden">
+              <img
+                src={product.imageUrl}
+                alt={product.name}
+                className="w-full h-full object-contain p-3 transition-transform duration-700 group-hover:scale-105"
+                data-testid={`img-product-${product.id}`}
+              />
+            </div>
+            <div className="aspect-[3/4] overflow-hidden">
+              <img
+                src={flightRealPhoto}
+                alt="The Flavor Flight — open gift box with all seven mini bottles"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                data-testid={`img-product-real-${product.id}`}
+              />
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="relative aspect-[5/4] overflow-hidden bg-gray-50">
+          <img 
+            src={product.imageUrl} 
+            alt={product.name} 
+            className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+          {ingredient && (
+            <div className="absolute bottom-3 right-3 z-10 w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white" data-testid={`img-ingredient-${product.id}`}>
+              <img src={ingredient.src} alt={ingredient.alt} className="w-full h-full object-cover" />
+            </div>
+          )}
+        </div>
+      )}
       
       <div className="p-5 flex flex-col flex-grow">
         <div className="mb-3">
