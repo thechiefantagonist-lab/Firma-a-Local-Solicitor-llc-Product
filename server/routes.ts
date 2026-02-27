@@ -147,6 +147,31 @@ export async function registerRoutes(
     }
   });
 
+  // === Reviews ===
+  app.get(api.reviews.list.path, async (req, res) => {
+    const reviews = await storage.getReviews();
+    res.json(reviews);
+  });
+
+  app.post(api.reviews.create.path, async (req, res) => {
+    try {
+      const input = api.reviews.create.input.parse(req.body);
+      if (input.rating < 1 || input.rating > 5) {
+        return res.status(400).json({ message: "Rating must be between 1 and 5" });
+      }
+      const review = await storage.createReview(input);
+      res.status(201).json(review);
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        return res.status(400).json({
+          message: err.errors[0].message,
+          field: err.errors[0].path.join('.'),
+        });
+      }
+      res.status(500).json({ message: "Failed to create review" });
+    }
+  });
+
   // === Appointments ===
   app.post(api.appointments.create.path, async (req, res) => {
     try {

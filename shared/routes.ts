@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { insertProductSchema, products, insertAppointmentSchema, appointments, insertOrderSchema, orders, locations } from './schema';
+import { insertProductSchema, products, insertAppointmentSchema, appointments, insertOrderSchema, orders, locations, reviews, insertReviewSchema } from './schema';
 
 export const errorSchemas = {
   validation: z.object({
@@ -76,7 +76,25 @@ export const api = {
         200: z.array(z.custom<typeof locations.$inferSelect>()),
       },
     },
-  }
+  },
+  reviews: {
+    list: {
+      method: 'GET' as const,
+      path: '/api/reviews',
+      responses: {
+        200: z.array(z.custom<typeof reviews.$inferSelect>()),
+      },
+    },
+    create: {
+      method: 'POST' as const,
+      path: '/api/reviews',
+      input: insertReviewSchema,
+      responses: {
+        201: z.custom<typeof reviews.$inferSelect>(),
+        400: errorSchemas.validation,
+      },
+    },
+  },
 };
 
 export function buildUrl(path: string, params?: Record<string, string | number>): string {

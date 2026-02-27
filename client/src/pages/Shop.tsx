@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
-import { Product } from "@shared/schema";
-import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck, Zap } from "lucide-react";
+import { Product, Review } from "@shared/schema";
+import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck, Zap, Star, Send, MessageSquareQuote } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { cn } from "@/lib/utils";
 import { useLocation } from "wouter";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 import ingredientOrange from "@assets/ingredient-orange.jpg";
 import ingredientLemon from "@assets/ingredient-lemon.jpg";
@@ -149,6 +152,8 @@ export default function Shop() {
           </div>
         </div>
 
+        <ReviewSection />
+
         {/* Local Partners Section */}
         <section className="mt-24 py-16 border-t-2 border-primary/20">
           <div className="text-center mb-12">
@@ -193,6 +198,201 @@ export default function Shop() {
         </section>
       </div>
     </div>
+  );
+}
+
+function StarRating({ rating, onRate, interactive = false }: { rating: number; onRate?: (r: number) => void; interactive?: boolean }) {
+  const [hover, setHover] = useState(0);
+  return (
+    <div className="flex gap-0.5" data-testid="star-rating">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <button
+          key={star}
+          type="button"
+          disabled={!interactive}
+          onClick={() => onRate?.(star)}
+          onMouseEnter={() => interactive && setHover(star)}
+          onMouseLeave={() => interactive && setHover(0)}
+          className={cn("transition-colors", interactive ? "cursor-pointer" : "cursor-default")}
+          data-testid={`button-star-${star}`}
+        >
+          <Star
+            className={cn(
+              "w-5 h-5",
+              (hover || rating) >= star
+                ? "fill-amber-400 text-amber-400"
+                : "fill-none text-muted-foreground/30"
+            )}
+          />
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function ReviewSection() {
+  const { toast } = useToast();
+  const [name, setName] = useState("");
+  const [rating, setRating] = useState(0);
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const { data: reviews = [], isLoading } = useQuery<Review[]>({
+    queryKey: ['/api/reviews'],
+  });
+
+  const createReview = useMutation({
+    mutationFn: async (data: { name: string; rating: number; message: string }) => {
+      await apiRequest("POST", "/api/reviews", data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/reviews'] });
+      setName("");
+      setRating(0);
+      setMessage("");
+      setSubmitted(true);
+      toast({ title: "Thank you!", description: "Your review has been submitted." });
+      setTimeout(() => setSubmitted(false), 4000);
+    },
+    onError: () => {
+      toast({ title: "Oops", description: "Something went wrong. Please try again.", variant: "destructive" });
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !message.trim() || rating === 0) {
+      toast({ title: "Hold on", description: "Please fill in your name, a star rating, and a message.", variant: "destructive" });
+      return;
+    }
+    createReview.mutate({ name: name.trim(), rating, message: message.trim() });
+  };
+
+  const avgRating = reviews.length > 0
+    ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+    : 0;
+
+  return (
+    <section className="mt-24 py-16 border-t-2 border-primary/20" data-testid="section-reviews">
+      <div className="text-center mb-12">
+        <p className="text-amber-600 text-sm uppercase tracking-widest font-semibold mb-2">What Folks Are Saying</p>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-3 flex items-center justify-center gap-3">
+          <MessageSquareQuote className="w-8 h-8 text-amber-500" />
+          Customer Reviews
+        </h2>
+        {reviews.length > 0 && (
+          <div className="flex items-center justify-center gap-2 text-muted-foreground" data-testid="text-review-summary">
+            <StarRating rating={Math.round(avgRating)} />
+            <span className="font-semibold text-foreground">{avgRating.toFixed(1)}</span>
+            <span>from {reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}</span>
+          </div>
+        )}
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        <div className="lg:col-span-2">
+          <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-sm sticky top-28">
+            <h3 className="font-display text-xl font-bold text-foreground mb-1">Leave a Review</h3>
+            <p className="text-sm text-muted-foreground mb-6">Tried our oils? We'd love to hear from you.</p>
+
+            {submitted ? (
+              <div className="text-center py-8" data-testid="review-success">
+                <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                  <Check className="w-7 h-7 text-green-600" />
+                </div>
+                <p className="font-semibold text-foreground">Thanks for your review!</p>
+                <p className="text-sm text-muted-foreground mt-1">Your feedback means the world to us.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="review-name" className="block text-sm font-medium text-foreground mb-1.5">Your Name</label>
+                  <input
+                    id="review-name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="First name or nickname"
+                    className="w-full px-4 py-2.5 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                    data-testid="input-review-name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Rating</label>
+                  <StarRating rating={rating} onRate={setRating} interactive />
+                </div>
+
+                <div>
+                  <label htmlFor="review-message" className="block text-sm font-medium text-foreground mb-1.5">Your Review</label>
+                  <textarea
+                    id="review-message"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="What did you think? Which flavor was your favorite?"
+                    rows={4}
+                    className="w-full px-4 py-2.5 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none"
+                    data-testid="input-review-message"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={createReview.isPending}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm bg-primary text-primary-foreground shadow-md disabled:opacity-60"
+                  data-testid="button-submit-review"
+                >
+                  {createReview.isPending ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Send className="w-4 h-4" />
+                  )}
+                  Submit Review
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+
+        <div className="lg:col-span-3">
+          {isLoading ? (
+            <div className="flex justify-center py-12">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : reviews.length === 0 ? (
+            <div className="text-center py-16 bg-card rounded-2xl border border-dashed border-border" data-testid="text-no-reviews">
+              <MessageSquareQuote className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
+              <p className="text-muted-foreground font-medium">No reviews yet — be the first!</p>
+              <p className="text-sm text-muted-foreground/70 mt-1">Your words help other neighbors discover Firma Forest.</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {reviews.map((review) => (
+                <div key={review.id} className="bg-card border border-border rounded-2xl p-5 sm:p-6 shadow-sm" data-testid={`card-review-${review.id}`}>
+                  <div className="flex items-start justify-between gap-4 mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <span className="text-sm font-bold text-primary">{review.name.charAt(0).toUpperCase()}</span>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground text-sm" data-testid={`text-review-name-${review.id}`}>{review.name}</p>
+                        <StarRating rating={review.rating} />
+                      </div>
+                    </div>
+                    {review.createdAt && (
+                      <span className="text-xs text-muted-foreground/60 shrink-0" data-testid={`text-review-date-${review.id}`}>
+                        {new Date(review.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed" data-testid={`text-review-message-${review.id}`}>{review.message}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
 

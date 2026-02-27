@@ -16,6 +16,9 @@ Firma Forest is a full-stack e-commerce application for selling artisanal Medite
 - **Landing Page**: Shop page is now the landing page ("/"). The original home/story page is accessible at "/about".
 - **Partner Locations (Feb 2026)**: Added 16 real Central Texas partner locations (restaurants, wineries, markets, cafes) to the database. Added "Our Partners" grid and interactive map to Wholesale & Partners page. Includes 15+ Farmers Markets card.
 - **Square Payment Integration (Feb 2026)**: Added Square Web Payments SDK for checkout. Backend processes payments via Square Payments API. Checkout page at /checkout with card form. Orders table has paymentId field. Currently using sandbox/test mode.
+- **Customer Reviews (Feb 2026)**: Added reviews table (name, rating 1-5, message). Public GET/POST API at /api/reviews. Review section on Shop page with star rating form, submitted reviews list, and aggregate rating display. No login required to leave a review.
+- **Purchase Funnel (Feb 2026)**: FloatingCheckoutBar shows at bottom when cart has items (hidden on cart/checkout pages). "Buy Now" button on product cards skips cart. Fixed /shop links to /.
+- **OG Meta Tags (Feb 2026)**: Added Open Graph and Twitter meta tags with logo as preview image for shared links.
 
 ## User Preferences
 
@@ -55,6 +58,7 @@ Key tables:
 - `orders` / `order_items` - Order management
 - `appointments` - Wholesale inquiry requests
 - `locations` - Partner/store locations with coordinates
+- `reviews` - Customer reviews (name, rating 1-5, message)
 
 ### Authentication Flow
 Replit Auth provides OpenID Connect authentication. The flow:
