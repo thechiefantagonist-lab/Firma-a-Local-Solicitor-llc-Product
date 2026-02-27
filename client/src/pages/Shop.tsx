@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 import { Product, Review } from "@shared/schema";
-import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck, Zap, Star, Send, MessageSquareQuote } from "lucide-react";
+import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck, Zap, Star, Send, MessageSquareQuote, TrendingUp } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { cn } from "@/lib/utils";
 import { useLocation } from "wouter";
@@ -149,6 +149,28 @@ export default function Shop() {
                 ALL processing and bottling happens right here in South Texas — not overseas, not out of state. Firma Forest is the sole U.S. distributor of these Tunisian oils, and the man behind every bottle is a proud San Martian. From grove to your kitchen, this is as local as imported olive oil gets.
               </p>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-16 bg-gradient-to-br from-primary via-[hsl(150,35%,24%)] to-[hsl(160,30%,22%)] rounded-2xl p-8 sm:p-10 text-white relative overflow-hidden shadow-lg" data-testid="banner-food-truck-impact">
+          <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 50%)' }} />
+          <div className="relative z-10 max-w-3xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <TrendingUp className="w-7 h-7 text-amber-400" />
+              <p className="text-amber-400 text-sm uppercase tracking-widest font-bold">Real Results. Real Flavor.</p>
+            </div>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold mb-4 leading-snug" data-testid="text-food-truck-headline">
+              Over 5 Food Trucks Have Seen a Complete Turnaround
+            </h3>
+            <p className="text-white/80 leading-relaxed mb-4">
+              Not just in profit — in customer feedback on actual taste and comfort. What was a simple miscommunication turned out to be the wrong information, or better yet, a complete lack of it. Most people had never tasted real, authentic, Tunisian-grown olive oil — no preservatives, no blends, no shortcuts.
+            </p>
+            <p className="text-white/80 leading-relaxed mb-6">
+              Now it's here. Bottled in Texas. And only one man has the coordinates to the safe.
+            </p>
+            <p className="text-xl sm:text-2xl font-display font-bold text-amber-400" data-testid="text-firma-forest-tagline">
+              FIRMA FOREST.
+            </p>
           </div>
         </div>
 
