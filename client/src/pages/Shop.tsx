@@ -270,6 +270,18 @@ export default function Shop() {
               url="https://theculinaryroom.com"
             />
             <PartnerCard 
+              name="The Austin Winery"
+              location="Austin"
+              description="Urban winery crafting Texas wines with local flair"
+              url="https://theaustinwinery.com"
+            />
+            <PartnerCard 
+              name="Duchman Family Winery"
+              location="Driftwood"
+              description="Award-winning Texas wines rooted in Italian tradition"
+              url="https://duchmanwinery.com"
+            />
+            <PartnerCard 
               name="San Marcos Square Boutiques"
               location="Downtown on the Square"
               description="Shop local at the heart of our Hill Country town"
