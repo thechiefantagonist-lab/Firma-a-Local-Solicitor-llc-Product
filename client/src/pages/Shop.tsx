@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 import { Product, Review } from "@shared/schema";
-import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck, Zap, Star, Send, MessageSquareQuote, TrendingUp, Lock, ArrowRight } from "lucide-react";
+import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck, Zap, Star, Send, MessageSquareQuote, TrendingUp, Lock, ArrowRight, ExternalLink } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { cn } from "@/lib/utils";
 import { useLocation } from "wouter";
@@ -247,7 +247,7 @@ export default function Shop() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             <PartnerCard 
               name="African Eats & Market"
               location="San Marcos"
@@ -262,6 +262,12 @@ export default function Shop() {
               name="15+ Farmers Markets"
               location="Georgetown to San Antonio"
               description="Find us every weekend along the I-35 corridor"
+            />
+            <PartnerCard 
+              name="The Culinary Room"
+              location="San Marcos"
+              description="Fine dining experience with locally sourced ingredients"
+              url="https://theculinaryroom.com"
             />
             <PartnerCard 
               name="San Marcos Square Boutiques"
@@ -476,22 +482,27 @@ function ReviewSection() {
   );
 }
 
-function PartnerCard({ name, location, description }: { name: string; location?: string; description: string }) {
+function PartnerCard({ name, location, description, url }: { name: string; location?: string; description: string; url?: string }) {
+  const Wrapper = url ? "a" : "div";
+  const linkProps = url ? { href: url, target: "_blank", rel: "noopener noreferrer" } : {};
   return (
-    <div className="bg-card rounded-lg p-6 border-2 border-border hover:border-primary/40 hover:shadow-lg transition-all duration-300">
+    <Wrapper {...linkProps} className="bg-card rounded-lg p-6 border-2 border-border hover:border-primary/40 hover:shadow-lg transition-all duration-300 block">
       <div className="flex items-start gap-3 mb-3">
         <div className="p-2 rounded-md bg-accent/20">
           <MapPin className="w-5 h-5 text-accent" />
         </div>
         <div>
-          <h3 className="font-display text-lg font-semibold text-foreground">{name}</h3>
+          <h3 className="font-display text-lg font-semibold text-foreground flex items-center gap-2">
+            {name}
+            {url && <ExternalLink className="w-3.5 h-3.5 text-accent" />}
+          </h3>
           {location && (
             <p className="text-xs text-primary font-bold uppercase tracking-wide">{location}</p>
           )}
         </div>
       </div>
       <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-    </div>
+    </Wrapper>
   );
 }
 
