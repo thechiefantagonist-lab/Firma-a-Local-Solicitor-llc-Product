@@ -162,24 +162,62 @@ export default function Networking() {
                 )}
               </div>
 
-              <button
-                type="submit"
-                disabled={isPending}
-                className={cn(
-                  "w-full py-4 rounded-xl font-bold text-lg transition-all duration-200 shadow-lg",
-                  isPending 
-                    ? "bg-muted text-muted-foreground cursor-not-allowed"
-                    : "bg-primary text-primary-foreground hover:shadow-xl hover:-translate-y-0.5"
-                )}
-              >
-                {isPending ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <Loader2 className="w-5 h-5 animate-spin" /> Sending...
-                  </span>
-                ) : (
-                  "Submit Request"
-                )}
-              </button>
+              <div className="relative w-full flex justify-center pt-2">
+                <svg
+                  className={cn(
+                    "absolute -top-1 right-[calc(50%-60px)] w-8 h-8 drop-shadow-sm transition-all duration-300 origin-bottom-right",
+                    isPending ? "text-muted-foreground/40" : "text-green-600 group-hover:rotate-[-8deg]"
+                  )}
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 28C16 28 8 22 6 14C5 10 7 6 11 5C13 4.3 15 5 16 6C17 5 19 4.3 21 5C25 6 27 10 26 14C24 22 16 28 16 28Z"
+                    fill="currentColor"
+                    opacity="0.25"
+                  />
+                  <path
+                    d="M16 6C16 6 14 12 16 20"
+                    stroke="currentColor"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    opacity="0.6"
+                  />
+                  <path
+                    d="M12 10C12 10 14 12 16 12M20 9C20 9 18 11 16 12"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    opacity="0.4"
+                  />
+                </svg>
+                <button
+                  type="submit"
+                  disabled={isPending}
+                  data-testid="button-submit-consultation"
+                  className={cn(
+                    "group w-full py-4 font-bold text-lg transition-all duration-300 shadow-lg relative overflow-hidden",
+                    "olive-button",
+                    isPending 
+                      ? "bg-muted text-muted-foreground cursor-not-allowed"
+                      : "bg-primary text-primary-foreground hover:shadow-xl hover:-translate-y-0.5 hover:scale-[1.02]"
+                  )}
+                  style={{
+                    borderRadius: "60% 40% 55% 45% / 50% 55% 45% 50%",
+                  }}
+                >
+                  {isPending ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <Loader2 className="w-5 h-5 animate-spin" /> Sending...
+                    </span>
+                  ) : (
+                    <span className="flex items-center justify-center gap-2">
+                      Submit Request
+                    </span>
+                  )}
+                </button>
+              </div>
             </form>
           </div>
 
