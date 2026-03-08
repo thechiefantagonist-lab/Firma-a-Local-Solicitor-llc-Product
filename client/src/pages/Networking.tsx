@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertAppointmentSchema, Location } from "@shared/schema";
@@ -5,7 +6,7 @@ import { useCreateAppointment } from "@/hooks/use-appointments";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@shared/routes";
 import { z } from "zod";
-import { Loader2, CalendarCheck, Phone, Mail, MapPin, Store, Grape, Coffee, ShoppingBag } from "lucide-react";
+import { Loader2, CalendarCheck, Phone, Mail, MapPin, Store, Grape, Coffee, ShoppingBag, Calendar } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { cn } from "@/lib/utils";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
@@ -185,6 +186,24 @@ export default function Networking() {
         </div>
       </div>
 
+      {/* Book an Appointment Section */}
+      <div className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent/20 mb-4">
+              <Calendar className="w-7 h-7 text-accent" />
+            </div>
+            <h2 className="font-display text-3xl font-bold text-primary mb-3">Book an Appointment</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Schedule a tasting, consultation, or meeting directly. Pick a time that works for you and we'll take care of the rest.
+            </p>
+          </div>
+          <div className="bg-card rounded-3xl shadow-xl shadow-black/5 border border-border/50 p-6 md:p-10">
+            <SquareAppointmentsWidget />
+          </div>
+        </div>
+      </div>
+
       {/* Current Partners Section */}
       <div className="bg-secondary/20 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -278,6 +297,28 @@ function Benefit({ title, description }: { title: string, description: string })
       </div>
     </div>
   );
+}
+
+function SquareAppointmentsWidget() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const script = document.createElement("script");
+    script.src = "https://square.site/appointments/buyer/widget/2r93bpx19xj7eu/LRAV2MZ0XB0HZ.js";
+    script.async = true;
+    containerRef.current.appendChild(script);
+
+    return () => {
+      if (containerRef.current) {
+        const scripts = containerRef.current.querySelectorAll("script");
+        scripts.forEach((s) => s.remove());
+      }
+    };
+  }, []);
+
+  return <div ref={containerRef} data-testid="widget-square-appointments" />;
 }
 
 function FormInput({ label, error, className, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string, error?: string }) {
