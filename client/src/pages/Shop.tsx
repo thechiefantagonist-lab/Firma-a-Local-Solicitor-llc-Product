@@ -161,18 +161,26 @@ export default function Shop() {
           <div className="absolute top-0 right-0 w-64 h-64 opacity-[0.06] rounded-full bg-amber-400 blur-3xl" />
 
           <div className="relative z-10">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 bg-amber-400/15 border border-amber-400/30 rounded-full px-5 py-2 mb-4">
-                <Lock className="w-4 h-4 text-amber-400" />
-                <span className="text-amber-400 text-xs uppercase tracking-widest font-bold">Verified & Documented</span>
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 items-center mb-8">
+              <div className="text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 bg-amber-400/15 border border-amber-400/30 rounded-full px-4 py-1.5 mb-3">
+                  <Lock className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="text-amber-400 text-[11px] uppercase tracking-widest font-bold">Verified & Documented</span>
+                </div>
+                <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">Licensing & Certifications</h3>
+                <p className="text-amber-400 text-xl sm:text-2xl font-bold uppercase tracking-wider">Processed in Texas</p>
+                <div className="mt-3 h-1 w-16 bg-amber-400/40 rounded-full mx-auto lg:mx-0" />
               </div>
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">Licensing & Certifications</h3>
-              <p className="text-amber-400 text-lg font-bold uppercase tracking-wide">Processed in Texas</p>
-            </div>
 
-            <p className="text-white/80 text-center leading-relaxed max-w-3xl mx-auto mb-8 text-base">
-              Firma Forest olive oils are imported as raw product from Tunisia and processed, filtered, infused, and bottled entirely within the state of Texas. Every step from raw oil to finished, sealed bottle — including quality control, flavor infusion, filtering, and labeling — takes place in a licensed Texas facility under full regulatory compliance.
-            </p>
+              <div>
+                <p className="text-white/90 leading-relaxed text-base mb-4">
+                  Firma Forest is a <span className="text-amber-400 font-bold">Texas-local company</span>. Our olive oils are imported as raw product and processed, filtered, flavor-infused, and bottled right here in the Lone Star State. Every bottle you buy supports a Texas-based operation run by a proud San Martian.
+                </p>
+                <p className="text-white/70 leading-relaxed text-sm">
+                  "Processed in Texas" means the full production pipeline — quality control, infusion, filtering, bottling, and labeling — happens in a licensed Texas facility. Not out of state. Not overseas. This is a Texas business, start to finish.
+                </p>
+              </div>
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-5 text-center hover:bg-white/15 transition-colors">
