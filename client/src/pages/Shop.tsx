@@ -15,6 +15,7 @@ import ingredientLemon from "@assets/ingredient-lemon.jpg";
 import ingredientChili from "@assets/ingredient-chili.jpg";
 import ingredientRosemary from "@assets/ingredient-rosemary.jpg";
 import flightRealPhoto from "@assets/IMG_4939_1768510547154.jpeg";
+import halalResearchCentre from "@assets/Image_3-8-26_at_7.44_PM_1773017490702.png";
 
 const FUSED_LINK = "https://olivefreshoils.com/fused-vs-infused/";
 
@@ -125,6 +126,12 @@ export default function Shop() {
               </h1>
               <p className="text-sm md:text-base font-medium text-primary-foreground/60 tracking-tight mt-1" style={{ fontStyle: 'italic' }}>Rooted in Tradition. Bottled for Texas.</p>
             </div>
+            <img
+              src={halalResearchCentre}
+              alt="Halal Research Centre Certified"
+              className="hidden sm:block h-20 w-20 md:h-24 md:w-24 rounded-full object-cover drop-shadow-lg"
+              data-testid="img-halal-research-centre"
+            />
           </div>
         </div>
       </div>
