@@ -118,31 +118,23 @@ export default function Shop() {
       {/* Header */}
       <div className="bg-primary pt-10 pb-8 px-4 relative">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-          <div className="flex items-center gap-4 md:gap-6 mb-1">
-            <div className="hidden sm:flex flex-col items-center gap-2 shrink-0">
-              <div className="flex items-center gap-2">
-                <TexasBadge />
-                <HalalBadge />
-              </div>
-              <img src={halalResearchCentre} alt="Halal Research Centre Certified" className="h-12 w-12 md:h-14 md:w-14 rounded-full object-cover drop-shadow-md bg-white" data-testid="img-halal-research-centre" />
-            </div>
-
-            <img src={firmaLogo} alt="Firma Forest" className="h-20 md:h-24 w-auto rounded-md bg-white/10 p-1" data-testid="img-shop-hero-logo" />
+          <div className="flex items-center justify-center gap-3 md:gap-5 mb-4">
+            <img src={firmaLogo} alt="Firma Forest" className="h-20 md:h-28 w-auto rounded-md bg-white/10 p-1" data-testid="img-shop-hero-logo" />
             <div className="text-left">
               <h1 className="font-display font-bold text-primary-foreground uppercase leading-none">
-                <span className="text-4xl md:text-5xl">F</span><span className="text-2xl md:text-3xl">IRMA</span>{" "}
-                <span className="text-4xl md:text-5xl">F</span><span className="text-2xl md:text-3xl">OREST</span>
+                <span className="text-4xl md:text-6xl">F</span><span className="text-2xl md:text-4xl">IRMA</span>{" "}
+                <span className="text-4xl md:text-6xl">F</span><span className="text-2xl md:text-4xl">OREST</span>
               </h1>
-              <p className="text-sm md:text-base font-medium text-primary-foreground/60 tracking-tight mt-1" style={{ fontStyle: 'italic' }}>Rooted in Tradition. Bottled for Texas.</p>
+              <p className="text-sm md:text-lg font-medium text-primary-foreground/70 tracking-tight mt-1" style={{ fontStyle: 'italic' }}>Rooted in Tradition. Bottled for Texas.</p>
             </div>
-
-            <div className="hidden sm:flex flex-col items-center gap-2 shrink-0">
-              <img src={euOrganicBadge} alt="EU Organic Certified" className="h-12 md:h-14 w-auto rounded-md object-contain drop-shadow-md" data-testid="img-eu-organic" />
-              <div className="flex items-center gap-2">
-                <img src={pgiBadge} alt="Protected Geographical Indication" className="h-12 w-12 md:h-14 md:w-14 rounded-full object-cover drop-shadow-md bg-white" data-testid="img-pgi-badge" />
-                <img src={pdoBadge} alt="Protected Designation of Origin" className="h-12 w-12 md:h-14 md:w-14 rounded-full object-cover drop-shadow-md bg-white" data-testid="img-pdo-badge" />
-              </div>
-            </div>
+          </div>
+          <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 flex-wrap">
+            <TexasBadge />
+            <HalalBadge />
+            <img src={halalResearchCentre} alt="Halal Research Centre Certified" className="h-14 w-14 sm:h-16 sm:w-16 md:h-[4.5rem] md:w-[4.5rem] rounded-full object-cover drop-shadow-lg bg-white border-2 border-white/30" data-testid="img-halal-research-centre" />
+            <img src={euOrganicBadge} alt="EU Organic Certified" className="h-14 sm:h-16 md:h-[4.5rem] w-auto rounded-lg object-contain drop-shadow-lg" data-testid="img-eu-organic" />
+            <img src={pgiBadge} alt="Protected Geographical Indication" className="h-14 w-14 sm:h-16 sm:w-16 md:h-[4.5rem] md:w-[4.5rem] rounded-full object-cover drop-shadow-lg bg-white border-2 border-white/30" data-testid="img-pgi-badge" />
+            <img src={pdoBadge} alt="Protected Designation of Origin" className="h-14 w-14 sm:h-16 sm:w-16 md:h-[4.5rem] md:w-[4.5rem] rounded-full object-cover drop-shadow-lg bg-white border-2 border-white/30" data-testid="img-pdo-badge" />
           </div>
         </div>
       </div>
