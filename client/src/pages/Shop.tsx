@@ -156,6 +156,54 @@ export default function Shop() {
           </div>
         </div>
 
+        <div className="mt-6 bg-card border-2 border-primary/20 rounded-2xl p-6 sm:p-8 shadow-sm" data-testid="banner-licensing-certificates">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="p-2.5 rounded-xl bg-primary/10">
+              <Lock className="w-6 h-6 text-primary" />
+            </div>
+            <div>
+              <h3 className="font-display text-lg font-bold text-foreground">Licensing & Certifications</h3>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Processed in Texas — Verified & Documented</p>
+            </div>
+          </div>
+          <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+            Firma Forest olive oils are imported as raw product from Tunisia and processed, filtered, infused, and bottled entirely within the state of Texas. "Processed in Texas" means every step from raw oil to finished, sealed bottle — including quality control, flavor infusion, filtering, and labeling — takes place in a licensed Texas facility under full regulatory compliance.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="flex items-start gap-3 p-3 rounded-xl bg-background border border-border">
+              <ShieldCheck className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-sm font-semibold text-foreground">Texas DSHS Food License</p>
+                <p className="text-xs text-muted-foreground">State-licensed food manufacturing facility</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-3 rounded-xl bg-background border border-border">
+              <ShieldCheck className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-sm font-semibold text-foreground">Halal Certified</p>
+                <p className="text-xs text-muted-foreground">Full documentation from grove to bottle</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-3 rounded-xl bg-background border border-border">
+              <ShieldCheck className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-sm font-semibold text-foreground">FDA Compliant</p>
+                <p className="text-xs text-muted-foreground">Proper labeling & food safety standards</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-3 rounded-xl bg-background border border-border">
+              <ShieldCheck className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-sm font-semibold text-foreground">Single-Origin Traceable</p>
+                <p className="text-xs text-muted-foreground">Every bottle traced back to Tunisian groves</p>
+              </div>
+            </div>
+          </div>
+          <p className="text-xs text-muted-foreground mt-5 italic">
+            All certification documents are available upon request. For wholesale or compliance inquiries, contact Sales@firmaforest.com.
+          </p>
+        </div>
+
         <div className="mt-10 bg-gradient-to-br from-primary via-[hsl(150,35%,24%)] to-[hsl(160,30%,22%)] rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg" data-testid="banner-food-truck-impact">
           <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 50%)' }} />
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
