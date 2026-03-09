@@ -16,6 +16,9 @@ import ingredientChili from "@assets/ingredient-chili.jpg";
 import ingredientRosemary from "@assets/ingredient-rosemary.jpg";
 import flightRealPhoto from "@assets/IMG_4939_1768510547154.jpeg";
 import halalResearchCentre from "@assets/Image_3-8-26_at_7.44_PM_1773017490702.png";
+import euOrganicBadge from "@assets/Image_3-8-26_at_7.56_PM_(2)_1773018171969.jpeg";
+import pgiBadge from "@assets/Image_3-8-26_at_7.57_PM_(1)_1773018171969.jpeg";
+import pdoBadge from "@assets/Image_3-8-26_at_7.57_PM_1773018171969.jpeg";
 
 const FUSED_LINK = "https://olivefreshoils.com/fused-vs-infused/";
 
@@ -115,7 +118,7 @@ export default function Shop() {
       {/* Header */}
       <div className="bg-primary pt-10 pb-8 px-4 relative">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-          <div className="flex items-center gap-4 mb-1">
+          <div className="flex items-center gap-4 mb-3">
             <TexasBadge />
             <HalalBadge />
             <img src={firmaLogo} alt="Firma Forest" className="h-20 md:h-24 w-auto rounded-md bg-white/10 p-1" data-testid="img-shop-hero-logo" />
@@ -126,11 +129,31 @@ export default function Shop() {
               </h1>
               <p className="text-sm md:text-base font-medium text-primary-foreground/60 tracking-tight mt-1" style={{ fontStyle: 'italic' }}>Rooted in Tradition. Bottled for Texas.</p>
             </div>
+          </div>
+          <div className="flex items-center justify-center gap-4 sm:gap-6 flex-wrap">
             <img
               src={halalResearchCentre}
               alt="Halal Research Centre Certified"
-              className="hidden sm:block h-20 w-20 md:h-24 md:w-24 rounded-full object-cover drop-shadow-lg"
+              className="h-14 w-14 md:h-16 md:w-16 rounded-full object-cover drop-shadow-md bg-white"
               data-testid="img-halal-research-centre"
+            />
+            <img
+              src={euOrganicBadge}
+              alt="EU Organic Certified"
+              className="h-14 md:h-16 w-auto rounded-lg object-contain drop-shadow-md"
+              data-testid="img-eu-organic"
+            />
+            <img
+              src={pgiBadge}
+              alt="Protected Geographical Indication"
+              className="h-14 w-14 md:h-16 md:w-16 rounded-full object-cover drop-shadow-md bg-white"
+              data-testid="img-pgi-badge"
+            />
+            <img
+              src={pdoBadge}
+              alt="Protected Designation of Origin"
+              className="h-14 w-14 md:h-16 md:w-16 rounded-full object-cover drop-shadow-md bg-white"
+              data-testid="img-pdo-badge"
             />
           </div>
         </div>
