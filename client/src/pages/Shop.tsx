@@ -270,6 +270,11 @@ export default function Shop() {
               url="https://theculinaryroom.com"
             />
             <PartnerCard 
+              name="Yum Yum Gyros And More"
+              location="San Marcos"
+              description="Mediterranean street food with bold, fresh flavors"
+            />
+            <PartnerCard 
               name="The Austin Winery"
               location="Austin"
               description="Urban winery crafting Texas wines with local flair"
