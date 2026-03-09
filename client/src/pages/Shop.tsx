@@ -118,10 +118,15 @@ export default function Shop() {
       {/* Header */}
       <div className="bg-primary pt-10 pb-8 px-4 relative">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-          <div className="flex items-center gap-3 md:gap-4 mb-1">
-            <TexasBadge />
-            <HalalBadge />
-            <img src={halalResearchCentre} alt="Halal Research Centre Certified" className="hidden sm:block h-16 w-16 md:h-20 md:w-20 rounded-full object-cover drop-shadow-md bg-white shrink-0" data-testid="img-halal-research-centre" />
+          <div className="flex items-center gap-4 md:gap-6 mb-1">
+            <div className="hidden sm:flex flex-col items-center gap-2 shrink-0">
+              <div className="flex items-center gap-2">
+                <TexasBadge />
+                <HalalBadge />
+              </div>
+              <img src={halalResearchCentre} alt="Halal Research Centre Certified" className="h-12 w-12 md:h-14 md:w-14 rounded-full object-cover drop-shadow-md bg-white" data-testid="img-halal-research-centre" />
+            </div>
+
             <img src={firmaLogo} alt="Firma Forest" className="h-20 md:h-24 w-auto rounded-md bg-white/10 p-1" data-testid="img-shop-hero-logo" />
             <div className="text-left">
               <h1 className="font-display font-bold text-primary-foreground uppercase leading-none">
@@ -130,9 +135,14 @@ export default function Shop() {
               </h1>
               <p className="text-sm md:text-base font-medium text-primary-foreground/60 tracking-tight mt-1" style={{ fontStyle: 'italic' }}>Rooted in Tradition. Bottled for Texas.</p>
             </div>
-            <img src={euOrganicBadge} alt="EU Organic Certified" className="hidden sm:block h-16 md:h-20 w-auto rounded-lg object-contain drop-shadow-md shrink-0" data-testid="img-eu-organic" />
-            <img src={pgiBadge} alt="Protected Geographical Indication" className="hidden sm:block h-16 w-16 md:h-20 md:w-20 rounded-full object-cover drop-shadow-md bg-white shrink-0" data-testid="img-pgi-badge" />
-            <img src={pdoBadge} alt="Protected Designation of Origin" className="hidden sm:block h-16 w-16 md:h-20 md:w-20 rounded-full object-cover drop-shadow-md bg-white shrink-0" data-testid="img-pdo-badge" />
+
+            <div className="hidden sm:flex flex-col items-center gap-2 shrink-0">
+              <img src={euOrganicBadge} alt="EU Organic Certified" className="h-12 md:h-14 w-auto rounded-md object-contain drop-shadow-md" data-testid="img-eu-organic" />
+              <div className="flex items-center gap-2">
+                <img src={pgiBadge} alt="Protected Geographical Indication" className="h-12 w-12 md:h-14 md:w-14 rounded-full object-cover drop-shadow-md bg-white" data-testid="img-pgi-badge" />
+                <img src={pdoBadge} alt="Protected Designation of Origin" className="h-12 w-12 md:h-14 md:w-14 rounded-full object-cover drop-shadow-md bg-white" data-testid="img-pdo-badge" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
