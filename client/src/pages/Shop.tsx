@@ -54,6 +54,29 @@ function getIngredientImage(productName: string): { src: string; alt: string } |
   return null;
 }
 
+function TexasBadge() {
+  return (
+    <div className="shrink-0 hidden sm:block" data-testid="badge-verified-texas">
+      <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-24 md:h-24 drop-shadow-lg" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="#1a3a2a" stroke="#d4a843" strokeWidth="3" />
+        <circle cx="50" cy="50" r="42" fill="none" stroke="#d4a843" strokeWidth="1" strokeDasharray="3 3" />
+
+        <polygon
+          points="50,28 52.5,35 60,35.5 54,40 56,47.5 50,43 44,47.5 46,40 40,35.5 47.5,35"
+          fill="#d4a843"
+        />
+
+        <text x="50" y="60" textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="serif" letterSpacing="0.5">VERIFIED</text>
+        <text x="50" y="69" textAnchor="middle" fill="#d4a843" fontSize="8.5" fontWeight="bold" fontFamily="serif" letterSpacing="1">TEXAS</text>
+        <text x="50" y="78" textAnchor="middle" fill="white" fontSize="6" fontWeight="bold" fontFamily="serif" letterSpacing="0.5">PRODUCT</text>
+
+        <path d="M 20 22 Q 50 14 80 22" fill="none" stroke="#d4a843" strokeWidth="0.8" opacity="0.5" />
+        <path d="M 20 82 Q 50 90 80 82" fill="none" stroke="#d4a843" strokeWidth="0.8" opacity="0.5" />
+      </svg>
+    </div>
+  );
+}
+
 export default function Shop() {
   const { data: products, isLoading } = useProducts();
   const [filter, setFilter] = useState<string>("all");
@@ -68,6 +91,7 @@ export default function Shop() {
       <div className="bg-primary pt-10 pb-8 px-4 relative">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
           <div className="flex items-center gap-4 mb-1">
+            <TexasBadge />
             <img src={firmaLogo} alt="Firma Forest" className="h-20 md:h-24 w-auto rounded-md bg-white/10 p-1" data-testid="img-shop-hero-logo" />
             <div className="text-left">
               <h1 className="font-display font-bold text-primary-foreground uppercase leading-none">
