@@ -110,6 +110,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </div>
             </Link>
 
+            <div className="hidden md:flex flex-col items-center" data-testid="text-texas-owned-label">
+              <span className="text-[10px] md:text-xs font-bold text-white uppercase tracking-widest bg-primary px-3 py-0.5 rounded-full shadow-sm whitespace-nowrap">
+                Texas-Locally Owned &amp; Backed Company
+              </span>
+            </div>
+
             <div className="hidden md:flex items-center space-x-8">
               <NavLink href="/">Shop</NavLink>
               <NavLink href="/about">About</NavLink>
