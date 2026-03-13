@@ -282,7 +282,7 @@ async function seedLocations() {
 async function seedDatabase() {
   const productData = [
     {
-      name: "EV Smooth",
+      name: "Extra Virgin Smooth",
       description: "Extra virgin olive oil (250 ml). A balanced and versatile smooth oil with a sky-blue label.",
       price: "17.00",
       imageUrl: "/images/ev-smooth-bottle.png",

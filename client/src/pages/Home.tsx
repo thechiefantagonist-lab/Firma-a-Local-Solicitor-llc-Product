@@ -432,7 +432,7 @@ export default function Home() {
                     <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">2</span>
                     <div>
                       <p className="font-bold text-foreground">Bread Dip, Reimagined</p>
-                      <p className="text-sm text-muted-foreground">EV Smooth + sea salt + warm sourdough. That's it. That's the recipe.</p>
+                      <p className="text-sm text-muted-foreground">Extra Virgin Smooth + sea salt + warm sourdough. That's it. That's the recipe.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
