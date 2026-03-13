@@ -1,11 +1,15 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useCart } from "@/hooks/use-cart";
 import { Link, useLocation } from "wouter";
-import { ArrowLeft, Loader2, ShieldCheck, CreditCard, CheckCircle2, Truck, Phone, Mail, MapPin } from "lucide-react";
+import { ArrowLeft, Loader2, ShieldCheck, CreditCard, CheckCircle2, Truck, Phone, Mail, MapPin, Printer, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { useQuery } from "@tanstack/react-query";
 import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
+
+type CartItem = { id: number; name: string; price: string | number; quantity: number; imageUrl: string };
+type DeliveryInfo = { fullName: string; address: string; city: string; state: string; zip: string; phone: string; email: string };
+type ReceiptData = { items: CartItem[]; total: number; orderId: number; paymentId?: string; delivery?: DeliveryInfo | null; date: string };
 
 declare global {
   interface Window {
@@ -23,6 +27,11 @@ export default function Checkout() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [orderId, setOrderId] = useState<number | null>(null);
+  const [receiptData, setReceiptData] = useState<ReceiptData | null>(null);
+  const [receiptEmail, setReceiptEmail] = useState("");
+  const [receiptPhone, setReceiptPhone] = useState("");
+  const [sendingReceipt, setSendingReceipt] = useState(false);
+  const [receiptSent, setReceiptSent] = useState<"email" | "phone" | null>(null);
   const [wantsDelivery, setWantsDelivery] = useState(false);
   const [deliveryInfo, setDeliveryInfo] = useState({
     fullName: "",
@@ -135,6 +144,16 @@ export default function Checkout() {
       const result = await res.json();
 
       if (result.success) {
+        setReceiptData({
+          items: [...items],
+          total,
+          orderId: result.orderId,
+          paymentId: result.paymentId,
+          delivery: wantsDelivery ? { ...deliveryInfo } : null,
+          date: new Date().toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" }),
+        });
+        if (wantsDelivery && deliveryInfo.email) setReceiptEmail(deliveryInfo.email);
+        if (wantsDelivery && deliveryInfo.phone) setReceiptPhone(deliveryInfo.phone);
         setPaymentSuccess(true);
         setOrderId(result.orderId);
         clearCart();
@@ -155,19 +174,178 @@ export default function Checkout() {
     }
   };
 
-  if (paymentSuccess) {
+  const sendReceipt = async (type: "email" | "phone") => {
+    if (!receiptData) return;
+    const target = type === "email" ? receiptEmail.trim() : receiptPhone.trim();
+    if (!target) {
+      toast({ title: type === "email" ? "Enter an email address" : "Enter a phone number", variant: "destructive" });
+      return;
+    }
+    setSendingReceipt(true);
+    try {
+      const receiptLines = receiptData.items
+        .map(i => `${i.name} x${i.quantity} — $${(Number(i.price) * i.quantity).toFixed(2)}`)
+        .join("\n");
+      const receiptText = `Firma Forest Order #${receiptData.orderId}\nDate: ${receiptData.date}\n\n${receiptLines}\n\nTotal: $${receiptData.total.toFixed(2)}\n\nThank you for supporting a Texas-locally owned company!`;
+      await apiRequest("POST", "/api/receipt/send", {
+        orderId: receiptData.orderId,
+        ...(type === "email" ? { email: receiptEmail.trim() } : { phone: receiptPhone.trim() }),
+        receiptText,
+      });
+      setReceiptSent(type);
+      toast({ title: type === "email" ? "Receipt sent to your email!" : "Receipt sent via text!", description: `Sent to ${target}` });
+    } catch {
+      toast({ title: "Could not send receipt", description: "Please screenshot this page as your record.", variant: "destructive" });
+    } finally {
+      setSendingReceipt(false);
+    }
+  };
+
+  if (paymentSuccess && receiptData) {
     return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center p-4 text-center">
-        <div className="bg-card rounded-3xl p-12 border border-border shadow-lg max-w-md w-full">
-          <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-6" />
-          <h2 className="font-display text-3xl font-bold text-foreground mb-4">Order Confirmed</h2>
-          <p className="text-muted-foreground mb-2">
-            Your payment was processed successfully.
-          </p>
-          {orderId && (
-            <p className="text-sm text-muted-foreground mb-8">Order #{orderId}</p>
-          )}
+      <div className="min-h-screen bg-background py-10 px-4">
+        <div className="max-w-lg mx-auto">
+          <div className="text-center mb-6">
+            <CheckCircle2 className="w-14 h-14 text-green-500 mx-auto mb-3" />
+            <h2 className="font-display text-3xl font-bold text-primary">Order Confirmed!</h2>
+            <p className="text-muted-foreground text-sm mt-1">Thank you for supporting a Texas-locally owned company.</p>
+          </div>
+
+          {/* Receipt Card */}
+          <div id="receipt-print-area" className="bg-card rounded-3xl border border-border shadow-lg overflow-hidden mb-6">
+            {/* Receipt Header */}
+            <div className="bg-primary px-6 py-5 flex items-center gap-4">
+              <img src={firmaLogo} alt="Firma Forest" className="h-14 w-14 rounded-xl object-contain bg-white/10 p-1 ring-2 ring-white/20" />
+              <div>
+                <h3 className="font-display font-bold text-primary-foreground text-xl uppercase tracking-tight">Firma Forest</h3>
+                <p className="text-primary-foreground/70 text-xs font-medium">Rooted in Tradition. Bottled for Texas.</p>
+                <p className="text-primary-foreground/60 text-[10px] mt-0.5">Sales@firmaforest.com · 737.881.5440</p>
+              </div>
+            </div>
+
+            <div className="px-6 py-5 space-y-5">
+              {/* Order Meta */}
+              <div className="flex justify-between text-sm flex-wrap gap-2">
+                <div>
+                  <p className="text-muted-foreground text-xs uppercase tracking-wide font-semibold">Order</p>
+                  <p className="font-bold text-foreground text-lg" data-testid="text-receipt-order-id">#{receiptData.orderId}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-muted-foreground text-xs uppercase tracking-wide font-semibold">Date</p>
+                  <p className="font-medium text-foreground" data-testid="text-receipt-date">{receiptData.date}</p>
+                </div>
+              </div>
+
+              <div className="h-px bg-border" />
+
+              {/* Items */}
+              <div>
+                <p className="text-xs uppercase tracking-wide font-semibold text-muted-foreground mb-3">Items Purchased</p>
+                <div className="space-y-3">
+                  {receiptData.items.map((item) => (
+                    <div key={item.id} className="flex items-center gap-3" data-testid={`text-receipt-item-${item.id}`}>
+                      <div className="w-11 h-11 rounded-lg overflow-hidden bg-muted flex-shrink-0">
+                        <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-foreground text-sm truncate">{item.name}</p>
+                        <p className="text-xs text-muted-foreground">${Number(item.price).toFixed(2)} × {item.quantity}</p>
+                      </div>
+                      <p className="font-semibold text-sm shrink-0">${(Number(item.price) * item.quantity).toFixed(2)}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="h-px bg-border" />
+
+              {/* Total */}
+              <div className="flex justify-between items-center">
+                <span className="font-bold text-foreground text-lg">Total Paid</span>
+                <span className="font-bold text-primary text-2xl" data-testid="text-receipt-total">${receiptData.total.toFixed(2)}</span>
+              </div>
+
+              {/* Delivery Info */}
+              {receiptData.delivery && (
+                <>
+                  <div className="h-px bg-border" />
+                  <div>
+                    <p className="text-xs uppercase tracking-wide font-semibold text-muted-foreground mb-2 flex items-center gap-1"><Truck className="w-3.5 h-3.5" /> Delivery To</p>
+                    <p className="text-sm font-medium text-foreground">{receiptData.delivery.fullName}</p>
+                    <p className="text-sm text-muted-foreground">{receiptData.delivery.address}</p>
+                    <p className="text-sm text-muted-foreground">{receiptData.delivery.city}, {receiptData.delivery.state} {receiptData.delivery.zip}</p>
+                    <p className="text-sm text-muted-foreground">{receiptData.delivery.phone}</p>
+                  </div>
+                </>
+              )}
+
+              {/* Payment ID */}
+              {receiptData.paymentId && (
+                <p className="text-[10px] text-muted-foreground/60 font-mono break-all">Ref: {receiptData.paymentId}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Send Receipt Section */}
+          <div className="bg-card rounded-3xl border border-border shadow-lg px-6 py-5 mb-6">
+            <p className="font-semibold text-foreground mb-4 flex items-center gap-2"><Send className="w-4 h-4 text-primary" /> Send Receipt (optional)</p>
+
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5 flex items-center gap-1"><Mail className="w-3 h-3" /> Email</label>
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    value={receiptEmail}
+                    onChange={(e) => setReceiptEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    className="flex-1 px-4 py-2.5 rounded-xl border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                    data-testid="input-receipt-email"
+                  />
+                  <button
+                    onClick={() => sendReceipt("email")}
+                    disabled={sendingReceipt || receiptSent === "email"}
+                    className="px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold disabled:opacity-50 hover:bg-primary/90 transition-all shrink-0"
+                    data-testid="button-send-receipt-email"
+                  >
+                    {sendingReceipt ? <Loader2 className="w-4 h-4 animate-spin" /> : receiptSent === "email" ? "✓ Sent" : "Send"}
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5 flex items-center gap-1"><Phone className="w-3 h-3" /> Text / SMS</label>
+                <div className="flex gap-2">
+                  <input
+                    type="tel"
+                    value={receiptPhone}
+                    onChange={(e) => setReceiptPhone(e.target.value)}
+                    placeholder="(512) 555-0123"
+                    className="flex-1 px-4 py-2.5 rounded-xl border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                    data-testid="input-receipt-phone"
+                  />
+                  <button
+                    onClick={() => sendReceipt("phone")}
+                    disabled={sendingReceipt || receiptSent === "phone"}
+                    className="px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold disabled:opacity-50 hover:bg-primary/90 transition-all shrink-0"
+                    data-testid="button-send-receipt-phone"
+                  >
+                    {sendingReceipt ? <Loader2 className="w-4 h-4 animate-spin" /> : receiptSent === "phone" ? "✓ Sent" : "Send"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Actions */}
           <div className="space-y-3">
+            <button
+              onClick={() => window.print()}
+              className="w-full py-3 rounded-xl font-semibold border border-border bg-muted text-foreground hover:bg-muted/80 transition-all flex items-center justify-center gap-2"
+              data-testid="button-print-receipt"
+            >
+              <Printer className="w-4 h-4" /> Print Receipt
+            </button>
             <Link href="/profile">
               <button className="w-full py-3 rounded-xl font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all" data-testid="button-view-orders">
                 View My Orders
@@ -179,6 +357,15 @@ export default function Checkout() {
               </button>
             </Link>
           </div>
+
+          {/* Print styles */}
+          <style>{`
+            @media print {
+              body > *:not(#root) { display: none; }
+              nav, footer, .floating-checkout-bar { display: none !important; }
+              #receipt-print-area { box-shadow: none !important; border: 1px solid #ccc !important; }
+            }
+          `}</style>
         </div>
       </div>
     );

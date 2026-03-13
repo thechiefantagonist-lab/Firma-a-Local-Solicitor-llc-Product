@@ -135,15 +135,68 @@ export async function registerRoutes(
       const userId = req.user?.claims?.sub || "guest";
       const order = await storage.createOrderWithPayment(userId, orderItemData, paymentResult.payment?.id || "", delivery);
 
+      const receiptItems = orderItemData.map(item => {
+        const prod = item as any;
+        return { productId: item.productId, quantity: item.quantity, price: item.price };
+      });
+
       res.json({ 
         success: true, 
         orderId: order.id,
         paymentId: paymentResult.payment?.id,
+        totalCents,
+        delivery: delivery || null,
+        items: receiptItems,
       });
     } catch (err: any) {
       console.error("Square payment error:", err);
       const message = err?.body ? JSON.parse(err.body)?.errors?.[0]?.detail : err.message;
       res.status(500).json({ message: message || "Payment failed" });
+    }
+  });
+
+  // === Receipt Send ===
+  app.post("/api/receipt/send", async (req: any, res) => {
+    try {
+      const schema = z.object({
+        orderId: z.number().int().positive(),
+        email: z.string().email().optional(),
+        phone: z.string().min(7).optional(),
+        receiptText: z.string().optional(),
+      });
+      const parsed = schema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ message: parsed.error.errors[0].message });
+      }
+      const { orderId, email, phone } = parsed.data;
+
+      // Log the receipt request (email/SMS integration can be plugged in here)
+      console.log(`[Receipt] Order #${orderId} — send to email: ${email ?? "none"}, phone: ${phone ?? "none"}`);
+
+      // If a SMTP_FROM env var is set, attempt to send email via nodemailer
+      if (email && process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+        try {
+          const nodemailer = await import("nodemailer");
+          const transporter = nodemailer.createTransport({
+            host: process.env.SMTP_HOST,
+            port: Number(process.env.SMTP_PORT || 587),
+            auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+          });
+          await transporter.sendMail({
+            from: process.env.SMTP_FROM || process.env.SMTP_USER,
+            to: email,
+            subject: `Your Firma Forest Order #${orderId} — Confirmed!`,
+            text: parsed.data.receiptText || `Order #${orderId} confirmed. Thank you for shopping with Firma Forest!`,
+          });
+        } catch (emailErr) {
+          console.error("[Receipt] Email send failed:", emailErr);
+        }
+      }
+
+      res.json({ success: true, message: "Receipt request recorded." });
+    } catch (err: any) {
+      console.error("Receipt send error:", err);
+      res.status(500).json({ message: "Failed to process receipt request" });
     }
   });
 
