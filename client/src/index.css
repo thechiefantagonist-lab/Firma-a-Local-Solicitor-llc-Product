@@ -15,18 +15,18 @@
   --accent: 215 35% 52%;
   --accent-foreground: 0 0% 98%;
 
-  /* Clean White - Background */
-  --background: 120 10% 97%;
+  /* Relaxed Off-Gray - Background */
+  --background: 150 6% 92%;
   --foreground: 150 20% 12%;
 
   /* Light Sage - Secondary */
-  --secondary: 140 20% 92%;
+  --secondary: 140 10% 88%;
   --secondary-foreground: 150 30% 25%;
 
-  /* Card/Surface - Pure White */
-  --card: 0 0% 100%;
+  /* Soft Off-White - Card/Surface */
+  --card: 150 4% 96%;
   --card-foreground: 150 20% 12%;
-  --popover: 0 0% 100%;
+  --popover: 150 4% 96%;
   --popover-foreground: 150 20% 12%;
 
   /* Borders - Sage Gray */

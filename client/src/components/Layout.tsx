@@ -85,7 +85,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      <header className="w-full bg-white/90 border-b border-amber-100/60 py-3 px-4">
+      <header className="w-full bg-stone-100/90 border-b border-stone-200/70 py-3 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3" data-testid="link-logo-home">
             <img

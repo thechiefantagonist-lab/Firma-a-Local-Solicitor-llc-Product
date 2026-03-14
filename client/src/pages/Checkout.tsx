@@ -449,7 +449,7 @@ export default function Checkout() {
             {items.map((item) => (
               <div key={item.id} className="flex justify-between items-center text-sm" data-testid={`text-checkout-item-${item.id}`}>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+                  <div className="w-10 h-10 rounded-lg overflow-hidden bg-stone-200 flex-shrink-0">
                     <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                   </div>
                   <span className="text-foreground">{item.name} <span className="text-muted-foreground">x{item.quantity}</span></span>

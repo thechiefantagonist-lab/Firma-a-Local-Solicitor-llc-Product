@@ -35,7 +35,7 @@ export default function Cart() {
           <div className="lg:col-span-2 space-y-6">
             {items.map((item) => (
               <div key={item.id} className="bg-card rounded-2xl p-4 sm:p-6 border border-border/50 shadow-sm flex flex-col sm:flex-row gap-6 items-center">
-                <div className="w-24 h-24 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+                <div className="w-24 h-24 rounded-xl overflow-hidden bg-stone-200 flex-shrink-0">
                   <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                 </div>
                 

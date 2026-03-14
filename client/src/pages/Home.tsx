@@ -82,13 +82,13 @@ export default function Home() {
             <Link href="/" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary text-primary-foreground text-sm font-bold hover:bg-primary/90 transition-colors shadow-sm" data-testid="link-inline-shop">
               <ShoppingCart className="w-4 h-4" /> Shop Oils
             </Link>
-            <Link href="/about" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-amber-300 text-primary text-sm font-semibold hover:bg-amber-50 transition-colors shadow-sm" data-testid="link-inline-about">
+            <Link href="/about" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-stone-100 border border-amber-300 text-primary text-sm font-semibold hover:bg-amber-50 transition-colors shadow-sm" data-testid="link-inline-about">
               <Leaf className="w-4 h-4" /> Our Story
             </Link>
-            <Link href="/networking" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-amber-300 text-primary text-sm font-semibold hover:bg-amber-50 transition-colors shadow-sm" data-testid="link-inline-wholesale">
+            <Link href="/networking" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-stone-100 border border-amber-300 text-primary text-sm font-semibold hover:bg-amber-50 transition-colors shadow-sm" data-testid="link-inline-wholesale">
               <Users className="w-4 h-4" /> Wholesale &amp; Partners
             </Link>
-            <Link href="/cart" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-amber-300 text-primary text-sm font-semibold hover:bg-amber-50 transition-colors shadow-sm" data-testid="link-inline-cart">
+            <Link href="/cart" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-stone-100 border border-amber-300 text-primary text-sm font-semibold hover:bg-amber-50 transition-colors shadow-sm" data-testid="link-inline-cart">
               <ShoppingBag className="w-4 h-4" /> Cart
             </Link>
           </div>
@@ -555,7 +555,7 @@ export default function Home() {
               ))
             ) : (
               [1, 2, 3].map((i) => (
-                <div key={i} className="h-96 bg-gray-100 rounded-2xl animate-pulse" />
+                <div key={i} className="h-96 bg-stone-200 rounded-2xl animate-pulse" />
               ))
             )}
           </div>
@@ -670,7 +670,7 @@ function ProductCardPreview({ product }: { product: Product }) {
   return (
     <Link href="/" className="group block">
       <div className="bg-card rounded-2xl overflow-hidden border border-border/50 hover:shadow-xl hover:border-primary/30 transition-all duration-500 h-full flex flex-col">
-        <div className="aspect-[5/4] overflow-hidden relative bg-gray-100">
+        <div className="aspect-[5/4] overflow-hidden relative bg-stone-200">
           <img
             src={product.imageUrl}
             alt={product.name}

@@ -423,7 +423,7 @@ function ProductCard({ product }: { product: Product }) {
         </div>
       ) : null}
       {isFlight ? (
-        <div className="relative overflow-hidden bg-gray-50">
+        <div className="relative overflow-hidden bg-stone-100">
           <div className="grid grid-cols-2">
             <div className="aspect-[3/4] overflow-hidden">
               <img
@@ -444,7 +444,7 @@ function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
       ) : (
-        <div className="relative aspect-[5/4] overflow-hidden bg-gray-50">
+        <div className="relative aspect-[5/4] overflow-hidden bg-stone-100">
           <img 
             src={product.imageUrl} 
             alt={product.name} 
