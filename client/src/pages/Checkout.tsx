@@ -219,7 +219,7 @@ export default function Checkout() {
               <div>
                 <h3 className="font-display font-bold text-primary-foreground text-xl uppercase tracking-tight">Firma Forest</h3>
                 <p className="text-primary-foreground/70 text-xs font-medium">Rooted in Tradition. Bottled for Texas.</p>
-                <p className="text-primary-foreground/60 text-[10px] mt-0.5">Sales@firmaforest.com · 737.881.5440</p>
+                <p className="text-primary-foreground/60 text-[10px] mt-0.5">Forest@localsolicitor.net · 737.881.5440</p>
               </div>
             </div>
 

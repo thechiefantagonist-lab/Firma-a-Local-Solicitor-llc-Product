@@ -167,13 +167,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </span>
                     <span className="font-bold tracking-tight">737.881.5440</span>
                   </a>
-                  <a href="mailto:Sales@firmaforest.com" className="flex items-center gap-3 text-white/80 hover:text-amber-300 transition-colors text-sm group" data-testid="link-footer-email-sales">
-                    <span className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-amber-500/20 flex items-center justify-center transition-colors">
-                      <Mail className="w-4 h-4" />
-                    </span>
-                    <span className="break-all">Sales@firmaforest.com</span>
-                  </a>
-                  <a href="mailto:Forest@localsolicitor.net" className="flex items-center gap-3 text-white/80 hover:text-amber-300 transition-colors text-sm group" data-testid="link-footer-email-forest">
+                  <a href="mailto:Forest@localsolicitor.net" className="flex items-center gap-3 text-white/80 hover:text-amber-300 transition-colors text-sm group" data-testid="link-footer-email-sales">
                     <span className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-amber-500/20 flex items-center justify-center transition-colors">
                       <Mail className="w-4 h-4" />
                     </span>

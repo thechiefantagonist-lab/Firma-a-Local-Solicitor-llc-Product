@@ -630,10 +630,7 @@ export default function Home() {
                 <a href="tel:7378815440" className="flex items-center justify-center gap-2 hover:text-accent transition-colors" data-testid="link-b2b-phone">
                   <Phone className="w-5 h-5 md:w-6 md:h-6" /> 737.881.5440
                 </a>
-                <a href="mailto:Sales@firmaforest.com" className="flex items-center justify-center gap-2 hover:text-accent transition-colors" data-testid="link-b2b-email-sales">
-                  <Mail className="w-5 h-5 md:w-6 md:h-6" /> Sales@firmaforest.com
-                </a>
-                <a href="mailto:Forest@localsolicitor.net" className="flex items-center justify-center gap-2 hover:text-accent transition-colors" data-testid="link-b2b-email-forest">
+                <a href="mailto:Forest@localsolicitor.net" className="flex items-center justify-center gap-2 hover:text-accent transition-colors" data-testid="link-b2b-email-sales">
                   <Mail className="w-5 h-5 md:w-6 md:h-6" /> Forest@localsolicitor.net
                 </a>
                 <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 hover:text-accent transition-colors" data-testid="link-b2b-instagram">

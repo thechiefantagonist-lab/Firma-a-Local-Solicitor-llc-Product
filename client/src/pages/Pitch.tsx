@@ -233,11 +233,8 @@ export default function Pitch() {
               <a href="tel:7378815440" className="flex items-center gap-3 text-primary font-bold text-lg" data-testid="link-pitch-phone">
                 <Phone className="w-5 h-5 text-amber-600" /> (737) 881-5440
               </a>
-              <a href="mailto:Sales@firmaforest.com" className="flex items-center gap-3 text-primary font-semibold" data-testid="link-pitch-email">
-                <Mail className="w-5 h-5 text-amber-600" /> Sales@firmaforest.com
-              </a>
-              <a href="mailto:Forest@localsolicitor.net" className="flex items-center gap-3 text-muted-foreground font-semibold text-sm" data-testid="link-pitch-email-alt">
-                <Mail className="w-4 h-4 text-amber-600/60" /> Forest@localsolicitor.net
+              <a href="mailto:Forest@localsolicitor.net" className="flex items-center gap-3 text-primary font-semibold" data-testid="link-pitch-email">
+                <Mail className="w-5 h-5 text-amber-600" /> Forest@localsolicitor.net
               </a>
               <a
                 href="https://viewmycard.io/solarcafe"
@@ -322,7 +319,7 @@ export default function Pitch() {
                         <FormLabel>Your Pitch (Summary)</FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder="Briefly outline your interest, proposed terms, and what you bring to the table. Attach your full 3-6 page pitch via email to Sales@firmaforest.com."
+                            placeholder="Briefly outline your interest, proposed terms, and what you bring to the table. Attach your full 3-6 page pitch via email to Forest@localsolicitor.net."
                             className="min-h-[140px]"
                             {...field}
                             data-testid="input-pitch-message"

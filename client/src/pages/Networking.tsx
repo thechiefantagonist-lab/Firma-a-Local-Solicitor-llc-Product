@@ -95,11 +95,7 @@ export default function Networking() {
                   <Phone className="w-5 h-5 mr-3 text-accent flex-shrink-0" />
                   737.881.5440
                 </a>
-                <a href="mailto:Sales@firmaforest.com" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-email-sales">
-                  <Mail className="w-5 h-5 mr-3 text-accent flex-shrink-0" />
-                  <span className="break-all">Sales@firmaforest.com</span>
-                </a>
-                <a href="mailto:Forest@localsolicitor.net" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-email-forest">
+                <a href="mailto:Forest@localsolicitor.net" className="flex items-center text-muted-foreground hover:text-foreground transition-colors" data-testid="link-network-email-sales">
                   <Mail className="w-5 h-5 mr-3 text-accent flex-shrink-0" />
                   <span className="break-all">Forest@localsolicitor.net</span>
                 </a>
