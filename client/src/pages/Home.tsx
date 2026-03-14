@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Star, Leaf, Users, Award, MapPin, Phone, Mail, CheckCircle2, ShoppingCart } from "lucide-react";
+import { ArrowRight, Star, Leaf, Users, Award, MapPin, Phone, Mail, CheckCircle2, ShoppingCart, ShoppingBag } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { motion } from "framer-motion";
 import { useProducts } from "@/hooks/use-products";
@@ -73,6 +73,26 @@ export default function Home() {
             data-testid="img-hero-banner"
           />
         </motion.div>
+      </section>
+
+      {/* Contextual Navigation Strip */}
+      <section className="py-4 bg-amber-50 border-y border-amber-200/60">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-6">
+            <Link href="/" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary text-primary-foreground text-sm font-bold hover:bg-primary/90 transition-colors shadow-sm" data-testid="link-inline-shop">
+              <ShoppingCart className="w-4 h-4" /> Shop Oils
+            </Link>
+            <Link href="/about" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-amber-300 text-primary text-sm font-semibold hover:bg-amber-50 transition-colors shadow-sm" data-testid="link-inline-about">
+              <Leaf className="w-4 h-4" /> Our Story
+            </Link>
+            <Link href="/networking" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-amber-300 text-primary text-sm font-semibold hover:bg-amber-50 transition-colors shadow-sm" data-testid="link-inline-wholesale">
+              <Users className="w-4 h-4" /> Wholesale &amp; Partners
+            </Link>
+            <Link href="/cart" className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-amber-300 text-primary text-sm font-semibold hover:bg-amber-50 transition-colors shadow-sm" data-testid="link-inline-cart">
+              <ShoppingBag className="w-4 h-4" /> Cart
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* About Us — Name Origin */}
@@ -626,8 +646,8 @@ export default function Home() {
               <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-accent text-accent-foreground font-bold text-lg transition-all shadow-lg" data-testid="link-b2b-inventory">
                 Inventory Opportunity
               </Link>
-              <Link href="/pitch" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-lg transition-all shadow-lg" data-testid="link-b2b-questions">
-                Product Questions?
+              <Link href="/networking" className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-lg transition-all shadow-lg" data-testid="link-b2b-wholesale">
+                Wholesale &amp; Partners Page
               </Link>
             </div>
           </div>

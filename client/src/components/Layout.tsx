@@ -4,7 +4,7 @@ import { useCart } from "@/hooks/use-cart";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@shared/routes";
 import { Location } from "@shared/schema";
-import { Menu, X, ShoppingBag, User, LogOut, Loader2, Phone, Mail, MapPin, ChevronLeft, ChevronRight, Sun, Heart } from "lucide-react";
+import { ShoppingBag, LogOut, Phone, Mail, MapPin, ChevronLeft, ChevronRight, Sun, Heart } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
@@ -46,22 +46,10 @@ const funPhrases = [
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [location] = useLocation();
   const { user, logout } = useAuth();
   const { itemCount } = useCart();
   const [phraseIndex, setPhraseIndex] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -80,128 +68,40 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      <nav
-        className={cn(
-          "sticky top-0 w-full z-50 transition-all duration-300",
-          isScrolled || isMobileMenuOpen
-            ? "bg-white/95 backdrop-blur-md shadow-md border-b border-amber-200/50 py-2"
-            : "bg-white/90 backdrop-blur-sm border-b border-amber-100/60 py-3"
-        )}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            <Link href="/" className="group relative z-50 flex items-center gap-3" data-testid="link-logo-home">
-              <div className="relative">
-                <img 
-                  src={firmaLogo} 
-                  alt="Firma Forest - Olive Oils" 
-                  className="h-11 md:h-14 w-auto rounded-lg object-contain ring-2 ring-amber-200/50"
-                  data-testid="img-logo"
-                />
-              </div>
-              <div className="hidden sm:block">
-                <span className="font-display font-bold tracking-tighter leading-tight block">
-                  <span className="text-2xl md:text-3xl text-primary">F</span><span className="text-lg md:text-xl text-primary">IRMA</span>{" "}
-                  <span className="text-2xl md:text-3xl text-primary">F</span><span className="text-lg md:text-xl text-primary">OREST</span>
-                </span>
-                <span className="block text-[9px] md:text-[10px] font-semibold text-amber-600 -mt-0.5 tracking-wide uppercase">
-                  Rooted in Tradition. Bottled for Texas.
-                </span>
-              </div>
-            </Link>
-
-            <div className="hidden md:flex flex-col items-center" data-testid="text-texas-owned-label">
-              <span className="text-[10px] md:text-xs font-bold text-white uppercase tracking-widest bg-primary px-3 py-0.5 rounded-full shadow-sm whitespace-nowrap">
-                Texas-Locally Owned &amp; Backed Company
+      <header className="w-full bg-white/90 border-b border-amber-100/60 py-3 px-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3" data-testid="link-logo-home">
+            <img
+              src={firmaLogo}
+              alt="Firma Forest - Olive Oils"
+              className="h-11 md:h-14 w-auto rounded-lg object-contain ring-2 ring-amber-200/50"
+              data-testid="img-logo"
+            />
+            <div className="hidden sm:block">
+              <span className="font-display font-bold tracking-tighter leading-tight block">
+                <span className="text-2xl md:text-3xl text-primary">F</span><span className="text-lg md:text-xl text-primary">IRMA</span>{" "}
+                <span className="text-2xl md:text-3xl text-primary">F</span><span className="text-lg md:text-xl text-primary">OREST</span>
+              </span>
+              <span className="block text-[9px] md:text-[10px] font-semibold text-amber-600 -mt-0.5 tracking-wide uppercase">
+                Rooted in Tradition. Bottled for Texas.
               </span>
             </div>
+          </Link>
 
-            <div className="hidden md:flex items-center space-x-8">
-              <NavLink href="/">Shop</NavLink>
-              <NavLink href="/about">About</NavLink>
-              <NavLink href="/networking">Wholesale & Partners</NavLink>
-              
-              <div className="h-6 w-px bg-amber-200 mx-2" />
+          <span className="hidden md:inline-flex text-[10px] md:text-xs font-bold text-white uppercase tracking-widest bg-primary px-3 py-0.5 rounded-full shadow-sm whitespace-nowrap" data-testid="text-texas-owned-label">
+            Texas-Locally Owned &amp; Backed Company
+          </span>
 
-              <div className="flex items-center space-x-4">
-                {user ? (
-                  <div className="flex items-center gap-4">
-                     <Link href="/profile" className="text-sm font-medium transition-colors hover:text-amber-600" data-testid="link-profile">
-                      {user.firstName || 'Account'}
-                    </Link>
-                    <button 
-                      onClick={() => logout()} 
-                      className="text-muted-foreground hover:text-amber-600 transition-colors"
-                      title="Log out"
-                      data-testid="button-logout"
-                    >
-                      <LogOut className="w-5 h-5" />
-                    </button>
-                  </div>
-                ) : (
-                  <Link href="/api/login" className="text-sm font-bold text-primary hover:text-amber-600 transition-colors" data-testid="link-login">
-                    Login
-                  </Link>
-                )}
-
-                <Link href="/cart" className="relative group p-2 hover:bg-amber-50 rounded-full transition-colors" data-testid="link-desktop-cart">
-                  <ShoppingBag className="w-6 h-6 text-foreground group-hover:text-amber-600 transition-colors" />
-                  {itemCount > 0 && (
-                    <span className="absolute top-0 right-0 bg-gradient-to-br from-amber-500 to-orange-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-md" data-testid="text-cart-count">
-                      {itemCount}
-                    </span>
-                  )}
-                </Link>
-              </div>
-            </div>
-
-            <div className="md:hidden flex items-center gap-2 z-50">
-              <Link href="/cart" className="relative p-2" data-testid="link-mobile-cart">
-                <ShoppingBag className="w-5 h-5 text-foreground" />
-                {itemCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-gradient-to-br from-amber-500 to-orange-500 text-white text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
-                    {itemCount}
-                  </span>
-                )}
-              </Link>
-              <button
-                className="p-2 text-foreground hover:text-amber-600 transition-colors"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                data-testid="button-mobile-menu"
-              >
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-            </div>
-          </div>
+          <Link href="/cart" className="relative p-2 hover:bg-amber-50 rounded-full transition-colors" data-testid="link-header-cart">
+            <ShoppingBag className="w-6 h-6 text-foreground hover:text-amber-600 transition-colors" />
+            {itemCount > 0 && (
+              <span className="absolute top-0 right-0 bg-gradient-to-br from-amber-500 to-orange-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-md" data-testid="text-cart-count">
+                {itemCount}
+              </span>
+            )}
+          </Link>
         </div>
-
-        {isMobileMenuOpen && (
-          <div className="fixed inset-0 bg-gradient-to-b from-white to-amber-50/50 z-40 flex flex-col pt-24 px-6 md:hidden animate-in slide-in-from-top-10 fade-in duration-200">
-            <div className="flex flex-col space-y-6 text-lg font-display font-medium">
-              <MobileLink href="/" testId="link-mobile-shop">Shop</MobileLink>
-              <MobileLink href="/about" testId="link-mobile-about">About</MobileLink>
-              <MobileLink href="/networking" testId="link-mobile-wholesale">Wholesale & Partners</MobileLink>
-              <MobileLink href="/cart" testId="link-mobile-cart-page">Cart ({itemCount})</MobileLink>
-              {user ? (
-                <>
-                  <MobileLink href="/profile" testId="link-mobile-profile">My Profile</MobileLink>
-                  <button onClick={() => logout()} className="text-left text-destructive font-medium" data-testid="button-mobile-logout">
-                    Log Out
-                  </button>
-                </>
-              ) : (
-                <a href="/api/login" className="text-amber-600 font-bold" data-testid="link-mobile-login">Login / Sign Up</a>
-              )}
-            </div>
-            <div className="mt-8 pt-6 border-t border-amber-200/50">
-              <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-amber-600 font-medium text-sm" data-testid="link-mobile-instagram">
-                <SiInstagram className="w-5 h-5" />
-                Follow @forestparker
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
+      </header>
 
       <main className={cn("flex-grow", itemCount > 0 && location !== "/cart" && location !== "/checkout" ? "pb-20" : "")}>
         {children}
@@ -241,12 +141,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </div>
 
               <div>
-                <h4 className="font-display text-lg font-bold text-amber-300 mb-4">Quick Links</h4>
+                <h4 className="font-display text-lg font-bold text-amber-300 mb-4">Navigate</h4>
                 <ul className="space-y-3 text-sm">
                   <li><Link href="/" className="text-white/80 hover:text-amber-300 transition-colors flex items-center gap-2" data-testid="link-footer-shop"><span className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />Shop Oils</Link></li>
                   <li><Link href="/about" className="text-white/80 hover:text-amber-300 transition-colors flex items-center gap-2" data-testid="link-footer-about"><span className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />Our Story</Link></li>
-                  <li><Link href="/networking" className="text-white/80 hover:text-amber-300 transition-colors flex items-center gap-2" data-testid="link-footer-wholesale"><span className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />Wholesale Partners</Link></li>
-                  <li><Link href="/profile" className="text-white/80 hover:text-amber-300 transition-colors flex items-center gap-2" data-testid="link-footer-account"><span className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />My Account</Link></li>
+                  <li><Link href="/networking" className="text-white/80 hover:text-amber-300 transition-colors flex items-center gap-2" data-testid="link-footer-wholesale"><span className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />Wholesale &amp; Partners</Link></li>
+                  <li><Link href="/cart" className="text-white/80 hover:text-amber-300 transition-colors flex items-center gap-2" data-testid="link-footer-cart"><span className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />Your Cart {itemCount > 0 && `(${itemCount})`}</Link></li>
+                  {user ? (
+                    <>
+                      <li><Link href="/profile" className="text-white/80 hover:text-amber-300 transition-colors flex items-center gap-2" data-testid="link-footer-account"><span className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />My Account</Link></li>
+                      <li><button onClick={() => logout()} className="text-white/80 hover:text-amber-300 transition-colors flex items-center gap-2 text-sm" data-testid="button-footer-logout"><span className="w-1.5 h-1.5 rounded-full bg-amber-400/60" /><LogOut className="w-3.5 h-3.5" />Log Out</button></li>
+                    </>
+                  ) : (
+                    <li><a href="/api/login" className="text-amber-300 hover:text-amber-200 transition-colors flex items-center gap-2 font-semibold" data-testid="link-footer-login"><span className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />Login / Sign Up</a></li>
+                  )}
                 </ul>
               </div>
 
@@ -446,28 +354,3 @@ function FooterPartners() {
   );
 }
 
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
-  const [location] = useLocation();
-  const isActive = location === href;
-  const testId = `link-nav-${href.replace(/\//g, '') || 'shop'}`;
-  
-  return (
-    <Link href={href} className={cn(
-      "text-sm font-semibold transition-all relative py-1",
-      isActive ? "text-primary" : "text-muted-foreground hover:text-amber-600"
-    )} data-testid={testId}>
-      {children}
-      {isActive && (
-        <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full" />
-      )}
-    </Link>
-  );
-}
-
-function MobileLink({ href, children, testId }: { href: string; children: React.ReactNode; testId?: string }) {
-  return (
-    <Link href={href} className="block py-3 border-b border-amber-200/30 text-foreground hover:text-amber-600 transition-colors font-medium" data-testid={testId}>
-      {children}
-    </Link>
-  );
-}
