@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Star, Leaf, Users, Award, MapPin, Phone, Mail, CheckCircle2, ShoppingCart, ShoppingBag } from "lucide-react";
+import { ArrowRight, Leaf, Users, Award, MapPin, Phone, Mail, CheckCircle2, ShoppingCart, ShoppingBag } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { motion } from "framer-motion";
 import { useProducts } from "@/hooks/use-products";
