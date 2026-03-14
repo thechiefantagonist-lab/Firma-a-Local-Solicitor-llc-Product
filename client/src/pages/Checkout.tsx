@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useCart } from "@/hooks/use-cart";
 import { Link, useLocation } from "wouter";
-import { ArrowLeft, Loader2, ShieldCheck, CreditCard, CheckCircle2, Truck, Phone, Mail, MapPin, Printer, Send } from "lucide-react";
+import { ArrowLeft, Loader2, ShieldCheck, CreditCard, CheckCircle2, Truck, Phone, Mail, MapPin, Printer, Send, Tag, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { useQuery } from "@tanstack/react-query";
@@ -9,7 +9,7 @@ import firmaLogo from "@assets/IMG_6649_1771460595729.jpeg";
 
 type CartItem = { id: number; name: string; price: string | number; quantity: number; imageUrl: string };
 type DeliveryInfo = { fullName: string; address: string; city: string; state: string; zip: string; phone: string; email: string };
-type ReceiptData = { items: CartItem[]; total: number; orderId: number; paymentId?: string; delivery?: DeliveryInfo | null; date: string };
+type ReceiptData = { items: CartItem[]; total: number; discountAmount: number; finalTotal: number; promoApplied: boolean; orderId: number; paymentId?: string; delivery?: DeliveryInfo | null; date: string };
 
 declare global {
   interface Window {
@@ -32,6 +32,31 @@ export default function Checkout() {
   const [receiptPhone, setReceiptPhone] = useState("");
   const [sendingReceipt, setSendingReceipt] = useState(false);
   const [receiptSent, setReceiptSent] = useState<"email" | "phone" | null>(null);
+  const [promoCode, setPromoCode] = useState("");
+  const [promoApplied, setPromoApplied] = useState(false);
+  const [promoError, setPromoError] = useState<string | null>(null);
+
+  const PROMO_DISCOUNT = 0.16;
+  const discountAmount = promoApplied ? total * PROMO_DISCOUNT : 0;
+  const finalTotal = total - discountAmount;
+
+  const applyPromo = () => {
+    if (promoCode.trim().toLowerCase() === "@forestparker") {
+      setPromoApplied(true);
+      setPromoError(null);
+      toast({ title: "Promo code applied!", description: "16% discount added to your order." });
+    } else {
+      setPromoError("Invalid promo code. Try again.");
+      setPromoApplied(false);
+    }
+  };
+
+  const removePromo = () => {
+    setPromoApplied(false);
+    setPromoCode("");
+    setPromoError(null);
+  };
+
   const [wantsDelivery, setWantsDelivery] = useState(false);
   const [deliveryInfo, setDeliveryInfo] = useState({
     fullName: "",
@@ -127,6 +152,10 @@ export default function Checkout() {
         items: orderItems,
       };
 
+      if (promoApplied) {
+        payload.promoCode = promoCode.trim();
+      }
+
       if (wantsDelivery) {
         payload.delivery = {
           fullName: deliveryInfo.fullName.trim(),
@@ -147,6 +176,9 @@ export default function Checkout() {
         setReceiptData({
           items: [...items],
           total,
+          discountAmount,
+          finalTotal,
+          promoApplied,
           orderId: result.orderId,
           paymentId: result.paymentId,
           delivery: wantsDelivery ? { ...deliveryInfo } : null,
@@ -186,7 +218,10 @@ export default function Checkout() {
       const receiptLines = receiptData.items
         .map(i => `${i.name} x${i.quantity} — $${(Number(i.price) * i.quantity).toFixed(2)}`)
         .join("\n");
-      const receiptText = `Firma Forest Order #${receiptData.orderId}\nDate: ${receiptData.date}\n\n${receiptLines}\n\nTotal: $${receiptData.total.toFixed(2)}\n\nThank you for supporting a Texas-locally owned company!`;
+      const promoLine = receiptData.promoApplied
+        ? `\nPromo (@forestparker): -$${receiptData.discountAmount.toFixed(2)}\nTotal After Discount: $${receiptData.finalTotal.toFixed(2)}`
+        : `\nTotal: $${receiptData.total.toFixed(2)}`;
+      const receiptText = `Firma Forest Order #${receiptData.orderId}\nDate: ${receiptData.date}\n\n${receiptLines}${promoLine}\n\nThank you for supporting a Texas-locally owned company!`;
       await apiRequest("POST", "/api/receipt/send", {
         orderId: receiptData.orderId,
         ...(type === "email" ? { email: receiptEmail.trim() } : { phone: receiptPhone.trim() }),
@@ -260,9 +295,21 @@ export default function Checkout() {
               <div className="h-px bg-border" />
 
               {/* Total */}
-              <div className="flex justify-between items-center">
-                <span className="font-bold text-foreground text-lg">Total Paid</span>
-                <span className="font-bold text-primary text-2xl" data-testid="text-receipt-total">${receiptData.total.toFixed(2)}</span>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center text-sm text-muted-foreground">
+                  <span>Subtotal</span>
+                  <span>${receiptData.total.toFixed(2)}</span>
+                </div>
+                {receiptData.promoApplied && (
+                  <div className="flex justify-between items-center text-sm text-green-600 font-semibold" data-testid="text-receipt-discount">
+                    <span className="flex items-center gap-1"><Tag className="w-3.5 h-3.5" /> Promo (@forestparker)</span>
+                    <span>-${receiptData.discountAmount.toFixed(2)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between items-center pt-1 border-t border-border">
+                  <span className="font-bold text-foreground text-lg">Total Paid</span>
+                  <span className="font-bold text-primary text-2xl" data-testid="text-receipt-total">${receiptData.finalTotal.toFixed(2)}</span>
+                </div>
               </div>
 
               {/* Delivery Info */}
@@ -411,9 +458,64 @@ export default function Checkout() {
               </div>
             ))}
             <div className="h-px bg-border my-4" />
-            <div className="flex justify-between text-lg font-bold">
-              <span>Total</span>
-              <span data-testid="text-checkout-total">${total.toFixed(2)}</span>
+
+            {/* Promo Code */}
+            {!promoApplied ? (
+              <div className="mb-4">
+                <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1">
+                  <Tag className="w-3.5 h-3.5" /> Promo Code
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={promoCode}
+                    onChange={(e) => { setPromoCode(e.target.value); setPromoError(null); }}
+                    onKeyDown={(e) => e.key === "Enter" && applyPromo()}
+                    placeholder="Enter code (optional)"
+                    className="flex-1 px-4 py-2.5 rounded-xl border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                    data-testid="input-promo-code"
+                  />
+                  <button
+                    onClick={applyPromo}
+                    disabled={!promoCode.trim()}
+                    className="px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold disabled:opacity-40 hover:bg-primary/90 transition-all shrink-0"
+                    data-testid="button-apply-promo"
+                  >
+                    Apply
+                  </button>
+                </div>
+                {promoError && (
+                  <p className="text-destructive text-xs mt-1.5 font-medium" data-testid="text-promo-error">{promoError}</p>
+                )}
+              </div>
+            ) : (
+              <div className="mb-4 flex items-center justify-between bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700/40 rounded-xl px-4 py-2.5" data-testid="banner-promo-applied">
+                <span className="flex items-center gap-2 text-green-700 dark:text-green-400 text-sm font-semibold">
+                  <Tag className="w-4 h-4" /> @forestparker — 16% off!
+                </span>
+                <button onClick={removePromo} className="text-green-600 hover:text-green-800 dark:text-green-400 transition-colors" data-testid="button-remove-promo">
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+
+            <div className="space-y-1.5">
+              {promoApplied && (
+                <div className="flex justify-between text-sm text-muted-foreground">
+                  <span>Subtotal</span>
+                  <span>${total.toFixed(2)}</span>
+                </div>
+              )}
+              {promoApplied && (
+                <div className="flex justify-between text-sm text-green-600 dark:text-green-400 font-semibold" data-testid="text-checkout-discount">
+                  <span>Discount (16%)</span>
+                  <span>-${discountAmount.toFixed(2)}</span>
+                </div>
+              )}
+              <div className="flex justify-between text-lg font-bold pt-1">
+                <span>Total</span>
+                <span data-testid="text-checkout-total">${finalTotal.toFixed(2)}</span>
+              </div>
             </div>
           </div>
         </div>

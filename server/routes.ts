@@ -77,12 +77,16 @@ export async function registerRoutes(
 
   app.post("/api/square/payment", async (req: any, res) => {
     try {
+      const VALID_PROMO_CODE = "@forestparker";
+      const PROMO_DISCOUNT_RATE = 0.16;
+
       const paymentSchema = z.object({
         sourceId: z.string().min(1),
         items: z.array(z.object({
           productId: z.number().int().positive(),
           quantity: z.number().int().positive().max(100),
         })).min(1),
+        promoCode: z.string().optional(),
         delivery: z.object({
           fullName: z.string().min(1),
           address: z.string().min(1),
@@ -99,7 +103,8 @@ export async function registerRoutes(
         return res.status(400).json({ message: parsed.error.errors[0].message });
       }
 
-      const { sourceId, items, delivery } = parsed.data;
+      const { sourceId, items, delivery, promoCode } = parsed.data;
+      const promoApplied = promoCode?.trim().toLowerCase() === VALID_PROMO_CODE.toLowerCase();
 
       let totalCents = 0;
       const orderItemData: { productId: number; quantity: number; price: string }[] = [];
@@ -122,11 +127,14 @@ export async function registerRoutes(
         return res.status(400).json({ message: "Invalid order total" });
       }
 
+      const discountCents = promoApplied ? Math.round(totalCents * PROMO_DISCOUNT_RATE) : 0;
+      const chargedCents = totalCents - discountCents;
+
       const paymentResult = await squareClient.payments.create({
         sourceId,
         idempotencyKey: crypto.randomUUID(),
         amountMoney: {
-          amount: BigInt(totalCents),
+          amount: BigInt(chargedCents),
           currency: "USD",
         },
         locationId: process.env.SQUARE_LOCATION_ID,
@@ -145,6 +153,9 @@ export async function registerRoutes(
         orderId: order.id,
         paymentId: paymentResult.payment?.id,
         totalCents,
+        chargedCents,
+        discountCents,
+        promoApplied,
         delivery: delivery || null,
         items: receiptItems,
       });
