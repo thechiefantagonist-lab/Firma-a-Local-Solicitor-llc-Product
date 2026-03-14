@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 import { Product, Review } from "@shared/schema";
-import { Plus, Check, Loader2, ShoppingCart, Store, MapPin, ShieldCheck, Zap, Star, Send, MessageSquareQuote, TrendingUp, Lock, ArrowRight, ExternalLink } from "lucide-react";
+import { Plus, Check, Loader2, Zap, Star, Send, MessageSquareQuote } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { cn } from "@/lib/utils";
 import { useLocation } from "wouter";
@@ -120,30 +120,30 @@ export default function Shop() {
   return (
     <div className="min-h-screen bg-background pb-16">
       {/* Header */}
-      <div className="bg-primary pt-10 pb-8 px-4 relative">
+      <div className="bg-primary pt-4 pb-3 px-4 relative">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-          <div className="flex items-center justify-center gap-3 md:gap-5 mb-4">
-            <img src={firmaLogo} alt="Firma Forest" className="h-20 md:h-28 w-auto rounded-md bg-white/10 p-1" data-testid="img-shop-hero-logo" />
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <img src={firmaLogo} alt="Firma Forest" className="h-10 w-auto rounded-md bg-white/10 p-0.5" data-testid="img-shop-hero-logo" />
             <div className="text-left">
               <h1 className="font-display font-bold text-primary-foreground uppercase leading-none">
-                <span className="text-4xl md:text-6xl">F</span><span className="text-2xl md:text-4xl">IRMA</span>{" "}
-                <span className="text-4xl md:text-6xl">F</span><span className="text-2xl md:text-4xl">OREST</span>
+                <span className="text-2xl md:text-3xl">F</span><span className="text-lg md:text-xl">IRMA</span>{" "}
+                <span className="text-2xl md:text-3xl">F</span><span className="text-lg md:text-xl">OREST</span>
               </h1>
-              <p className="text-sm md:text-lg font-medium text-primary-foreground/70 tracking-tight mt-1" style={{ fontStyle: 'italic' }}>Rooted in Tradition. Bottled for Texas.</p>
+              <p className="text-xs font-medium text-primary-foreground/60 tracking-tight italic">Rooted in Tradition. Bottled for Texas.</p>
             </div>
           </div>
-          <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 flex-wrap">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
             <TexasBadge />
             <HalalBadge />
-            <img src={halalResearchCentre} alt="Halal Research Centre Certified" className="h-14 w-14 sm:h-16 sm:w-16 md:h-[4.5rem] md:w-[4.5rem] rounded-full object-cover drop-shadow-lg bg-white border-2 border-white/30" data-testid="img-halal-research-centre" />
-            <img src={euOrganicBadge} alt="EU Organic Certified" className="h-14 sm:h-16 md:h-[4.5rem] w-auto rounded-lg object-contain drop-shadow-lg" data-testid="img-eu-organic" />
-            <img src={pgiBadge} alt="Protected Geographical Indication" className="h-14 w-14 sm:h-16 sm:w-16 md:h-[4.5rem] md:w-[4.5rem] rounded-full object-cover drop-shadow-lg bg-white border-2 border-white/30" data-testid="img-pgi-badge" />
-            <img src={pdoBadge} alt="Protected Designation of Origin" className="h-14 w-14 sm:h-16 sm:w-16 md:h-[4.5rem] md:w-[4.5rem] rounded-full object-cover drop-shadow-lg bg-white border-2 border-white/30" data-testid="img-pdo-badge" />
+            <img src={halalResearchCentre} alt="Halal Research Centre Certified" className="h-8 w-8 rounded-full object-cover bg-white border border-white/30" data-testid="img-halal-research-centre" />
+            <img src={euOrganicBadge} alt="EU Organic Certified" className="h-8 w-auto rounded object-contain" data-testid="img-eu-organic" />
+            <img src={pgiBadge} alt="PGI" className="h-8 w-8 rounded-full object-cover bg-white border border-white/30" data-testid="img-pgi-badge" />
+            <img src={pdoBadge} alt="PDO" className="h-8 w-8 rounded-full object-cover bg-white border border-white/30" data-testid="img-pdo-badge" />
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
         {/* Filters */}
         <div className="flex justify-center mb-6 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
           <div className="inline-flex bg-card rounded-full p-1.5 shadow-lg border border-border flex-nowrap">
@@ -165,18 +165,10 @@ export default function Shop() {
           </div>
         </div>
 
-        <div className="bg-red-600/10 border-2 border-red-600/30 rounded-2xl p-5 sm:p-6 mb-10 text-center" data-testid="banner-market-sale">
-          <p className="text-xl sm:text-2xl font-bold text-red-700">
-            $17 Out the Door — Online Only
-          </p>
-          <p className="text-sm text-red-600/80 mt-2 max-w-xl mx-auto">
-            This weekend at the San Marcos Farmers Market, every 250 ml bottle goes back to <span className="font-bold">$20</span>. Right now, you're looking at <span className="font-bold">$3 off per bottle</span> — no code, no catch. Just the price of clicking before Saturday.
-          </p>
-          <p className="text-xs text-red-500/70 mt-2 italic">
-            Limited-time online pricing. Once market season kicks in, this deal walks.
-          </p>
-          <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-red-700 hover:text-red-900 transition-colors" data-testid="link-shop-instagram">
-            <SiInstagram className="w-4 h-4" /> Follow @forestparker for drops & deals
+        <div className="bg-red-600/10 border border-red-600/20 rounded-xl px-4 py-2.5 mb-5 flex items-center justify-between flex-wrap gap-2" data-testid="banner-market-sale">
+          <p className="text-sm font-bold text-red-700">$17 Online — <span className="font-normal text-red-600/80">$3 off vs. market price. No code needed.</span></p>
+          <a href="https://instagram.com/forestparker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs font-semibold text-red-600 hover:text-red-700 transition-colors" data-testid="link-shop-instagram">
+            <SiInstagram className="w-3 h-3" /> @forestparker
           </a>
         </div>
 
@@ -193,230 +185,8 @@ export default function Shop() {
           </div>
         )}
 
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 flex items-start gap-4 sm:gap-6 shadow-sm" data-testid="banner-halal-certified">
-            <div className="p-3 rounded-xl bg-primary/10 shrink-0">
-              <ShieldCheck className="w-8 h-8 text-primary" />
-            </div>
-            <div>
-              <h3 className="font-display text-lg font-bold text-foreground mb-1">Halal Verified & Fully Documented</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Every Firma Forest product is backed by complete Halal certification paperwork, verified from grove to bottle. Our Tunisian olive oils meet the highest standards of Islamic dietary compliance — because trust isn't optional, it's the whole point.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 flex items-start gap-4 sm:gap-6 shadow-sm" data-testid="banner-bottled-local">
-            <div className="p-3 rounded-xl bg-amber-500/10 shrink-0">
-              <MapPin className="w-8 h-8 text-amber-600" />
-            </div>
-            <div>
-              <h3 className="font-display text-lg font-bold text-foreground mb-1">Processed & Bottled Right Here in South Texas</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                ALL processing and bottling happens right here in South Texas — not overseas, not out of state. Firma Forest is the sole U.S. distributor of these Tunisian oils, and the man behind every bottle is a proud San Martian. From grove to your kitchen, this is as local as imported olive oil gets.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 bg-gradient-to-br from-[hsl(150,40%,14%)] via-[hsl(150,35%,18%)] to-[hsl(160,30%,22%)] rounded-2xl p-8 sm:p-10 shadow-2xl relative overflow-hidden" data-testid="banner-licensing-certificates">
-          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
-          <div className="absolute top-0 right-0 w-64 h-64 opacity-[0.06] rounded-full bg-amber-400 blur-3xl" />
-
-          <div className="relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 items-center mb-8">
-              <div className="text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 bg-amber-400/15 border border-amber-400/30 rounded-full px-4 py-1.5 mb-3">
-                  <Lock className="w-3.5 h-3.5 text-amber-400" />
-                  <span className="text-amber-400 text-[11px] uppercase tracking-widest font-bold">Verified & Documented</span>
-                </div>
-                <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">Licensing & Certifications</h3>
-                <p className="text-amber-400 text-xl sm:text-2xl font-bold uppercase tracking-wider">Processed in Texas</p>
-                <div className="mt-3 h-1 w-16 bg-amber-400/40 rounded-full mx-auto lg:mx-0" />
-              </div>
-
-              <div>
-                <p className="text-white/90 leading-relaxed text-base mb-4">
-                  Firma Forest is a <span className="text-amber-400 font-bold">Texas-local company</span>. Our olive oils are imported as raw product and processed, filtered, flavor-infused, and bottled right here in the Lone Star State. Every bottle you buy supports a Texas-based operation run by a proud San Martian.
-                </p>
-                <p className="text-white/70 leading-relaxed text-sm">
-                  "Processed in Texas" means the full production pipeline — quality control, infusion, filtering, bottling, and labeling — happens in a licensed Texas facility. Not out of state. Not overseas. This is a Texas business, start to finish.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-5 text-center hover:bg-white/15 transition-colors">
-                <ShieldCheck className="w-8 h-8 text-amber-400 mx-auto mb-3" />
-                <p className="text-sm font-bold text-white mb-1">Texas DSHS Food License</p>
-                <p className="text-xs text-white/60">State-licensed food manufacturing facility</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-5 text-center hover:bg-white/15 transition-colors">
-                <ShieldCheck className="w-8 h-8 text-amber-400 mx-auto mb-3" />
-                <p className="text-sm font-bold text-white mb-1">Halal Certified</p>
-                <p className="text-xs text-white/60">Full documentation from grove to bottle</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-5 text-center hover:bg-white/15 transition-colors">
-                <ShieldCheck className="w-8 h-8 text-amber-400 mx-auto mb-3" />
-                <p className="text-sm font-bold text-white mb-1">FDA Compliant</p>
-                <p className="text-xs text-white/60">Proper labeling & food safety standards</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-5 text-center hover:bg-white/15 transition-colors">
-                <ShieldCheck className="w-8 h-8 text-amber-400 mx-auto mb-3" />
-                <p className="text-sm font-bold text-white mb-1">Single-Origin Traceable</p>
-                <p className="text-xs text-white/60">Every bottle traced back to Tunisian groves</p>
-              </div>
-            </div>
-
-            <p className="text-center text-white/50 text-xs">
-              All certification documents are available upon request. For wholesale or compliance inquiries, contact <a href="mailto:Sales@firmaforest.com" className="text-amber-400 hover:underline font-semibold">Sales@firmaforest.com</a>
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-10 bg-gradient-to-br from-primary via-[hsl(150,35%,24%)] to-[hsl(160,30%,22%)] rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg" data-testid="banner-food-truck-impact">
-          <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 50%)' }} />
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
-            <div className="lg:col-span-2 flex flex-col items-center lg:items-start" data-testid="chart-impact-bars">
-              <p className="text-xs uppercase tracking-widest text-white/50 font-semibold mb-4 text-center lg:text-left">After Switching to Firma Forest</p>
-              <div className="w-full max-w-xs space-y-3">
-                {[
-                  { label: "Flavor Rating", before: 34, after: 92, suffix: "%" },
-                  { label: "Repeat Customers", before: 28, after: 85, suffix: "%" },
-                  { label: "Positive Reviews", before: 40, after: 96, suffix: "%" },
-                  { label: "Vendor Reorders", before: 15, after: 88, suffix: "%" },
-                ].map((stat) => (
-                  <div key={stat.label}>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-medium text-white/70">{stat.label}</span>
-                      <span className="text-xs font-bold text-amber-400">{stat.after}{stat.suffix}</span>
-                    </div>
-                    <div className="relative h-5 bg-white/10 rounded-full overflow-hidden">
-                      <div
-                        className="absolute inset-y-0 left-0 rounded-full bg-white/20"
-                        style={{ width: `${stat.before}%` }}
-                      />
-                      <div
-                        className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 shadow-[0_0_12px_rgba(251,191,36,0.4)]"
-                        style={{ width: `${stat.after}%`, animation: `bar-grow 1.2s ease-out forwards` }}
-                      />
-                    </div>
-                    <div className="flex items-center justify-between mt-0.5">
-                      <span className="text-[10px] text-white/30">Before: {stat.before}{stat.suffix}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="text-[10px] text-white/25 mt-3 text-center lg:text-left italic">Based on partner-reported data, 2025–2026</p>
-            </div>
-
-            <div className="lg:col-span-3 text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
-                <TrendingUp className="w-7 h-7 text-amber-400" />
-                <p className="text-amber-400 text-sm uppercase tracking-widest font-bold">Proof Is in the Product</p>
-              </div>
-              <h3 className="font-display text-2xl sm:text-3xl font-bold mb-4 leading-snug text-amber-400" data-testid="text-food-truck-headline">
-                5+ Food Trucks Switched Their Oil. Their Customers Did the Talking.
-              </h3>
-              <p className="text-white/80 leading-relaxed mb-3">
-                Profit went up — but that wasn't the headline. The real shift was customer feedback. People started asking what changed. Same menu, same hands, same kitchen. The only variable? The olive oil. It turns out most vendors had been working with products that were mislabeled at best and misleading at worst.
-              </p>
-              <p className="text-white/80 leading-relaxed mb-3">
-                The issue was never the cook. It was a lack of access to real, single-origin, Tunisian-grown olive oil — unblended, preservative-free, and cold-pressed the way it's been done for generations. That information simply wasn't available until now.
-              </p>
-              <p className="text-white/85 leading-relaxed mb-6 font-medium">
-                Every bottle is processed and sealed in South Texas. One distributor in the entire country. One man out of San Marcos with the only key to the operation.
-              </p>
-              <p className="text-xl sm:text-2xl font-display font-bold text-amber-400 mb-6" data-testid="text-firma-forest-tagline">
-                FIRMA FOREST.
-              </p>
-              <div className="bg-white/[0.07] border border-white/10 rounded-xl p-5 text-left">
-                <div className="flex items-center gap-2 mb-2">
-                  <Lock className="w-4 h-4 text-amber-400" />
-                  <p className="text-amber-400 text-xs uppercase tracking-widest font-bold">Investor & Distributor Opportunity</p>
-                </div>
-                <p className="text-white/70 text-sm leading-relaxed mb-3">
-                  One source. One man with the only key. Demand is outpacing supply — and the right partner can help close the gap before the window does.
-                </p>
-                <a
-                  href="/pitch"
-                  className="inline-flex items-center gap-2 text-amber-400 font-bold text-sm"
-                  data-testid="link-pitch-cta"
-                >
-                  Submit Your Pitch <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <ReviewSection />
 
-        {/* Local Partners Section */}
-        <section className="mt-12 py-10 border-t-2 border-primary/20">
-          <div className="text-center mb-8">
-            <p className="text-accent text-sm uppercase tracking-widest font-semibold mb-2">Keepin' It Local</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-primary mb-4 flex items-center justify-center gap-3">
-              <Store className="w-8 h-8 text-accent" />
-              Local Partners & Local Shelves
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              We're proud to partner with folks who believe in community, quality, and keepin' it real.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            <PartnerCard 
-              name="African Eats & Market"
-              location="San Marcos"
-              description="Specialty foods & international flavors for our diverse community"
-            />
-            <PartnerCard 
-              name="Cornucopia Market"
-              location="78666 - San Marcos"
-              description="Your neighborhood grocery for local & organic goods"
-            />
-            <PartnerCard 
-              name="15+ Farmers Markets"
-              location="Georgetown to San Antonio"
-              description="Find us every weekend along the I-35 corridor"
-            />
-            <PartnerCard 
-              name="The Culinary Room"
-              location="San Marcos"
-              description="Fine dining experience with locally sourced ingredients"
-              url="https://theculinaryroom.com"
-            />
-            <PartnerCard 
-              name="Yum Yum Gyros And More"
-              location="San Marcos"
-              description="Mediterranean street food with bold, fresh flavors"
-            />
-            <PartnerCard 
-              name="The Austin Winery"
-              location="Austin"
-              description="Urban winery crafting Texas wines with local flair"
-              url="https://theaustinwinery.com"
-            />
-            <PartnerCard 
-              name="Duchman Family Winery"
-              location="Driftwood"
-              description="Award-winning Texas wines rooted in Italian tradition"
-              url="https://duchmanwinery.com"
-            />
-            <PartnerCard 
-              name="San Marcos Square Boutiques"
-              location="Downtown on the Square"
-              description="Shop local at the heart of our Hill Country town"
-            />
-          </div>
-
-          <div className="mt-8 text-center">
-            <p className="text-muted-foreground italic">
-              "From our grove to your table - that's the Hill Country way."
-            </p>
-          </div>
-        </section>
       </div>
     </div>
   );
@@ -617,29 +387,6 @@ function ReviewSection() {
   );
 }
 
-function PartnerCard({ name, location, description, url }: { name: string; location?: string; description: string; url?: string }) {
-  const Wrapper = url ? "a" : "div";
-  const linkProps = url ? { href: url, target: "_blank", rel: "noopener noreferrer" } : {};
-  return (
-    <Wrapper {...linkProps} className="bg-card rounded-lg p-6 border-2 border-border hover:border-primary/40 hover:shadow-lg transition-all duration-300 block">
-      <div className="flex items-start gap-3 mb-3">
-        <div className="p-2 rounded-md bg-accent/20">
-          <MapPin className="w-5 h-5 text-accent" />
-        </div>
-        <div>
-          <h3 className="font-display text-lg font-semibold text-foreground flex items-center gap-2">
-            {name}
-            {url && <ExternalLink className="w-3.5 h-3.5 text-accent" />}
-          </h3>
-          {location && (
-            <p className="text-xs text-primary font-bold uppercase tracking-wide">{location}</p>
-          )}
-        </div>
-      </div>
-      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-    </Wrapper>
-  );
-}
 
 function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
