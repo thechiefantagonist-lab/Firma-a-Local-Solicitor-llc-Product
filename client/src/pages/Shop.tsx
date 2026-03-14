@@ -109,9 +109,13 @@ export default function Shop() {
   const { data: products, isLoading } = useProducts();
   const [filter, setFilter] = useState<string>("all");
 
-  const filteredProducts = products?.filter(p => 
-    filter === "all" ? true : p.category === filter
-  );
+  const filteredProducts = products
+    ?.filter(p => filter === "all" ? true : p.category === filter)
+    .sort((a, b) => {
+      const aOut = a.stock === 0 ? 1 : 0;
+      const bOut = b.stock === 0 ? 1 : 0;
+      return aOut - bOut;
+    });
 
   return (
     <div className="min-h-screen bg-background pb-16">
@@ -643,6 +647,7 @@ function ProductCard({ product }: { product: Product }) {
   const [isAdded, setIsAdded] = useState(false);
 
   const isFlight = product.name.toLowerCase().includes('flight');
+  const isSoldOut = product.stock === 0;
   const productPrice = Number(product.price);
   const ingredient = getIngredientImage(product.name);
   const originalPrice = isFlight ? null : 20.00;
@@ -660,7 +665,7 @@ function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <div className="bg-card group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border/50 flex flex-col h-full relative">
+    <div className={cn("bg-card group rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border flex flex-col h-full relative", isSoldOut ? "border-border/30 opacity-60" : "border-border/50 hover:shadow-xl hover:-translate-y-1")}>
       {isFlight ? (
         <div className="absolute top-4 left-4 z-10 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md">
           Best Value
@@ -721,66 +726,79 @@ function ProductCard({ product }: { product: Product }) {
         </div>
         
         <div className="mt-auto pt-4 border-t border-border/50 space-y-3">
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col">
-                {originalPrice && (
-                  <span className="text-sm text-muted-foreground line-through" data-testid={`text-product-original-price-${product.id}`}>
-                    ${originalPrice.toFixed(2)}
-                  </span>
-                )}
-                <span className="text-xl font-bold text-primary" data-testid={`text-product-price-${product.id}`}>
-                  ${productPrice.toFixed(2)}
-                </span>
-                {originalPrice && productPrice < originalPrice && (
-                  <span className="text-xs font-bold text-red-600" data-testid={`text-product-savings-${product.id}`}>
-                    $3 off — $20 at the market this weekend
-                  </span>
-                )}
+          {isSoldOut ? (
+            <div className="flex items-center justify-between" data-testid={`text-sold-out-${product.id}`}>
+              <span className="text-xl font-bold text-primary line-through decoration-1">
+                ${productPrice.toFixed(2)}
+              </span>
+              <span className="text-sm font-bold tracking-[0.2em] uppercase text-slate-400">
+                Sold Out.
+              </span>
+            </div>
+          ) : (
+            <>
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col">
+                    {originalPrice && (
+                      <span className="text-sm text-muted-foreground line-through" data-testid={`text-product-original-price-${product.id}`}>
+                        ${originalPrice.toFixed(2)}
+                      </span>
+                    )}
+                    <span className="text-xl font-bold text-primary" data-testid={`text-product-price-${product.id}`}>
+                      ${productPrice.toFixed(2)}
+                    </span>
+                    {originalPrice && productPrice < originalPrice && (
+                      <span className="text-xs font-bold text-red-600" data-testid={`text-product-savings-${product.id}`}>
+                        $3 off — $20 at the market this weekend
+                      </span>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={handleAddToCart}
+                    disabled={isAdded}
+                    data-testid={`button-add-to-cart-${product.id}`}
+                    className={cn(
+                      "flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200",
+                      isAdded
+                        ? "bg-green-600 text-white cursor-default"
+                        : "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                    )}
+                  >
+                    {isAdded ? (
+                      <>
+                        <Check className="w-4 h-4" /> Added
+                      </>
+                    ) : (
+                      <>
+                        <Plus className="w-4 h-4" /> Add to Cart
+                      </>
+                    )}
+                  </button>
+                </div>
+                <button
+                  onClick={handleBuyNow}
+                  data-testid={`button-buy-now-${product.id}`}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl font-semibold text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-sm"
+                >
+                  <Zap className="w-4 h-4" /> Buy Now
+                </button>
               </div>
-            
-              <button
-                onClick={handleAddToCart}
-                disabled={isAdded}
-                data-testid={`button-add-to-cart-${product.id}`}
-                className={cn(
-                  "flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200",
-                  isAdded 
-                    ? "bg-green-600 text-white cursor-default" 
-                    : "bg-primary text-primary-foreground shadow-md shadow-primary/20"
-                )}
-              >
-                {isAdded ? (
-                  <>
-                    <Check className="w-4 h-4" /> Added
-                  </>
-                ) : (
-                  <>
-                    <Plus className="w-4 h-4" /> Add to Cart
-                  </>
-                )}
-              </button>
-            </div>
-            <button
-              onClick={handleBuyNow}
-              data-testid={`button-buy-now-${product.id}`}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl font-semibold text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-sm"
-            >
-              <Zap className="w-4 h-4" /> Buy Now
-            </button>
-          </div>
-          
-          {!isFlight && (
-            <div className="bg-secondary/50 rounded-lg p-3 text-xs">
-              <p className="font-semibold text-foreground mb-1">Business Owner Pricing</p>
-              <p className="text-muted-foreground italic mb-1">Upon direct request & vetting</p>
-              <p className="text-muted-foreground">
-                1-2 cases: <span className="font-bold text-primary">TBD</span>
-              </p>
-              <p className="text-muted-foreground">
-                3+ cases: <span className="font-bold text-accent">TBD</span>
-              </p>
-            </div>
+
+              {!isFlight && (
+                <div className="bg-secondary/50 rounded-lg p-3 text-xs">
+                  <p className="font-semibold text-foreground mb-1">Business Owner Pricing</p>
+                  <p className="text-muted-foreground italic mb-1">Upon direct request & vetting</p>
+                  <p className="text-muted-foreground">
+                    1-2 cases: <span className="font-bold text-primary">TBD</span>
+                  </p>
+                  <p className="text-muted-foreground">
+                    3+ cases: <span className="font-bold text-accent">TBD</span>
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
