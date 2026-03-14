@@ -1,10 +1,11 @@
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
 import { useCart } from "@/hooks/use-cart";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 import { api } from "@shared/routes";
 import { Location } from "@shared/schema";
-import { ShoppingBag, LogOut, Phone, Mail, MapPin, ChevronLeft, ChevronRight, Sun, Heart } from "lucide-react";
+import { ShoppingBag, LogOut, Phone, Mail, MapPin, ChevronLeft, ChevronRight, Sun, Heart, Eye } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
@@ -50,6 +51,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { user, logout } = useAuth();
   const { itemCount } = useCart();
   const [phraseIndex, setPhraseIndex] = useState(0);
+
+  const { data: visitData } = useQuery<{ count: number }>({
+    queryKey: ["/api/visits"],
+  });
+
+  const incrementVisit = useMutation({
+    mutationFn: () => apiRequest("POST", "/api/visits").then(r => r.json()),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/visits"] });
+    },
+  });
+
+  useEffect(() => {
+    incrementVisit.mutate();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -191,6 +208,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 Made with <Heart className="w-3.5 h-3.5 text-amber-400 fill-amber-400" /> in San Marcos, TX
               </p>
               <p className="mt-1 text-xs text-white/40">&copy; {new Date().getFullYear()} Firma Forest. All rights reserved. Proudly 78666.</p>
+              {visitData && (
+                <div className="mt-3 inline-flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-full px-3 py-1" data-testid="text-visit-counter">
+                  <Eye className="w-3 h-3 text-amber-400/70" />
+                  <span className="text-white/40 text-[10px] font-mono tracking-wider">
+                    {visitData.count.toLocaleString()} visits
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         </div>

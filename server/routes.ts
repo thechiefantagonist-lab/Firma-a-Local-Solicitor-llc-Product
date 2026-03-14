@@ -253,6 +253,17 @@ export async function registerRoutes(
     }
   });
   
+  // Site Visit Counter
+  app.get("/api/visits", async (req, res) => {
+    const count = await storage.getVisitCount();
+    res.json({ count });
+  });
+
+  app.post("/api/visits", async (req, res) => {
+    const count = await storage.incrementVisitCount();
+    res.json({ count });
+  });
+
   // Seed Database with Initial Products
   await seedDatabase();
   await seedLocations();

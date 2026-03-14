@@ -65,6 +65,12 @@ export const locations = pgTable("locations", {
   lng: doublePrecision("lng").notNull(),
 });
 
+// Site Visits Counter
+export const siteVisits = pgTable("site_visits", {
+  id: serial("id").primaryKey(),
+  count: integer("count").notNull().default(0),
+});
+
 // Reviews Table
 export const reviews = pgTable("reviews", {
   id: serial("id").primaryKey(),

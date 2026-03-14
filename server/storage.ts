@@ -1,6 +1,6 @@
 import { db } from "./db";
 import {
-  users, products, orders, orderItems, appointments, locations, reviews,
+  users, products, orders, orderItems, appointments, locations, reviews, siteVisits,
   type User, type InsertUser,
   type Product, type InsertProduct,
   type Order, type OrderItem,
@@ -35,6 +35,10 @@ export interface IStorage {
   // Reviews
   getReviews(): Promise<Review[]>;
   createReview(review: InsertReview): Promise<Review>;
+
+  // Site Visits
+  getVisitCount(): Promise<number>;
+  incrementVisitCount(): Promise<number>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -161,6 +165,24 @@ export class DatabaseStorage implements IStorage {
   async createReview(review: InsertReview): Promise<Review> {
     const [newReview] = await db.insert(reviews).values(review).returning();
     return newReview;
+  }
+
+  async getVisitCount(): Promise<number> {
+    const rows = await db.select().from(siteVisits).where(eq(siteVisits.id, 1));
+    return rows[0]?.count ?? 0;
+  }
+
+  async incrementVisitCount(): Promise<number> {
+    const existing = await db.select().from(siteVisits).where(eq(siteVisits.id, 1));
+    if (existing.length === 0) {
+      const [row] = await db.insert(siteVisits).values({ id: 1, count: 1 }).returning();
+      return row.count;
+    }
+    const [row] = await db.update(siteVisits)
+      .set({ count: existing[0].count + 1 })
+      .where(eq(siteVisits.id, 1))
+      .returning();
+    return row.count;
   }
 }
 
